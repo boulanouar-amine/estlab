@@ -30,8 +30,13 @@ def run(request):
                 pass
 
             else:
-                print("here")
-                res = eval(command)
+
+                def my_exec(code):
+                    exec('global i; i = %s' % code)
+                    global i
+                    return i
+                res = my_exec(command)
+                #res = eval(command)
                 history = str(res)+"\n"+history
 
         except (IndexError, ZeroDivisionError):

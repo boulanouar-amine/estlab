@@ -1,13 +1,82 @@
+import numpy as np
 from django.shortcuts import render
 from pylab import *
 
 history = ""
 
+def del_double_bracket(chaine):
+    chaine = chaine.replace("[[", "")
+    chaine = chaine.replace("]]", "")
+    return chaine
+
+def del_simple_bracket(chaine):
+    if chaine[0] == '[' and chaine[len(chaine) - 1] == ']':
+        chaine = chaine[1:-1]
+    return chaine
+
+def split_matrix(chaine):
+
+    op = ["/","\\","*","-","+"]
+    for i in op:
+        print(i)
+
+
+    if re.search("/", chaine):
+
+        chaine = chaine.split("\\")
+        a = np.matrix(chaine[0])
+        b = np.matrix(chaine[1])
+
+        return np.divide(a, b)
+
+    if re.search("\\\\", chaine):
+        chaine = chaine.split("\\")
+
+        a = np.matrix(chaine[0])
+        b = np.matrix(chaine[1])
+
+        return np.divide(a, b)
+
+    if re.search("\-", chaine):
+        chaine = chaine.split("-")
+
+        a = np.matrix(chaine[0])
+        b = np.matrix(chaine[1])
+
+        return np.subtract(a, b)
+
+    if re.search("\+", chaine):
+        chaine = chaine.split("+")
+
+        a = np.matrix(chaine[0])
+        b = np.matrix(chaine[1])
+
+        return np.add(a, b)
+
+    if re.search("\*",chaine):
+
+        chaine = chaine.split("*")
+
+        a = np.matrix(chaine[0])
+        b = np.matrix(chaine[1])
+        'matrix_calculator([10;10]*[3;1])'
+        'matrix_calculator([[2;2];[10;10]]⋅[[3;1];[2;4]]−[[1;2];[1;3]]),'
+        return np.multiply(a,b)
+
+
+
+def matrix_calculator(chaine):
+    chaine = chaine.replace("matrix_calculator(","")
+    chaine = chaine.replace(")", "")
+    return split_matrix(chaine)
+
+
+
 def doc(request):
     return render(request, 'documentation.html', {'output': "bonjour"})
 
-
 def run(request):
+
     global history
     res = "bonjour veuiller entrer help pour la syntax"
 
@@ -15,10 +84,12 @@ def run(request):
         command = request.POST["cal"]
 
         try:
-            if command == "M":
-                M = array(((1,2,3), (4,5,6), (7,8,9)))
+
+            if re.search("matrix_calculator",command):
+
+                res = matrix_calculator(command)
+                return render(request, 'index.html', {'output': str(res)})
                 history = str(res) + "\n" + history
-                return render(request, 'index.html', {'output': str(M)})
 
             if command == "help" or command == "help()":
                 command = ""
@@ -30,12 +101,6 @@ def run(request):
                 pass
 
             else:
-                """def my_exec(code):
-                               exec('global i; i = %s' % code)
-                               global i
-                               return i
-
-                res = my_exec(command)"""
                 res = eval(command)
                 history = str(res) + "\n" + history
 
@@ -45,4 +110,4 @@ def run(request):
 
             res = "Veuiller entrer une formule valid"
 
-    return render(request, 'index.html', {'output': str(res), 'history': str(history)})
+    return render(request, 'index.html', {'output': str(res), 'history': str(history)  })

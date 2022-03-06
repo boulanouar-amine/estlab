@@ -5,11 +5,13 @@ import array_to_latex as a2l
 
 history = ""
 
-def del_brackets(chaine):
-    return  str(chaine).replace('[','').replace(']','').replace('[[','').replace(']]','')
+
+
+def determinant(chaine):
+    x = np.matrix(chaine)
+    return np.linalg.det(x)
 
 def split_matrix(chaine):
-
     if re.search("/", chaine):
         chaine = chaine.split("/")
         a = np.matrix(chaine[0])
@@ -40,32 +42,31 @@ def split_matrix(chaine):
         b = np.matrix(chaine[1])
         return np.multiply(a, b)
 
-def format_matrix(chaine):
-    """begin = '$$\\begin{pmatrix}'
-    data ="\\\\".join(str(i) for i in chaine)
-    end = '\end{pmatrix}$$'
-    return begin + del_brackets(data) + end
-    """
-    return "$$"+str(a2l.to_ltx(chaine , print_out=False , arraytype = 'pmatrix' , frmt = '{:.3f}',) )+"$$"
+
+def format_matrix(chaine, num):
+    return "$$" + str(a2l.to_ltx(chaine, print_out=False, arraytype='pmatrix', frmt='{:.' + str(num) + 'f}', )) + "$$"
+
 
 def inverse_matrix(chaine):
-    chaine = chaine.replace("inverse_matrix(", "").replace(")", "")
+
     x = np.matrix(chaine)
     x = np.linalg.inv(x)
-    return format_matrix(x)
+
+    return format_matrix(x, 5)
+
 
 def matrix_calculator(chaine):
-    chaine = chaine.replace("matrix_calculator(", "").replace(")", "")
+
     chaine = split_matrix(chaine)
 
-    return format_matrix(chaine)
+    return format_matrix(chaine, 0)
 
 
 def doc(request):
     return render(request, 'documentation.html', {'output': "bonjour"})
 
-def run(request):
 
+def run(request):
     global history
     res = "bonjour veuiller entrer help pour la syntax"
 
@@ -74,16 +75,26 @@ def run(request):
 
         try:
 
+            commands = {"inverse_matrix": inverse_matrix, "determinant": determinant,"matrix_calculator": matrix_calculator}  # this dosent display correctly with determinant
+            # what this does is extract the name of the function if it exist in the dictionary from user input then executes it with the argument given
+            res = ''.join([commands[ele](command.replace(ele, "").replace("(", "").replace(")", "")) for ele in commands if re.search(ele, command)])  # or i can use eval(ele+"(command)") but dosnt work with determinabt
+
+            return render(request, 'index.html', {'output': res})
+
+            '''
             if re.search("inverse_matrix", command):
                 res = inverse_matrix(command)
                 return render(request, 'index.html', {'output': str(res)})
 
-            if re.search("matrix_calculator",command):
+            if re.search("determinant", command):
+                res = determinant(command)
+                return render(request, 'index.html', {'output': str(res)})
 
+            if re.search("matrix_calculator", command):
                 res = matrix_calculator(command)
                 return render(request, 'index.html', {'output': str(res)})
 
-
+             '''
             if command == "help" or command == "help()":
                 command = ""
                 res = "vous pouver voir la documentation dans /documentation"
@@ -99,6 +110,10 @@ def run(request):
 
         except (IndexError, ZeroDivisionError):
             res = "division par 0"
+
+        except np.linalg.LinAlgError:
+            return "Last 2 dimensions of the array must be square"
+
         except:
 
             res = "Veuiller entrer une formule valid"

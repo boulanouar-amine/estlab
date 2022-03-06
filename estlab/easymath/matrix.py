@@ -2,6 +2,15 @@ import numpy as np
 import re
 import array_to_latex as a2l
 
+
+
+'''
+ def clean_res(chaine):
+                return str(chaine).replace('[', '').replace(']', '').replace('\'', '')
+'''
+
+
+
 '''
 def precedence(op):
     if op == '+' or op == '-':
@@ -104,24 +113,32 @@ def split_matrix(chaine):
         b = np.matrix(chaine[1])
         return np.multiply(a, b)
 
-def format_matrix(chaine):
+
+def format_matrix(chaine,num):
     """begin = '$$\\begin{pmatrix}'
     data ="\\\\".join(str(i) for i in chaine)
     end = '\end{pmatrix}$$'
     return begin + del_brackets(data) + end
     """
-    return "$$"+str(a2l.to_ltx(chaine , print_out=False , arraytype = 'pmatrix' , frmt = '{:.0f}',) )+"$$"
+    return "$$" + str(a2l.to_ltx(chaine, arraytype='pmatrix', frmt='{:.'+str(num)+'f}', )) + "$$"
+
 
 def inverse_matrix(chaine):
     chaine = chaine.replace("inverse_matrix(", "").replace(")", "")
     x = np.matrix(chaine)
-    print(x)
     x = np.linalg.inv(x)
-    print(x)
-    return x
+    return format_matrix(x,5)
+
+
+def determinant(chaine):
+    chaine = chaine.replace("determinant(", "").replace(")", "")
+    x = np.matrix(chaine)
+    print(np.linalg.det(x))
+    return np.linalg.det(x)
 
 res = matrix_calculator('matrix_calculator([1,2];[10,10]+[3,1];[2,4])')
 
-res1 =('inverse_matrix([[6, 1, 1];[4, -2, 5];[2, 8, 7]])')
+res1 =('inverse_matrix([6, 1, 1];[4, -2, 5])')
 
-inverse_matrix(res1)
+res2 = ('determinant([6, 1, 1];[4, -2, 5];[2, 8, 7])')
+determinant(res2)

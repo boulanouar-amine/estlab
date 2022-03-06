@@ -27,16 +27,17 @@ def inverse_matrix(chaine):
 
 
 def matrix_calculator(chaine):
-    op = {"/": np.divide, "\+": np.add, "\-": np.subtract, "\*": np.multiply}
+    op = {"/": np.divide, "\+": np.add, "\*": np.multiply ,"\-": np.subtract}
     for ele in op :
         if re.search(ele, chaine):
             chaine = chaine.split(ele.strip("\\"))
             a = np.matrix(chaine[0])
             b = np.matrix(chaine[1])
             chaine = op[ele](a, b)
-            print(chaine)
+            return format_matrix(chaine, 0)
 
-    return format_matrix(chaine, 0)
+
+
 
 
 def doc(request):

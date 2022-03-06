@@ -5,42 +5,13 @@ import array_to_latex as a2l
 
 history = ""
 
-
+def extract(command,ele):
+    chaine = command.replace(ele, "").replace("(", "").replace(")", "")
+    return chaine
 
 def determinant(chaine):
     x = np.matrix(chaine)
-    return np.linalg.det(x)
-
-def split_matrix(chaine):
-    if re.search("/", chaine):
-        chaine = chaine.split("/")
-        a = np.matrix(chaine[0])
-        b = np.matrix(chaine[1])
-
-        return np.divide(a, b)
-
-    if re.search("\-", chaine):
-        chaine = chaine.split("-")
-
-        a = np.matrix(chaine[0])
-        b = np.matrix(chaine[1])
-
-        return np.subtract(a, b)
-
-    if re.search("\+", chaine):
-        chaine = chaine.split("+")
-
-        a = np.matrix(chaine[0])
-        b = np.matrix(chaine[1])
-
-        return np.add(a, b)
-
-    if re.search("\*", chaine):
-        chaine = chaine.split("*")
-
-        a = np.matrix(chaine[0])
-        b = np.matrix(chaine[1])
-        return np.multiply(a, b)
+    return str(np.linalg.det(x))
 
 
 def format_matrix(chaine, num):
@@ -56,8 +27,14 @@ def inverse_matrix(chaine):
 
 
 def matrix_calculator(chaine):
-
-    chaine = split_matrix(chaine)
+    op = {"/": np.divide, "\+": np.add, "\-": np.subtract, "\*": np.multiply}
+    for ele in op :
+        if re.search(ele, chaine):
+            chaine = chaine.split(ele.strip("\\"))
+            a = np.matrix(chaine[0])
+            b = np.matrix(chaine[1])
+            chaine = op[ele](a, b)
+            print(chaine)
 
     return format_matrix(chaine, 0)
 
@@ -77,9 +54,9 @@ def run(request):
 
             commands = {"inverse_matrix": inverse_matrix, "determinant": determinant,"matrix_calculator": matrix_calculator}  # this dosent display correctly with determinant
             # what this does is extract the name of the function if it exist in the dictionary from user input then executes it with the argument given
-            res = ''.join([commands[ele](command.replace(ele, "").replace("(", "").replace(")", "")) for ele in commands if re.search(ele, command)])  # or i can use eval(ele+"(command)") but dosnt work with determinabt
+            res = ''.join([commands[ele](extract(command,ele)) for ele in commands if re.search(ele, command)])  # or i can use eval(ele+"(command)") but dosnt work with determinabt
 
-            return render(request, 'index.html', {'output': res})
+            return render(request, 'index.html', {'output': str(res)})
 
             '''
             if re.search("inverse_matrix", command):
@@ -105,6 +82,7 @@ def run(request):
                 pass
 
             else:
+                #else its a number
                 res = eval(command)
                 history = str(res) + "\n" + history
 

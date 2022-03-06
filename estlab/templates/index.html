@@ -17,7 +17,6 @@
         <div></div>
         <div></div>
         <div></div>
-$$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$
     </topbar>
 
     <div>
@@ -27,8 +26,9 @@ $$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$
         <h3 >{{ history }}</h3>
         </div>
         <div>
-            <form method="POST">{% csrf_token %}>> <input type="text" name="cal" id="cal"></form>
-            <h3>>> $${{ output }}$$</h3>
+            <form method="POST">{% csrf_token %} <input type="text" name="cal" id="cal"></form>
+            <h3>{{ output }}</h3>
+
 
         </div>
 

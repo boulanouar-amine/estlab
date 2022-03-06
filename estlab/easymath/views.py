@@ -5,7 +5,7 @@ import re
 history = ""
 
 def format_number(command):
-    return str("{:.5f}".format(command))
+    return str("$$"+"{:.2f}".format(command)+"$$")
 
 def extract(command,ele):
     chaine = command.replace(ele, "").replace("(", "").replace(")", "")
@@ -24,14 +24,18 @@ def calculate(command):
         res = eval(command)
     return  format_number(res)
 
+def vector_difference(chaine):
+    print(chaine.replace(";","-"))
+    return matrix_calculator(chaine.replace(";","-"),"bmatrix")
+
 
 def determinant(chaine):
     x = np.matrix(chaine)
     return format_number((np.linalg.det(x))) # return 2 number after  comma
 
 
-def format_matrix(chaine, num):
-    return "$$" + str(a2l.to_ltx(chaine, print_out=False, arraytype='pmatrix', frmt='{:.' + str(num) + 'f}', )) + "$$"
+def format_matrix(chaine, num = 0 ,arrtype = "pmatrix"):
+    return "$$" + str(a2l.to_ltx(chaine, print_out=False, arraytype=arrtype, frmt='{:.' + str(num) + 'f}', mathform = True )) + "$$"
 
 
 def inverse_matrix(chaine):
@@ -42,7 +46,7 @@ def inverse_matrix(chaine):
     return format_matrix(x, 5)
 
 
-def matrix_calculator(chaine):
+def matrix_calculator(chaine,arrtype = "pmatrix"):
     op = {"/": np.divide, "\+": np.add, "\*": np.multiply ,"\-": np.subtract}
     for ele in op :
         if re.search(ele, chaine):
@@ -50,7 +54,7 @@ def matrix_calculator(chaine):
             a = np.matrix(chaine[0]) #if there is another element redo
             b = np.matrix(chaine[1])
             chaine = op[ele](a, b)
-            return format_matrix(chaine, 0)
+            return format_matrix(chaine, 0,arrtype)
 
 
 
@@ -67,7 +71,7 @@ def run(request):
 
         try:
 
-            commands = ("inverse_matrix","determinant", "matrix_calculator","calculate")  # can add new functions here
+            commands = ("inverse_matrix","determinant", "matrix_calculator","calculate","vector_difference")  # can add new functions here
 
             # what this does is extract the name of the function if it exist in the dictionary from user input then executes it with the argument given
             res = ''.join([eval(ele + "(extract(command,ele))") for ele in commands if re.search(ele, command)])  # or i can use eval(ele+"(command)"),commands[ele](extract(command,ele)

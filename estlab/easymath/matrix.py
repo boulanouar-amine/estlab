@@ -157,5 +157,5 @@ res = matrix_calculator('matrix_calculator([1,2];[10,10]+[3,1];[2,4])')
             '''
 res1 =('inverse_matrix([6, 1, 1];[4, -2, 5])')
 
-res2 = ('determinant([6, 1, 1];[4, -2, 5];[2, 8, 7])')
+res2 = ('determinant([3,1,0];[3,2,1];[4,1,7]),')
 determinant(res2)

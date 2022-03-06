@@ -1,17 +1,33 @@
 import numpy as np
 from django.shortcuts import render
-from pylab import *
 import array_to_latex as a2l
-
+import re
 history = ""
+
+def format_number(command):
+    return "{:.5f}".format(command)
 
 def extract(command,ele):
     chaine = command.replace(ele, "").replace("(", "").replace(")", "")
     return chaine
 
+
+def calculate(command):
+    if command == "help" or command == "help()":
+        command = ""
+        res = "vous pouver voir la documentation dans /documentation"
+    if command == "quit" or command == "exit":
+        command = ""
+        pass
+    else:
+        # else its a number
+        res = eval(command)
+    return  format_number(res)
+
+
 def determinant(chaine):
     x = np.matrix(chaine)
-    return str(np.linalg.det(x))
+    return format_number((np.linalg.det(x))) # return 2 number after  comma
 
 
 def format_matrix(chaine, num):
@@ -31,12 +47,10 @@ def matrix_calculator(chaine):
     for ele in op :
         if re.search(ele, chaine):
             chaine = chaine.split(ele.strip("\\"))
-            a = np.matrix(chaine[0])
+            a = np.matrix(chaine[0]) #if there is another element redo
             b = np.matrix(chaine[1])
             chaine = op[ele](a, b)
             return format_matrix(chaine, 0)
-
-
 
 
 
@@ -45,7 +59,6 @@ def doc(request):
 
 
 def run(request):
-    global history
     res = "bonjour veuiller entrer help pour la syntax"
 
     if request.method == 'POST':
@@ -53,39 +66,12 @@ def run(request):
 
         try:
 
-            commands = {"inverse_matrix": inverse_matrix, "determinant": determinant,"matrix_calculator": matrix_calculator}  # this dosent display correctly with determinant
+            commands = ("inverse_matrix","determinant", "matrix_calculator","calculate")  # can add new functions here
             # what this does is extract the name of the function if it exist in the dictionary from user input then executes it with the argument given
-            res = ''.join([commands[ele](extract(command,ele)) for ele in commands if re.search(ele, command)])  # or i can use eval(ele+"(command)") but dosnt work with determinabt
-
+            res = ''.join([eval(ele + "(extract(command,ele))") for ele in commands if re.search(ele, command)])  # or i can use eval(ele+"(command)"),commands[ele](extract(command,ele)
             return render(request, 'index.html', {'output': str(res)})
 
-            '''
-            if re.search("inverse_matrix", command):
-                res = inverse_matrix(command)
-                return render(request, 'index.html', {'output': str(res)})
 
-            if re.search("determinant", command):
-                res = determinant(command)
-                return render(request, 'index.html', {'output': str(res)})
-
-            if re.search("matrix_calculator", command):
-                res = matrix_calculator(command)
-                return render(request, 'index.html', {'output': str(res)})
-
-             '''
-            if command == "help" or command == "help()":
-                command = ""
-                res = "vous pouver voir la documentation dans /documentation"
-                return render(request, 'index.html', {'output': str(res)})
-
-            if command == "quit" or command == "exit":
-                command = ""
-                pass
-
-            else:
-                #else its a number
-                res = eval(command)
-                history = str(res) + "\n" + history
 
         except (IndexError, ZeroDivisionError):
             res = "division par 0"
@@ -97,4 +83,4 @@ def run(request):
 
             res = "Veuiller entrer une formule valid"
 
-    return render(request, 'index.html', {'output': str(res), 'history': str(history)})
+    return render(request, 'index.html', {'output': str(res)})

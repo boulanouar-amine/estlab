@@ -136,8 +136,25 @@ def determinant(chaine):
     print(np.linalg.det(x))
     return np.linalg.det(x)
 
+
+
+
 res = matrix_calculator('matrix_calculator([1,2];[10,10]+[3,1];[2,4])')
 
+'''
+           if re.search("inverse_matrix", command):
+               res = inverse_matrix(command)
+               return render(request, 'index.html', {'output': str(res)})
+
+           if re.search("determinant", command):
+               res = determinant(command)
+               return render(request, 'index.html', {'output': str(res)})
+
+           if re.search("matrix_calculator", command):
+               res = matrix_calculator(command)
+               return render(request, 'index.html', {'output': str(res)})
+
+            '''
 res1 =('inverse_matrix([6, 1, 1];[4, -2, 5])')
 
 res2 = ('determinant([6, 1, 1];[4, -2, 5];[2, 8, 7])')

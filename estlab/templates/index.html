@@ -22,10 +22,10 @@
     <div>
         <div></div>
         <div>
-        <h3>historique des command: </h3>
-        <h3 >{{ history }}</h3>
+
+
         </div>
-        <div>
+        <div> <h3>ecrire une command: </h3>
             <form method="POST">{% csrf_token %} <input type="text" name="cal" id="cal"></form>
             <h3>{{ output }}</h3>
 
@@ -37,6 +37,13 @@
 
     </div>
 <a href = "/documentation" >documentation</a>
+<p>examples:<br>
+    calculate(5/7-2)<br>
+    matrix_calculator([1,2];[10,10]+[3,1];[2,4])<br>
+    matrix_calculator([10,10]/[2,2];[2,4])<br>
+    inverse_matrix([6,1,1];[4,-2,5]))<br>
+    determinant([4, 0, 14];[2, 8, 7]))<br>
+</p>
 
 
 </body>

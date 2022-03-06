@@ -1,11 +1,11 @@
-import numpy as np
 from django.shortcuts import render
+import numpy as np
 import array_to_latex as a2l
 import re
 history = ""
 
 def format_number(command):
-    return "{:.5f}".format(command)
+    return str("{:.5f}".format(command))
 
 def extract(command,ele):
     chaine = command.replace(ele, "").replace("(", "").replace(")", "")
@@ -59,6 +59,7 @@ def doc(request):
 
 
 def run(request):
+    global history
     res = "bonjour veuiller entrer help pour la syntax"
 
     if request.method == 'POST':
@@ -67,20 +68,18 @@ def run(request):
         try:
 
             commands = ("inverse_matrix","determinant", "matrix_calculator","calculate")  # can add new functions here
+
             # what this does is extract the name of the function if it exist in the dictionary from user input then executes it with the argument given
             res = ''.join([eval(ele + "(extract(command,ele))") for ele in commands if re.search(ele, command)])  # or i can use eval(ele+"(command)"),commands[ele](extract(command,ele)
-            return render(request, 'index.html', {'output': str(res)})
-
-
 
         except (IndexError, ZeroDivisionError):
             res = "division par 0"
 
         except np.linalg.LinAlgError:
-            return "Last 2 dimensions of the array must be square"
+            res = "Last 2 dimensions of the array must be square"
 
         except:
 
             res = "Veuiller entrer une formule valid"
 
-    return render(request, 'index.html', {'output': str(res)})
+    return render(request, 'index.html', {'output': str(res),history: str(history)})

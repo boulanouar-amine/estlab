@@ -158,3 +158,15 @@ res1 =('inverse_matrix([6, 1, 1];[4, -2, 5])')
 
 res2 = ('determinant([3,1,0];[3,2,1];[4,1,7]),')
 determinant(res2)
+
+def format_number(chaine):
+    return str("$$" + "{:.2f}".format(chaine) + "$$")
+
+
+
+def average(chaine):
+    return format_number(np.average(np.matrix(chaine)))
+
+res3='[1,2,3,4,5,6]'
+
+average(res3)

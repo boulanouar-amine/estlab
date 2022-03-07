@@ -3,7 +3,6 @@ import re
 import array_to_latex as a2l
 
 
-
 '''
  def clean_res(chaine):
                 return str(chaine).replace('[', '').replace(']', '').replace('\'', '')

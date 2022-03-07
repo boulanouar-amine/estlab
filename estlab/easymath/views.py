@@ -11,6 +11,9 @@ def extract(command,ele):
     chaine = command.replace(ele, "").replace("(", "").replace(")", "")
     return chaine
 
+def trace(command):
+    x = np.matrix(command)
+    return format_number(np.trace(x))
 
 def calculate(command):
     if command == "help" or command == "help()":
@@ -71,7 +74,7 @@ def run(request):
 
         try:
 
-            commands = ("inverse_matrix","determinant", "matrix_calculator","calculate","vector_difference")  # can add new functions here
+            commands = ("inverse_matrix","determinant", "matrix_calculator","calculate","vector_difference","trace")  # can add new functions here
 
             # what this does is extract the name of the function if it exist in the dictionary from user input then executes it with the argument given
             res = ''.join([eval(ele + "(extract(command,ele))") for ele in commands if re.search(ele, command)])  # or i can use eval(ele+"(command)"),commands[ele](extract(command,ele)

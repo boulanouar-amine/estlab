@@ -2,73 +2,12 @@ import numpy as np
 import re
 import array_to_latex as a2l
 
+"""
 
-'''
  def clean_res(chaine):
                 return str(chaine).replace('[', '').replace(']', '').replace('\'', '')
-'''
 
 
-
-'''
-def precedence(op):
-    if op == '+' or op == '-':
-        return 1
-    if op == '*' or op == '/':
-        return 2
-    return 0
-
-
-def applyOp(a, b, op):
-    if op == '+': return np.add(a, b)
-    if op == '-': return np.subtract(a, b)
-    if op == '*': return np.multiply(a, b)
-    if op == '/': return np.divide(a, b)
-
-
-def evaluate(chaine):
-    values = []
-    ops = []
-    i = 0
-
-    while i < len(chaine):
-
-        if chaine[i] == ' ':
-            i += 1
-            continue
-
-        elif chaine[i] == '+' or chaine[i] == '-' or chaine[i] == '/' or chaine[i] == '*':
-            ops.append(chaine[i])
-            i += 1
-
-        elif chaine[i] == '[' or chaine[i].isdigit() or chaine[i] == ',' or chaine[i] == ';':
-            values.append(chaine[i])
-            i += 1
-
-        elif chaine[i] == ']':
-            values.append(chaine[i])
-            new = ""
-            for x in values:
-                new += str(x)
-            val1 = np.matrix(new)
-            print(val1)
-            values.clear()
-            i += 1
-
-
-    else:
-
-        while (len(ops) != 0 ):
-
-            val2 = np.matrix(values)
-            op = ops.pop()
-
-            values.append(applyOp(val1, val2, op))
-
-        i += 1
-
-        return values[-1]
-'''
 
 def del_brackets(chaine):
     return  str(chaine).replace('[','').replace(']','').replace('[[','').replace(']]','')
@@ -114,11 +53,11 @@ def split_matrix(chaine):
 
 
 def format_matrix(chaine,num):
-    """begin = '$$\\begin{pmatrix}'
+    begin = '$$\\begin{pmatrix}'
     data ="\\\\".join(str(i) for i in chaine)
     end = '\end{pmatrix}$$'
     return begin + del_brackets(data) + end
-    """
+    
     return "$$" + str(a2l.to_ltx(chaine, arraytype='pmatrix', frmt='{:.'+str(num)+'f}', )) + "$$"
 
 
@@ -140,7 +79,7 @@ def determinant(chaine):
 
 res = matrix_calculator('matrix_calculator([1,2];[10,10]+[3,1];[2,4])')
 
-'''
+'
            if re.search("inverse_matrix", command):
                res = inverse_matrix(command)
                return render(request, 'index.html', {'output': str(res)})
@@ -153,20 +92,29 @@ res = matrix_calculator('matrix_calculator([1,2];[10,10]+[3,1];[2,4])')
                res = matrix_calculator(command)
                return render(request, 'index.html', {'output': str(res)})
 
-            '''
+            
 res1 =('inverse_matrix([6, 1, 1];[4, -2, 5])')
 
 res2 = ('determinant([3,1,0];[3,2,1];[4,1,7]),')
 determinant(res2)
+"""
 
 def format_number(chaine):
     return str("$$" + "{:.2f}".format(chaine) + "$$")
 
 
+def vecteur_propre(chaine):
+    chaine = np.matrix(chaine)
+    x = np.linalg.eigvals(chaine)
+    return format_matrix(x)
 
-def average(chaine):
-    return format_number(np.average(np.matrix(chaine)))
+def format_matrix(chaine, num=0, arrtype="pmatrix"):
+    return "$$" + str(
+        a2l.to_ltx(chaine, arraytype=arrtype, frmt='{:.' + str(num) + 'f}', mathform=True)) + "$$"
 
-res3='[1,2,3,4,5,6]'
 
-average(res3)
+
+res3='[6,1,1];[4,-2,5];[2,8,7]'
+
+vecteur_propre(res3)
+

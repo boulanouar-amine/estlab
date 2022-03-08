@@ -57,9 +57,10 @@ def matrix_calculator(chaine, arrtype="pmatrix"):
 
 # vectores
 
-def vector_propre(chaine):
+def valeur_propre(chaine):
     x = np.linalg.eigvals(chaine)
-    return format_matrix(x)
+    return format_matrix(np.sort(x),4)
+
 
 def vector_difference(chaine):
     return matrix_calculator(chaine.replace(";", "-"), "bmatrix")
@@ -88,7 +89,7 @@ def run(request):
         try:
 
             commands = ("calculate","matrix_calculator","inverse_matrix","transpose_matrix","determinant",
-                        "trace","vector_difference","average","valeur_propre","vector_propre")  # can add new functions here
+                        "trace","vector_difference","average","valeur_propre")  # can add new functions here
 
             # or i can use eval(ele+"(command)"),commands[ele](extract(command,ele) with dictionary
             res = ''.join([eval(ele + "(extract(command,ele))") for ele in commands if re.search(ele, command)])

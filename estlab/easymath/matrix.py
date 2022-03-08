@@ -106,7 +106,8 @@ def format_number(chaine):
 def vecteur_propre(chaine):
     chaine = np.matrix(chaine)
     x = np.linalg.eigvals(chaine)
-    return format_matrix(x)
+    print(np.sort(x))
+    return x
 
 def format_matrix(chaine, num=0, arrtype="pmatrix"):
     return "$$" + str(

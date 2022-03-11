@@ -7,7 +7,6 @@ import re
 # general functions
 
 def extract(command, ele):
-
     chaine = command.replace(ele, "").replace("(", "").replace(")", "")
     if not (re.search("matrix_calculator", command) or re.search("vector_d", command)) and re.search("]", chaine):
         chaine = np.matrix(chaine)
@@ -18,13 +17,13 @@ def extract(command, ele):
 def format_number(chaine):
     return str("$$" + "{:.2f}".format(chaine) + "$$")
 
+
 # matrix functions
 
 
 def format_matrix(chaine, num=0, arrtype="pmatrix"):
     return "$$" + str(
         a2l.to_ltx(chaine, print_out=False, arraytype=arrtype, frmt='{:.' + str(num) + 'f}', mathform=True)) + "$$"
-
 
 
 def trace(chaine):
@@ -39,6 +38,7 @@ def determinant(chaine):
 def inverse_matrix(chaine):
     chaine = np.linalg.inv(chaine)
     return format_matrix(chaine, 5)
+
 
 def transpose_matrix(chaine):
     return format_matrix(chaine.transpose(), 0)
@@ -59,21 +59,54 @@ def matrix_calculator(chaine, arrtype="pmatrix"):
 
 def valeur_propre(chaine):
     x = np.linalg.eigvals(chaine)
-    return format_matrix(np.sort(x),4)
+    return format_matrix(np.sort(x), 4)
 
 
 def vector_difference(chaine):
     return matrix_calculator(chaine.replace(";", "-"), "bmatrix")
 
 
-#statistique
+# statistique
 
 def calculate(chaine):
     return format_number(eval(chaine))
 
+
 def average(chaine):
     return format_number(np.average(chaine))
 
+
+# traitement des nombre
+
+def nombre_parfait(chaine):
+    n = int(chaine)
+    sum = 0
+    for i in range(1, n):
+        if n % i == 0:
+            sum += i
+
+    if n == sum:
+        return "ce nombrer est parfait"
+    else:
+        return "ce nombrer n'est pas parfait"
+
+
+def intervalle_parfait(chaine):
+    chaine = chaine.split(",")
+    start  = int(chaine[0])
+    end    = int(chaine[1])
+    res = []
+    for n in range(start, end + 1):
+        sum = 0
+
+        for i in range(1, n):
+            if n % i == 0:
+                sum += i
+
+        if n == sum:
+           res.append(sum)
+    res = np.asmatrix(res)
+    return format_matrix(res)
 # views code
 
 def doc(request):
@@ -88,8 +121,8 @@ def run(request):
 
         try:
 
-            commands = ("calculate","matrix_calculator","inverse_matrix","transpose_matrix","determinant",
-                        "trace","vector_difference","average","valeur_propre")  # can add new functions here
+            commands = ("calculate", "matrix_calculator", "inverse_matrix", "transpose_matrix", "determinant",
+                        "trace", "vector_difference", "average", "valeur_propre","nombre_parfait","intervalle_parfait")  # can add new functions here
 
             # or i can use eval(ele+"(command)"),commands[ele](extract(command,ele) with dictionary
             res = ''.join([eval(ele + "(extract(command,ele))") for ele in commands if re.search(ele, command)])

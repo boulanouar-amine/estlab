@@ -119,3 +119,39 @@ res3='[6,1,1];[4,-2,5];[2,8,7]'
 
 vecteur_propre(res3)
 
+
+def calcule_parfait(chaine):
+    n = int(chaine)
+    S = 0
+    for i in range(1, n // 2 + 1):
+        if n % i == 0:
+            S = S + i
+    return bool(S == n)
+
+
+def parfait(chaine):
+    if calcule_parfait(chaine):
+        return "ce nombrer est parfait"
+    else:
+        return "ce nombrer n'est pas parfait"
+
+
+def intervalle_nombre_parfait(chaine):
+    chaine = chaine.strip("(").strip(")")
+    chaine = chaine.split(",")
+    start  = int(chaine[0])
+    end    = int(chaine[1])
+    res = []
+    for n in range(start, end + 1):
+        sum = 0
+
+        for i in range(1, n):
+            if n % i == 0:
+                sum += i
+
+        if n == sum:
+           res.append(sum)
+    res= np.asmatrix(res)
+    return format_matrix(res)
+# views code
+intervalle_nombre_parfait("1,29")

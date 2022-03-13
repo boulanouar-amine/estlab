@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'easymath/css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'easymath/css/style.cs' %}">
     <meta charset="UTF-8">
     <title>welcome to easymath </title>
 
@@ -21,13 +21,17 @@
 
     <div>
         <div></div>
-        <div>
-
-
-        </div>
+        <div></div>
         <div> <h3>ecrire une command: </h3>
-            <form method="POST">{% csrf_token %} <input type="text" name="cal" id="cal"></form>
-            <h3>{{ output }}</h3>
+            <form method="POST">{% csrf_token %} <input type="text" name="cal" id="cal">
+             <button type="text" >calculer l'expression </button></br>
+            </form>
+            <form method='get'>
+                <input type="submit" value="average" name="average">
+                <input type="submit" value="transpose" name="transpose">
+                 <input type="submit" value="inverse" name="inverse">
+            </form>
+             <h3>{{ output }}</h3>
 
 
         </div>
@@ -36,6 +40,8 @@
 
 
     </div>
+    <h3>{{ mat }}</h3>
+
 <a href = "/documentation" >documentation</a>
     <p>syntax:<br>
     function_name([a,b];[c,d]-[e,f];[g,h])<br>
@@ -52,6 +58,7 @@
         valeur_propre([6,1,1];[4,-2,5];[2,8,7])<br>
         nombre_parfait(6)<br>
        intervalle_parfait(1,29)<br>
+        nombre_premier(6)<br>
 
 </p>
 

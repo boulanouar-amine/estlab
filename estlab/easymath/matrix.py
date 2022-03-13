@@ -136,22 +136,26 @@ def parfait(chaine):
         return "ce nombrer n'est pas parfait"
 
 
-def intervalle_nombre_parfait(chaine):
-    chaine = chaine.strip("(").strip(")")
+def intervalle_premier(chaine):
     chaine = chaine.split(",")
     start  = int(chaine[0])
     end    = int(chaine[1])
     res = []
-    for n in range(start, end + 1):
+    for num in range(start, end + 1):
         sum = 0
 
-        for i in range(1, n):
-            if n % i == 0:
-                sum += i
+        if num > 1:
+            for i in range(2, num):
+                if (num % i) == 0:
+                    print( "le nombre " + str(num) + " n'est pas premier")
+        print( "le nombre " + str(num) + " est premier")
 
-        if n == sum:
+    if num == sum:
            res.append(sum)
-    res= np.asmatrix(res)
+    res = np.asmatrix(res)
     return format_matrix(res)
 # views code
-intervalle_nombre_parfait("1,29")
+
+intervalle_premier(1,29)
+'''
+[eval("format_all(" + ele + "(extract(command,ele)))") for ele in commands if re.search(ele, command)]'''

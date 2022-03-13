@@ -1,5 +1,5 @@
+import numpy as np
 from django.urls import path
-
 from . import views
 
 urlpatterns = [

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'easymath/css/style.cs' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'easymath/css/style.css' %}">
     <meta charset="UTF-8">
     <title>welcome to easymath </title>
 
@@ -30,6 +30,14 @@
                 <input type="submit" value="average" name="average">
                 <input type="submit" value="transpose" name="transpose">
                  <input type="submit" value="inverse" name="inverse">
+                 <input type="submit" value="determinant" name="determinant">
+                <input type="submit" value="trace" name="trace">
+                <input type="submit" value="valeur_propre" name="valeur_propre">
+                <input type="submit" value="nombre_parfait" name="nombre_parfait">
+                <input type="submit" value="intervalle_parfait" name="intervalle_parfait">
+
+
+
             </form>
              <h3>{{ output }}</h3>
 
@@ -44,17 +52,11 @@
 
 <a href = "/documentation" >documentation</a>
     <p>syntax:<br>
-    function_name([a,b];[c,d]-[e,f];[g,h])<br>
+        [a,b];[c,d]-[e,f];[g,h]<br>
 <p>examples:<br>
-    calculate(5/7-2)<br>
-    matrix_calculator([1,2];[10,10]+[3,1];[2,4])<br>
-    matrix_calculator([10,10]/[2,2];[2,4])<br>
-    inverse_matrix([6,1,1];[4,-2,5];[2,8,7])<br>
-        transpose_matrix([15,43];[14,41])<br>
-    determinant([3,1,0];[3,2,1];[4,1,7])<br>
-    trace([4,2,5];[4,1,8])<br>
-    vector_difference([1,1,1];[5,5,6])<br>
-        average([1,2,3,4,5,6])<br>
+    5/7-2<br>
+[1,2];[10,10]+[3,1];[2,4]<br>
+   [10,10]/[2,2];[2,4]<br>
         valeur_propre([6,1,1];[4,-2,5];[2,8,7])<br>
         nombre_parfait(6)<br>
        intervalle_parfait(1,29)<br>

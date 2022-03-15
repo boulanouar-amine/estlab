@@ -61,8 +61,8 @@ def format_matrix(chaine,num):
     return "$$" + str(a2l.to_ltx(chaine, arraytype='pmatrix', frmt='{:.'+str(num)+'f}', )) + "$$"
 
 
-def inverse_matrix(chaine):
-    chaine = chaine.replace("inverse_matrix(", "").replace(")", "")
+def inverse(chaine):
+    chaine = chaine.replace("inverse(", "").replace(")", "")
     x = np.matrix(chaine)
     x = np.linalg.inv(x)
     return format_matrix(x,5)
@@ -80,8 +80,8 @@ def determinant(chaine):
 res = matrix_calculator('matrix_calculator([1,2];[10,10]+[3,1];[2,4])')
 
 '
-           if re.search("inverse_matrix", command):
-               res = inverse_matrix(command)
+           if re.search("inverse", command):
+               res = inverse(command)
                return render(request, 'index.html', {'output': str(res)})
 
            if re.search("determinant", command):
@@ -93,7 +93,7 @@ res = matrix_calculator('matrix_calculator([1,2];[10,10]+[3,1];[2,4])')
                return render(request, 'index.html', {'output': str(res)})
 
             
-res1 =('inverse_matrix([6, 1, 1];[4, -2, 5])')
+res1 =('inverse([6, 1, 1];[4, -2, 5])')
 
 res2 = ('determinant([3,1,0];[3,2,1];[4,1,7]),')
 determinant(res2)

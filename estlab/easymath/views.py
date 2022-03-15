@@ -8,8 +8,9 @@ mat = np.zeros((2, 1))
 
 def format_all(chaine):
     global mat
-    mat = chaine
+
     if type(chaine) is np.matrix:
+        mat = chaine
         return "$$" + str(a2l.to_ltx(chaine, print_out=False, arraytype="pmatrix", frmt="{:.2f}", mathform=True)) + "$$"
     elif type(chaine) is str:
         return chaine
@@ -19,16 +20,15 @@ def format_all(chaine):
 
 def extract(command, ele):
 
-    chaine = command.replace(ele, "").replace("(", "").replace(")", "")
+    #chaine = command.replace(ele, "").replace("(", "").replace(")", "")
+    chaine = command
     if not (re.search("matrix_calculator", command) or re.search("vector_difference", command)) and re.search("]", chaine):
         chaine = np.matrix(chaine)
 
     return chaine
 
 
-
 # matrix functions
-
 
 
 def trace(chaine):
@@ -41,31 +41,36 @@ def determinant(chaine):
     return chaine
 
 
-def inverse_matrix(chaine):
+def inverse(chaine):
     chaine = np.linalg.inv(chaine)
     return chaine
 
 
-def transpose_matrix(chaine):
+def transpose(chaine):
     chaine = chaine.transpose()
     return chaine
 
 def matrix_calculator(chaine):
+
     op = {"/": np.divide, "\+": np.add, "\*": np.multiply, "\-": np.subtract}
     for ele in op:
         if re.search(ele, chaine):
+
             chaine = chaine.split(ele.strip("\\"))
             a = np.matrix(chaine[0])  # if there is another element redo
             b = np.matrix(chaine[1])
             chaine = op[ele](a, b)
+
             return chaine
 
 
 # vectores
 
 def valeur_propre(chaine):
+
     chaine = np.linalg.eigvals(chaine)
     chaine = np.sort(chaine)
+    chaine = np.matrix(chaine)
     return chaine
 
 
@@ -78,7 +83,10 @@ def vector_difference(chaine):
 # statistique
 
 def calculate(chaine):
-    chaine = eval(chaine)
+    if re.search("]", chaine):
+        chaine = matrix_calculator(chaine)
+    else:
+        chaine = eval(chaine)
     return chaine
 
 
@@ -132,7 +140,6 @@ def intervalle_parfait(chaine):
 # views code
 
 
-
 def doc(request):
     return render(request, 'documentation.html', {'output': "bonjour"})
 
@@ -141,24 +148,17 @@ def run(request):
     global mat
     res = "bonjour veuiller entrer help pour la syntax"
     try:
+        commands = ("calculate","matrix_calculator", "inverse", "transpose", "determinant",
+                    "trace", "vector_difference", "average", "valeur_propre", "nombre_parfait",
+                    "intervalle_parfait", "nombre_premier")
 
-        if request.GET.get('average') == 'average':
-            res = str("$$" + "{:.2f}".format(average(mat)) + "$$")
-
-        if request.GET.get('transpose') == 'transpose':
-            res = format_all(transpose_matrix(mat))
-
-        if request.GET.get('inverse') == 'inverse':
-            res = format_all(inverse_matrix(mat))
+        if request.method == 'GET':
+            res = ''.join([eval("format_all(" + ele + "(mat))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
 
         if request.method == 'POST':
-
             command = request.POST["cal"]
-
-            commands = ("calculate", "matrix_calculator", "inverse_matrix", "transpose_matrix", "determinant",
-                            "trace", "vector_difference", "average", "valeur_propre","nombre_parfait","intervalle_parfait","nombre_premier")  # can add new functions here
-
-            res = ''.join([eval("format_all(" + ele + "(extract(command,ele)))") for ele in commands if re.search(ele, command)])
+            res = format_all(calculate((command)))
+            # res = ''.join([eval("format_all(" + ele + "(extract(command,ele)))") for ele in commands if re.search(ele, command)])
 
     except (IndexError, ZeroDivisionError):
         res = "division par 0"

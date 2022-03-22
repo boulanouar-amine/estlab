@@ -7,7 +7,7 @@ import sympy as sp
 
 commands = ("calculate", "inverse", "transpose", "determinant",
             "trace", "vector_difference", "average", "valeur propre", "nombre_parfait",
-            "intervalle_parfait", "nombre_premier", "derivée", "primitive")
+            "intervalle_parfait", "nombre_premier", "derivée", "primitive","integrale")
 
 mat = np.zeros((1, 1))
 
@@ -33,6 +33,11 @@ def run(request):
 
                 if request.GET.get("primitive") == "primitive":
                     res = str(primitive(command))
+
+
+                if request.GET.get("integrale") == "integrale":
+                    res = str(integrale(command))
+
             else:
                 res = format_all(calculate((command)))
 
@@ -124,7 +129,7 @@ def matrix_calculator(chaine):
         if re.search(ele, chaine):
 
             chaine = chaine.split(ele.strip("\\"))
-            a = np.matrix(chaine[0])  # if there is another element redo
+            a = np.matrix(chaine[0])
             b = np.matrix(chaine[1])
             chaine = op[ele](a, b)
 
@@ -226,7 +231,14 @@ def primitive(mat):
     F = sp.integrate(mat)
     return str("$$" + sp.latex(F) + "$$")
 
+#integrale
 
+def integrale(mat):
+    mat = mat.split(",")
+    x = sp.symbols('x')  # utiliser la variable x pour mes calculs.
+    y = mat[0]
+    F=sp.integrate(y, (x, mat[1], mat[2])) #integrale de y dan l intervale {1 , 3 }
+    return str("$$" + sp.latex(F) + "$$")
 
 
 

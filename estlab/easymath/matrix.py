@@ -2,7 +2,7 @@ import numpy as np
 import re
 import array_to_latex as a2l
 
-"""
+'''
 
  def clean_res(chaine):
                 return str(chaine).replace('[', '').replace(']', '').replace('\'', '')
@@ -97,7 +97,7 @@ res1 =('inverse([6, 1, 1];[4, -2, 5])')
 
 res2 = ('determinant([3,1,0];[3,2,1];[4,1,7]),')
 determinant(res2)
-"""
+
 
 def format_number(chaine):
     return str("$$" + "{:.2f}".format(chaine) + "$$")
@@ -157,5 +157,54 @@ def intervalle_premier(chaine):
 # views code
 
 intervalle_premier(1,29)
-'''
+
 [eval("format_all(" + ele + "(extract(command,ele)))") for ele in commands if re.search(ele, command)]'''
+
+
+
+
+
+import csv
+'''
+from sympy import *
+from sympy.interactive import printing # Pour avoir des belles sorties ...
+printing.init_printing(use_latex=True) # ... en LaTeX
+from IPython.display import display
+
+
+
+def primitives():
+    x = symbols('x')  # utiliser la variable x pour mes calculs.
+    F = integrate(sqrt(x+2),x)
+    display(F)
+
+
+def integrale_intervalle():
+    x = symbols('x')  # utiliser la variable x pour mes calculs.
+    y = 5 * x
+    F=integrate(y, (x, 1, 3)) #integrale de y dan l intervale {1 , 3 }
+    display(F)
+
+'''
+from django.shortcuts import render
+import numpy as np
+import array_to_latex as a2l
+import re
+
+import sympy as sp
+
+
+mat = "4"
+def derivée(mat):
+
+    x = sp.symbols('x')
+    y=mat
+    F=sp.diff(y,x)
+
+    return F
+
+
+
+
+
+print(derivée(mat))

@@ -3,12 +3,31 @@ import numpy as np
 import array_to_latex as a2l
 import re
 
+import sympy as sp
+
+commands = ("calculate", "inverse", "transpose", "determinant",
+            "trace", "vector_difference", "average", "valeur propre", "nombre_parfait",
+            "intervalle_parfait", "nombre_premier", "derivée", "primitive")
+
+
+def Home(request):
+    return render(request, 'Home.html')
+
+def Matrice(request):
+    return render(request, 'Matrice.html')
+
+def Contact(request):
+    return render(request, 'Contact.html')
+
+def Services(request):
+    return render(request, 'Services.html')
+
+
 # general functions
-mat = np.zeros((2, 1))
+mat = np.zeros((1, 1))
 
 def format_all(chaine):
     global mat
-
     if type(chaine) is np.matrix:
         mat = chaine
         return "$$" + str(a2l.to_ltx(chaine, print_out=False, arraytype="pmatrix", frmt="{:.2f}", mathform=True)) + "$$"
@@ -17,19 +36,17 @@ def format_all(chaine):
     else:
         return str("$$" + "{:.2f}".format(chaine) + "$$")
 
-
+"""
 def extract(command, ele):
 
-    #chaine = command.replace(ele, "").replace("(", "").replace(")", "")
-    chaine = command
+    chaine = command.replace(ele, "").replace("(", "").replace(")", "")
     if not (re.search("matrix_calculator", command) or re.search("vector_difference", command)) and re.search("]", chaine):
         chaine = np.matrix(chaine)
 
     return chaine
-
+"""
 
 # matrix functions
-
 
 def trace(chaine):
     chaine = np.trace(chaine)
@@ -62,8 +79,9 @@ def matrix_calculator(chaine):
             chaine = op[ele](a, b)
 
             return chaine
-
-
+    else:
+        chaine = np.matrix(chaine)
+        return chaine
 # vectores
 
 def valeur_propre(chaine):
@@ -82,7 +100,9 @@ def vector_difference(chaine):
 
 # statistique
 
+
 def calculate(chaine):
+
     if re.search("]", chaine):
         chaine = matrix_calculator(chaine)
     else:
@@ -137,7 +157,28 @@ def intervalle_parfait(chaine):
            res.append(sum)
     res = np.asmatrix(res)
     return res
+
+#derivee
+
+def derivée(mat):
+
+    x = sp.symbols('x')
+    y=mat
+    F=sp.diff(y,x)
+
+    return F
+
+#primitives
+
+def primitive(mat):
+    x = sp.symbols('x')
+    F = sp.integrate(mat)
+    return F
+
+
 # views code
+
+
 
 
 def doc(request):
@@ -145,20 +186,29 @@ def doc(request):
 
 
 def run(request):
-    global mat
+    global mat,commands
     res = "bonjour veuiller entrer help pour la syntax"
     try:
-        commands = ("calculate","matrix_calculator", "inverse", "transpose", "determinant",
-                    "trace", "vector_difference", "average", "valeur_propre", "nombre_parfait",
-                    "intervalle_parfait", "nombre_premier")
 
         if request.method == 'GET':
-            res = ''.join([eval("format_all(" + ele + "(mat))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
+
+            res = ''.join([eval("format_all(" + ele.replace(" ","_") + "(mat))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
 
         if request.method == 'POST':
             command = request.POST["cal"]
-            res = format_all(calculate((command)))
+            if re.search("x", command):
+
+               # res = ''.join([eval("str(" + ele + "(command))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
+
+                if request.GET.get("derivée") == "derivée":
+                   res = str(derivée(command))
+
+                if request.GET.get("primitive") == "primitive":
+                    res = str(primitive(command))
+            else:
+                res = format_all(calculate((command)))
             # res = ''.join([eval("format_all(" + ele + "(extract(command,ele)))") for ele in commands if re.search(ele, command)])
+
 
     except (IndexError, ZeroDivisionError):
         res = "division par 0"
@@ -168,9 +218,10 @@ def run(request):
 
     except:
 
-        res = "Veuiller entrer une formule valid"
+        res = "error"
 
     return render(request, 'index.html', {'output': str(res),'mat': str(mat)})
+
 
 
 

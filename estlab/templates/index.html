@@ -1,28 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'easymath/css/style.css' %}">
-    <meta charset="UTF-8">
-    <title>welcome to easymath </title>
+{% load static %}
 
-  <script type="text/javascript"
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>EasyMath_Votre Plateform de calcul</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/templatemo-eduwell-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+    <script type="text/javascript" id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+ <script type="text/javascript"
         src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 
         </script>
 
+
+
 </head>
 <body>
-    <topbar>
-        <div></div>
-        <div></div>
-        <div></div>
-    </topbar>
 
-    <div>
-        <div></div>
-        <div></div>
-        <div> <h3>ecrire une command: </h3>
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="{% url 'Home' %}" class="logo">
+                        <img src="{% static 'images/EasyMath.png' %}" alt="Easymat" id="logo">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="{% url 'Home' %}">Accueil</a></li>
+                        <li class="has-sub">
+                            <a href="javascript:void(0)">Mathematics</a>
+                            <ul class="sub-menu">
+                                <li><a href="#top">Matrices</a></li>
+                                <li><a href="{% url 'Home' %}">Statistiques</a></li>
+                                <li><a href="{% url 'Home' %}">Fractions</a></li>
+                                <li><a href="{% url 'Home' %}">Nombres Parfaits</a></li>
+                                <li><a href="{% url 'Home' %}">Nombres Amis</a></li>
+                                <li><a href="{% url 'Home' %}">Nombres Premiers</a></li>
+                            </ul>
+                        </li>
+                        <li class="scroll-to-section"><a href="#calculatrice-section">Calculatrice</a></li>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+<section class="page-heading">
+    <div class="container">
+        <div class="row">
+             <div> <h3>ecrire une commande: </h3>
             <form method="POST">{% csrf_token %} <input type="text" name="cal" id="cal">
              <button type="text" >calculer l'expression </button></br>
             </form>
@@ -32,37 +87,39 @@
                  <input type="submit" value="inverse" name="inverse">
                  <input type="submit" value="determinant" name="determinant">
                 <input type="submit" value="trace" name="trace">
-                <input type="submit" value="valeur_propre" name="valeur_propre">
-                <input type="submit" value="nombre_parfait" name="nombre_parfait">
-                <input type="submit" value="intervalle_parfait" name="intervalle_parfait">
+                <input type="submit" value="valeur propre" name="valeur propre">
+                <br>
+                <div>
 
+                 <input type="submit" value="derivée" name="derivée">
+                 <input type="submit" value="primitive" name="primitive">
 
-
+                </div>
             </form>
              <h3>{{ output }}</h3>
 
 
         </div>
 
-
-
-
     </div>
-    <h3>{{ mat }}</h3>
 
-<a href = "/documentation" >documentation</a>
+<!--<h3>{{ mat }}</h3>-->
+
     <p>syntax:<br>
         [a,b];[c,d]-[e,f];[g,h]<br>
-<p>examples:<br>
+    <p>examples:<br>
     5/7-2<br>
-[1,2];[10,10]+[3,1];[2,4]<br>
-   [10,10]/[2,2];[2,4]<br>
-        valeur_propre([6,1,1];[4,-2,5];[2,8,7])<br>
-        nombre_parfait(6)<br>
-       intervalle_parfait(1,29)<br>
-        nombre_premier(6)<br>
-
+    [1,2];[10,10]+[3,1];[2,4]<br>
+    [10,10]/[2,2];[2,4]<br>
 </p>
+
+
+                    </div>
+                </div>
+
+</section>
+
+
 
 
 

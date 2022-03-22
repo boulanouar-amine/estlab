@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>EasyMath_Votre Plateform de calcul</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/templatemo-eduwell-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+    <script type="text/javascript" id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!--
+
+    TemplateMo 573 EduWell
+
+    https://templatemo.com/tm-573-eduwell
+
+    -->
+
+
+</head>
+
+<body>
+
+
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="{% url 'Home' %}" class="logo">
+                        <img src="{% static 'images/EasyMath.png' %}" alt="Easymat" id="logo">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="{% url 'Home' %}">Accueil</a></li>
+                        <li class="has-sub">
+                            <a href="javascript:void(0)">Mathematics</a>
+                            <ul class="sub-menu">
+                                <li><a href="#top">Matrices</a></li>
+                                <li><a href="{% url 'Home' %}">Statistiques</a></li>
+                                <li><a href="{% url 'Home' %}">Fractions</a></li>
+                                <li><a href="{% url 'Home' %}">Nombres Parfaits</a></li>
+                                <li><a href="{% url 'Home' %}">Nombres Amis</a></li>
+                                <li><a href="{% url 'Home' %}">Nombres Premiers</a></li>
+                            </ul>
+                        </li>
+                        <li class="scroll-to-section"><a href="#calculatrice-section">Calculatrice</a></li>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+
+<section class="page-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="header-text" style="margin-top: 50px">
+                    <h1>Les Matrices</h1>
+                </div>
+                <div>
+                    <h2 style="margin-top: 50px;text-align: left" id="taille">
+                        Taille d'une matrice
+                    </h2>
+
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        Tout d’abord, qu’est-ce qu’une matrice ?
+                        <br>
+                        Une matrice est en fait un tableau, par exemple ce qui suit est une matrice :
+                        <br><br>
+                        \begin{pmatrix} 2 & 5 & 4 \\ 7 & -6 & 1\end{pmatrix}
+                        Cette matrice est composée de lignes et de colonnes, ici on a 2 lignes et 3 colonnes. On dit
+                        alors
+                        que
+                        c’est une matrice 2 x 3 : cela correspond à la taille de la matrice, on parle aussi de dimension
+                        de
+                        la
+                        matrice.
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Quand on parle de la taille d’une matrice, le premier chiffre correspond toujours au nombre
+                            de
+                            lignes et
+                            le deuxième au nombre de colonnes.
+                            Il en va de même pour les coefficients (voir ci-dessous)
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        L’ensemble des matrices est noté <img src="{% static 'images/Mn,p(K).png' %}"
+                                                              style="height: 19px;width: 57px">, où <img
+                            src="{% static 'images/EnsembleK.png' %}" style="height: 11px;width: 13px"> est un corps
+                        (souvent <img src="{% static 'images/EnsembleR.png' %}" style="height: 11px;width: 13px"> ou
+                        <img src="{% static 'images/EnsembleC.png' %}" style="height: 18px;width: 22px">
+                        <br>
+                        Cela correspond donc aux matrices de n lignes et p colonnes. Et tous les coefficients de la
+                        matrice appartiennent au corps <img src="{% static 'images/EnsembleK.png' %}"
+                                                            style="height: 13px;width: 13px"> .
+                        <br>
+                        Ainsi la matrice de l’exemple ci-dessus appartient à <img
+                            src="{% static 'images/M2,3(R).png' %}" style="height: 19px;width: 57px">
+                        <br>
+                        Remarque : dans tout le chapitre on prendra <img src="{% static 'images/EnsembleR.png' %}"
+                                                                         style="height: 13px;width: 13px"> pour plus de
+                        simplicité mais cela ne change absolument rien aux propriétés.
+                        <br><br>
+                        Quand le nombre de lignes est égal au nombre de colonnes, on dit que la matrice est carrée. Pour
+                        le notation, on n’écrit pas deux fois le même chiffre mais une seule fois puisqu’il s’agit du
+                        même : ainsi on n’écrira pas <img
+                            src="{% static 'images/M3,3(R).png' %}" style="height: 19px;width: 57px"> mais <img
+                            src="{% static 'images/M3(R).png' %}" style="height: 19px;width: 57px"> , on n’écrira
+                        pas
+                        <img
+                                src="{% static 'images/M7,7(R).png' %}" style="height: 19px;width: 57px"> mais <img
+                            src="{% static 'images/M7(R).png' %}" style="height: 19px;width: 57px"> etc…
+                        <br>
+                        On parle alors de matrice de dimension 3 si elle appartient à <img
+                            src="{% static 'images/M3,3(R).png' %}" style="height: 19px;width: 57px"> par exemple.
+                        <br><br>
+                        De plus une matrice est souvent notée par une lettre majuscule, par exemple :
+                        <br>
+                        \begin{equation*}A = \begin{pmatrix} 2 & 5 & 4 \\ 7 & -6 & 1\end{pmatrix}\end{equation*}
+                        Les coefficients se notent avec la même lettre mais en minuscule, avec en indice le numéro de la
+                        ligne et de la colonne correspondante (évidemment la ligne en premier et la colonne en second).
+                        <br>
+                        Ainsi, a<sub>1,3</sub> correspond au coefficient de la matrice A de la 1ère ligne et de la 3ème
+                        colonne,
+                        qui correspond ici à 4, donc a<sub>1,3</sub> = 4.
+                        <br>
+                        De même, a<sub>1,2</sub> = 5, a<sub>2,1</sub> = 7, a<sub>2,2</sub> = – 6 etc…
+                        <br><br>
+                        Pour une matrice carrée de dimension 3 (cas que l’on retrouve souvent dans les exercices), cela
+                        donne :
+                        <br><br>
+                        <span style="height: 100px">\begin{pmatrix} a_{1,1} & a_{1,2} & a_{1,3} \\ a_{2,1} & a_{2,2} & a_{2,3} \\ a_{3,1} & a_{3,2} & a_{3,3} \end{pmatrix}</span>
+                        <br>
+                        Si la matrice s’était appelée B, on aurait notée b<sub>1,1</sub>, b<sub>2,3</sub>,
+                        b<sub>2,2</sub>…
+                        <br><br>
+                        Deux cas particuliers : les matrices lignes et les matrices colonnes.
+                        <br>
+                        Une matrice ligne est une matrice composée d’une seule ligne, et une matrice colonne… d’une
+                        seule colonne !
+                        <br><br>
+                        <div align="center">Matrice colonne :</div>
+                        \begin{pmatrix} 2 \\ 8 \\ 7 \end{pmatrix}
+                        <br><br>
+                        <div align="center">Matrice ligne :</div>
+                        \begin{pmatrix} 2 & 8 & 7 \end{pmatrix}
+                        <br>
+                        Maintenant que l’on a vu comment noter des matrices, nous allons pouvoir commencer à faire des
+                        opérations sur les matrices.
+                    </div>
+
+                    <hr id="addition_soustraction">
+
+                    <h2 style="margin-top:50px;text-align: left" >
+                        Opérations sur les matrices : addition et
+                        soustraction
+                    </h2>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px;margin-top: 50px">
+                        On peut en effet additionner, soustraire et multiplier des matrices sous certaines conditions.
+                        En revanche, <b>on ne divise jamais des matrices !!!</b>
+                        <br>
+                        Ainsi si on a deux matrices A et B, faire A/B ne veut rien dire ! C’est presque aussi grave
+                        d’écrire ça que de diviser par 0…
+                        <br><br>
+                        Nous verrons en revanche plus loin que la matrice A<sup>-1</sup> a une signification…
+                        <br><br>
+                        Pour faire des opérations sur des matrices, il y a en revanche certaines conditions.
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Pour pouvoir additionner ou soustraire 2 matrices, il faut qu’elles soient de même dimension
+                            !
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        Ainsi si l’on a :
+
+                        \begin{equation}A = \begin{pmatrix} 1 & 3 & 4 \\ -5 & 8 & 2 \end{pmatrix} \space et \space B =
+                        \begin{pmatrix} -7 & 8 & 9 \\ 2 & 3 & 1 \end{pmatrix}\end{equation}
+
+                        on peut les additionner ou les soustraire car elles sont toutes les deux de dimension 2 x 3.
+                        <br>
+                        Pour se faire c’est très simple, on additionne ou on soustrait terme à terme :
+                        <br><br>
+                        \begin{equation*}A + B = \begin{pmatrix} 1 & 3 & 4 \\ -5 & 8 & 2\end{pmatrix} + \begin{pmatrix}
+                        -7 & 8 & 9 \\ 2 & 3 & 1 \end{pmatrix}\end{equation*}
+
+                        \begin{equation*}A + B = \begin{pmatrix} 1-7 & 3+8 & 4+9 \\ -5+2 & 8+3 &
+                        2+1\end{pmatrix}\end{equation*}
+
+                        \begin{equation*}A + B = \begin{pmatrix} -6 & 11 & 13 \\ -3 & 11 & 3\end{pmatrix}\end{equation*}
+
+                        Idem pour la soustraction :
+
+                        \begin{equation*}A - B = \begin{pmatrix} 1 & 3 & 4 \\ -5 & 8 & 2\end{pmatrix} - \begin{pmatrix}
+                        -7 & 8 & 9 \\ 2 & 3 & 1 \end{pmatrix}\end{equation*}
+
+                        \begin{equation*}A - B = \begin{pmatrix} 1+7 & 3-8 & 4-9 \\ -5-2 & 8-3 &
+                        2-1\end{pmatrix}\end{equation*}
+
+                        \begin{equation*}A - B = \begin{pmatrix} 8 & -5 & -5 \\ -7 & 5 & 1\end{pmatrix}\end{equation*}
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Remarque : on ne peut donc pas additionner un nombre avec une matrice : A + 3 ne veut rien
+                            dire.
+                            <br>
+                            Par contre nous verrons plus loin que l’on peut multiplier un nombre avec une matrice.
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        Cas particulier : <b>la matrice nulle.</b>
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            La matrice nulle est une matrice composée uniquement de 0 !
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        En fait il existe plusieurs matrices nulles puisqu’elle peut être de taille différente.
+                        Ainsi la matrice nulle de dimension 2 x 3 est :
+
+                        \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}
+
+                        Souvent, une telle matrice est notée avec un grand zéro, ou encore mieux O2,3 pour préciser que
+                        c’est la matrice nulle avec 2 lignes et 3 colonnes.
+                        <br>
+                        Dans la plupart des exercices on utilise des matrices carrées. On ne mettra alors qu’une seul
+                        chiffre :
+
+                        \begin{equation*}O_{2} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}\end{equation*}
+
+                        \begin{equation*}O_{3} = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}\end{equation*}
+
+                        \begin{equation*}O_{4} = \begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} etc...
+                        \end{equation*}
+
+                        Ce qu’il faut savoir, c’est que quand on additionne (ou soustrait) une matrice avec la matrice
+                        nulle, cela ne change rien, exactement comme quand on fait + 0 ou – 0 avec un nombre !
+                        <br>
+                        Prenons par exemple une matrice A carrée de dimension 3.
+                        <br>
+                        Alors A + O<sub>3</sub> = A et A – O<sub>3</sub> = A
+                        <br><br>
+                        Ce qui est totalement logique puisque l’on ajoute ou on soustrait 0 à chaque coefficient de la
+                        matrice A, ce qui ne change pas ses coefficients.
+                        <br><br>
+                        On dit que la matrice nulle est <b>l’élément neutre</b> des matrices pour l’addition.
+                    </div>
+
+                    <hr id="multiplication">
+
+                    <h2 style="margin-top: 50px;text-align: left">
+                        Opérations sur les matrices : multiplication
+                    </h2>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        Pour multiplier en revanche, c’est un peu plus complexe.
+                        <br>
+                        Saches tout d’abord que la multiplication de matrices <b>n’est pas commutative</b>. Cela
+                        signifie que A
+                        x B et B x A ne donne pas forcément le même résultat ! Si c’est le cas, on dit que A et B sont
+                        <b>commutatives</b>.
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Si A x B = B x A, on dit que A et B sont commutatives.
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        Mais encore faut-il que A x B existe… en effet, pour que A x B existe, <b>il faut que le nombre
+                        de
+                        colonnes de la matrice de gauche soit égal au nombre de lignes de la matrice de droite !</b>
+                        <br>
+                        Par exemple si A <img src="{% static 'images/Mn,p(R)_Mq,r(R).png' %}"
+                                              style="width: 173px;height: 19px"> , on peut faire A x B
+                        uniquement si p = q, sinon c’est impossible !
+                        <br>
+                        Et le résultat sera une matrice appartenant à… <img src="{% static 'images/Mn,r(R).png' %}"
+                                                                            style="width: 55px;height: 19px">
+                        <br><br>
+                        En fait c’est un peu comme le théorème de Chasles : <img
+                            src="{% static 'images/vec(AB+BC=AC).png' %}" style="width: 118px;height: 18px"> : les
+                        lettres
+                        du milieu, identiques, disparaissent et il ne reste plus que les deux autres lettres.
+                        <br>
+                        Ici, (n,p) x (p,r) = (n,r) (attention cette notation n’est pas du tout bonne mathématiquement,
+                        c’est juste pour t’expliquer le fonctionnement).
+                        <br><br>
+                        Ainsi, si <img src="{% static 'images/M4,9(R)_M9,7(R).png' %}"
+                                       style="width: 190px;height: 19px"> , on peut faire A x B et le
+                        résultat sera une matrice appartenant à <img src="{% static 'images/M4,7(R).png' %}"
+                                                                     style="width: 54px; height: 19px">
+                        <br>
+                        En revanche, on ne peut PAS faire B x A car <img src="{% static 'images/M9,7(R)_M4,9(R).png' %}"
+                                                                         style="width:190px; height: 19px"> , et 7 et 4
+                        ne sont pas égaux…
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            On peut donc très bien avoir A x B qui existe et B x A qui n’existe pas.
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        Dans le cas particulier de matrices carrées de même dimension, on pourra toujours faire A x B et
+                        B x A, et le résultat sera une matrice carrée de même dimension.
+                        <br>
+                        Par exemple si <img src="{% static 'images/M4(R)_M4(R).png' %}"
+                                            style="width: 172px;height: 18px"> , on peut faire A x B et B x
+                        A, et le résultat sera une matrice carrée de <img src="{% static 'images/M4(R).png' %}"
+                                                                          style="width: 45px;height: 18px"> (mais A x B
+                        ne sera pas forcément
+                        égal à B x A).
+                        <br><br>
+                        Mais d’où vient cette règle que le nombre de colonnes de gauche doit être égal au nombre de
+                        lignes de droite ?
+                        <br>
+                        Cela vient tout simplement de la manière de calculer la matrice résultante.
+                        <br><br>
+                        Imaginons que l’on note C la matrice A x B : C = A x B.
+                        <br>
+                        Le coefficient c<sub>i,j</sub> de la matrice C sera calculé en multipliant le i<sup>ème</sup>
+                        ligne de la matrice de
+                        gauche avec la j<sup>ème</sup> colonne de la matrice de droite.
+                        <br>
+                        On multiplie tout simplement terme à terme chaque coefficient de la ligne et de la colonne.
+                        <br><br>
+                        Prenons par exemple deux matrices A et B et calculons A x B :
+
+                        \begin{equation} A = \begin{pmatrix} 3 & 1 \\ 2 & 4 \end{pmatrix} \space et \space B =
+                        \begin{pmatrix} 1 & 5 \\ 7 & 8 \end{pmatrix}\end{equation}
+
+                        Par souci d’efficacité, on met souvent la matrice de droite au-dessus du résultat. Ainsi le
+                        coefficient de la matrice C se calcule avec la ligne et la colonne correspondante :
+                        <br><br>
+                        <p align="center">
+                            <img src="{% static 'images/3Matrix.png' %}" style="width: 248px;height: 166px">
+                        </p>
+                        <br><br>
+                        Ainsi :
+
+                        \begin{equation*}A \times B = \begin{pmatrix} 10 & 23 \\ 30 & 42 \end{pmatrix}\end{equation*}
+
+                        Chaque coefficient a été calculé à partir de la ligne située à sa gauche et de la colonne située
+                        au-dessus.
+                        <br>
+                        Le 10 a été calculé en faisant 3 x 1 + 1 x 7.
+                        <br>
+                        Le 23 a été calculé en faisant 3 x 5 + 1 x 8
+                        <br>
+                        Le 30 a été calculé en faisant 2 x 1 + 4 x 7
+                        <br>
+                        Le 42 a été calculé en faisant 2 x 5 + 4 x 8.
+                        <br><br>
+                        On voit donc assez facilement que la ligne de la matrice de gauche doit avoir autant de
+                        coefficients que la colonne de la matrice de droite, d’où la règle énoncée ci-dessus
+                        <br><br>
+                        L’intérêt de cette méthode est qu’elle limite le nombre d’erreurs, mais il faut prendre plus de
+                        place sur la copie
+                        <br>
+                        Dans la suite nous n’utiliserons pas cette écriture par souci d’économie de place (et puis pour
+                        t’habituer à faire les calculs)
+                        <br><br>
+                        Prenons un autre exemple en détaillant les calculs :
+
+                        \begin{equation} A = \begin{pmatrix} 1 & 3 & 4 \\ -5 & 8 & 2 \end{pmatrix} \space et \space B =
+                        \begin{pmatrix} -7 & 8 \\ 2 & 3 \\ 5 & -4 \end{pmatrix}\end{equation}
+
+                        <img src="{% static 'images/M2,3(R)_M3,2(R).png' %}" style="width: 190px;height: 19px"> donc A x
+                        B existe et le résultat sera une
+                        matrice 2 x 2.
+
+                        \begin{equation*} \begin{pmatrix} 1 & 3 & 4 \\ -5 & 8 & 2 \end{pmatrix} \times \begin{pmatrix}
+                        -7 & 8 \\ 2 & 3 \\ 5 & -4 \end{pmatrix} = \begin{pmatrix} 1 \times (-7) + 3 \times 2 + 4 \times
+                        5 & 1 \times 8 + 3 \times 3 + 4 \times (-4) \\ -5 \times (-7) + 8 \times 2 + 2 \times 5 & (-5)
+                        \times 8 + 8 \times 3 + 2 \times (-4) \end{pmatrix}\end{equation*}
+
+                        \begin{equation*} \begin{pmatrix} 1 & 3 & 4 \\ -5 & 8 & 2 \end{pmatrix} \times \begin{pmatrix}
+                        -7 & 8 \\ 2 & 3 \\ 5 & -4 \end{pmatrix} = \begin{pmatrix} 19 & 1 \\ 61 & -24
+                        \end{pmatrix}\end{equation*}
+
+                        Plus tu t’entraîneras, plus cela te paraîtra facile ! (il ne s’agit ici que de calcul, ce sont
+                        des points gagnés facilement dans un contrôle !).
+                        <br><br>
+                        De manière générale, on a dit que le coefficient c<sub>i,j</sub> de la matrice C sera calculé en
+                        multipliant le i<sup>ème</sup> ligne de la matrice de gauche avec la j<sup>ème</sup> colonne de
+                        la matrice de droite.
+                        <br>
+                        On peut donc en déduire la formule suivante :
+                        <p style="font-size: x-large;color: #de8fd7">
+                            \begin{equation} c_{i,j} = \sum_{k=1}^n a_{i,k}b_{k,j}\end{equation}
+                        </p>
+
+
+                        Dans cette formule, n est le nombre de colonnes de A, et de lignes de B (car il y a autant de
+                        colonnes dans A que de lignes dans B comme vu précédemment).
+                        <br>
+                        Nous parlerons en détails de cette formule dans les exercices.
+                        <br>
+                        Seule remarque à faire sur cette formule : pour la retenir facilement, tu remarqueras que là
+                        encore il y a une sorte de formule de Chasles, car on calcule c<sub>i,j</sub> et on a dans la
+                        somme
+                        a<sub>i,k</sub>b<sub>k,j</sub> : {i,j} donne {i,k} {k,j}, c’est un bon moyen mnémotechnique pour
+                        se souvenir
+                        de la formule.
+                        <br><br>
+                        Par ailleurs, de la même manière que la matrice nulle est l’élément neutre pour l’addition, il
+                        existe <b>un élément neutre pour la multiplication : <u>la matrice identité.</u></b>
+                        <br><br>
+                        Cette matrice est <b>nécessairement carrée</b> (contrairement à la matrice nulle) et <b>possède
+                        uniquement
+                        des 1 sur sa diagonale, les autres coefficients étant 0.</b>
+                        <br>
+                        Cette matrice est notée Id, ou I, ou I suivie du chiffre correspondant à sa dimension. Ainsi :
+
+                        \begin{equation*}I_{2} = \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}\end{equation*}
+
+                        \begin{equation*}I_{3} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1
+                        \end{pmatrix}\end{equation*}
+
+                        \begin{equation*}I_{4} = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 &
+                        0 & 0 & 1 \end{pmatrix} etc...\end{equation*}
+
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Remarque importante : quand on parle de la diagonale d’une matrice, on parle toujours de
+                            celle qui part du haut à gauche et qui arrive en bas à droite, pas de celle qui va du bas à
+                            gauche au haut à droite.
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        En fait, la matrice identité est un cas particulier des matrices dites diagonales, qui sont des
+                        matrices qui ont des chiffres quelconques sur la diagonale mais des 0 ailleurs ! Ainsi, les
+                        matrices suivantes sont des matrices diagonales :
+
+                        \begin{pmatrix} 2 & 0 \\ 0 & -5 \end{pmatrix}
+
+                        \begin{pmatrix} 4 & 0 & 0 \\ 0 & -3 & 0 \\ 0 & 0 & 6 \end{pmatrix}
+
+                        \begin{pmatrix} -6 & 0 & 0 & 0 \\ 0 & 8 & 0 & 0 \\ 0 & 0 & -5 & 0 \\ 0 &
+                        0 & 0 & 9 \end{pmatrix}
+
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Remarque : la matrice nulle et la matrice identité sont des matrices diagonales
+                            particulières !
+                            <br>
+                            Dans tous les cas, une matrice diagonale est forcément carrée (une matrice non carrée n’a
+                            pas vraiment de diagonale…).
+                            <br>
+                            De plus, les coefficients diagonaux peuvent être nuls : la matrice suivante est une matrice
+                            diagonale :
+
+                            \begin{pmatrix} 4 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 6 \end{pmatrix}
+
+                            —
+                        </div>
+                        <br>
+                        Oui mais quel lien avec la multiplication ??
+                        <br>
+                        On y vient !
+                        <br>
+                        Multiplier une matrice par I, c’est comme multiplie un nombre par 1, ça ne change rien !
+                        <br>
+                        Ainsi si l’on a une matrice A, <b><u>A x Id = A et Id x A = A</u></b> (en supposant que ces
+                        produits
+                        existent).
+                        <p style="font-size: x-large;color: #de8fd7">
+                            \begin{equation} A \times Id = A \space et \space Id \times A = A\end{equation}
+                        </p>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            D’après la formule précédente, cela signifie que la matrice identité est commutative avec
+                            n’importe quelle matrice A.
+                            <br>
+                            On se servira parfois de cette propriété dans les exercices.
+                            <br>
+                            —
+                        </div>
+                        <br><br>
+                        Comme tu le vois ce n’est pas trop compliqué .
+                        <br>
+                        Mais ce n’est pas fini !
+                        <br>
+                        Deux choses encore concernant la multiplication avant de passer à la suite.
+                        Tout d’abord, saches que si l’on ne peut pas additionner un nombre avec une matrice (comme vu
+                        ci-dessus), on peut multiplier un nombre par une matrice. Le résultat est tout simplement une
+                        matrice de même dimension, mais tous ses coefficients sont multipliés par le nombre :
+
+                        \begin{equation*} Prenons \space A = \begin{pmatrix} 2 & 0 & 3 \\ 3 & -2 & 7 \\ 0 & 6 & 9
+                        \end{pmatrix}\end{equation*}
+
+                        \begin{aligned}
+                        3A &= 3 \times \begin{pmatrix} 2 & 0 & 3 \\ 3 & -2 & 7 \\ 0 & 6 & 9
+                        \end{pmatrix}
+                        \\ 3A &= \begin{pmatrix} 6 & 0 & 9 \\ 9 & -6 & 21 \\ 0 & 18 & 27
+                        \end{pmatrix}
+                        \end{aligned}
+
+                        De même avec un nombre négatif :
+
+                        \begin{equation*} -5A = \begin{pmatrix}\ -10 & 0 & -15 \\ -15 & 10 & -35 \\ 0 & -30 & -45
+                        \end{pmatrix}\end{equation*}
+
+                        Mais si on peut multiplier, on peut aussi… factoriser !
+
+                        \begin{equation*} \begin{pmatrix} 6 & 0 & 9 \\ 12 & -6 & 18 \\ 0 & 24 & -3\end{pmatrix} = 3
+                        \times \begin{pmatrix}\ 2 & 0 & 3 \\ 4 & -2 & 6 \\ 0 & 8 & -1 \end{pmatrix}\end{equation*}
+
+                        De la même manière, on peut factoriser les matrices :
+                        <br>
+                        \begin{equation}3A^6 - 6A^3 + 7A^2 = A(3A^2 - 6A^2 + 7A)\end{equation}
+                        <br>
+                        Ici on a factorisé à gauche, mais on peut très bien factoriser à droite :
+                        <br>
+                        \begin{equation}3A^6 - 6A^3 + 7A^2 = (3A^5 - 6A^2 - 7A)A\end{equation}
+                        <br><br>
+                        Attention cependant, cela n’est pas toujours possible de factoriser à gauche et à droite :
+                        <br>
+                        AB + AC = A(B + C)
+                        <br>
+                        MAIS AB + AC ≠ (B + C)A.
+                        <br>
+                        En effet, (B + C)A = BA + CA, ce qui n’est pas égal à AB + AC car, on le rappelle, la
+                        multiplication n’est pas commutative…
+                        <br><br>
+                        Par contre il y a un autre piège beaucoup plus important dans lequel tombent de nombreux élèves
+                        !!
+                        <br>
+                        Imaginons que l’on veuille factoriser 3A<sup>6</sup> – 6A<sup>3</sup> + 7A.
+                        <br>
+                        La plupart des élèves écrivent :
+                        <br>
+                        3A<sup>6</sup> – 6A<sup>3</sup> + 7A = A(3A<sup>5</sup> – 6A<sup>2</sup> + 7) : et là c’est faux
+                        car on additionne des matrices avec un
+                        chiffre !!
+                        <br>
+                        La bonne réponse est : 3A<sup>6</sup> – 6A<sup>3</sup> + 7A = A(3A<sup>5</sup> – 6A<sup>2</sup>
+                        + 7Id), et là c’est bon car 7Id est une
+                        matrice
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Retiens donc que quand tu factorises par une matrice, le résultat ne peut pas être un
+                            chiffre seul, ce chiffre doit être multiplié par Id :
+                            … + kA = A(… + kId) avec k réel (ou complexe)
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        Et pour clôturer cette partie sur les multiplications : un piège à éviter.
+                        <br>
+                        Si l’on a deux matrice A et B et que l’on a A x B = O ou B x A = O, cela ne signifie pas
+                        que A ou B = O !!
+                        <br>
+                        Cette règle qui est vraie pour les réels ne l’est pas pour les matrices…
+                        <br><br>
+                        Prenons un exemple :
+
+                        \begin{aligned}
+                        A &= \begin{pmatrix} 1 & 2 \\ 3 & 6 \end{pmatrix}\space et \space B = \begin{pmatrix}2 & 8 \\ -1
+                        & -4 \end{pmatrix}
+                        \\ A \times B &= \begin{pmatrix} 2-2 & 8-8 \\ 6-6 & 24-24 \end{pmatrix}
+                        \\ A \times B &= \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}
+                        \end{aligned}
+
+                        On a donc A x B = O et pourtant ni A ni B ne correspond à la matrice nulle…
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            ATTENTION !! Si A x B = O ou B x A = O (matrice nulle), cela ne veut pas dire que A ou B est
+                            la matrice nulle…
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        La partie sur les multiplications n’est pas terminée (et non…) mais nous allons y revenir dans
+                        les parties qui suivent.
+
+                    </div>
+
+                    <hr id="autre">
+
+                    <h2 style="margin-top: 50px;text-align: left">
+                        Autres propriétés
+                    </h2>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        Il y a d’autres propriétés concernant les opérations sur les matrices mais qui ne nécessitent
+                        pas beaucoup d’explications donc nous allons juste les donner avec leur nom afin de se
+                        concentrer sur l’essentiel (car le chapitre est dense !!)
+                        <br><br>
+                        <b><u>Associativité :</u></b> quand on multiplie des matrices entre elles, on peut mettre des
+                        parenthèses où
+                        l’on veut :
+                        <br><br>
+                        <p style="color: #de8fd7;font-size: x-large">
+                            \begin{equation}ABC = (AB)C = A(BC)\end{equation}
+                        </p>
+                        <br><br>
+                        Pour calculer ABC, on peut ainsi d’abord calculer A x B puis multiplier par C, ou d’abord
+                        calculer BC puis multiplier par A.
+                        <br>
+                        Idem si on multiplie 4, 5, 6, 7 matrices ou plus ensemble.
+                        <br><br>
+                        <b><u>Linéarité à gauche et à droite</u></b> : si on a deux réels λ et β :
+                        <br><br>
+                        <p style="color: #de8fd7;font-size: x-large">
+                            \begin{equation} A(\lambda B + \beta C) = \lambda AB + \beta AC\end{equation}
+                            \begin{equation} (\lambda A + \beta B)C = \lambda AC + \beta BC\end{equation}
+                        </p>
+                    </div>
+
+                    <hr id="binome_de_newton">
+
+                    <h2 style="margin-top: 50px;;text-align: left">
+                        Puissance de matrices : binôme de Newton
+                    </h2>
+                    <div style="margin-left: 100px;text-align: left;margin-top: 50px">
+                        Dans cette partie toutes les matrices seront des matrices carrées, afin qu’on puisse les
+                        multiplier entre elles.
+                        <br>
+                        En effet, nous allons parler de puissances de matrices, c’est-à-dire A<sup>n</sup>, avec n
+                        entier naturel :
+                        si A est une matrice carrée on peut bien la multiplier par elle-même.
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Remarque : dans toute cette partie sur les puissances, la puissance sera forcément positive,
+                            ce pourquoi on a précisé n entier naturel et non pas entier relatif.
+                            <br>
+                            —
+                        </div>
+                        <br><br>
+                        On a les propriétés suivantes :
+                        <p style="font-size: x-large;color: #de8fd7">
+                            \begin{equation*} A^0 = Id \end{equation*}
+
+                            \begin{equation*} A^1 = A \end{equation*}
+                        </p>
+
+
+                        La deuxième formule est assez évidente.
+                        <br>
+                        La première formule correspond, dans les réels, à x<sup>0</sup> = 1. Or on a vu que l’équivalent
+                        de 1 pour
+                        les matrices est la matrice identité. Ainsi on a A<sup>0</sup> = Id.
+                        <br><br>
+                        Par ailleurs, on a An = A x A x A x A x A x A x A x …. (n fois la matrice A)
+                        <br>
+                        Donc A<sup>n+1</sup> = A x A x A x A x A x A x A x …. (n + 1 fois la matrice A)
+                        <br>
+                        Par associativité, on a donc :
+                        <p style="font-size: x-large;color: #de8fd7">
+                            \begin{equation*} A^n+1 = A^n \times A = A \times A^n \end{equation*}
+                        </p>
+                        Cela démontre que A est commutatif avec toute puissance de A.
+                        <br>
+                        On peut le montrer par récurrence (entraîne-toi à la faire) en utilisant le fait que A est
+                        commutatif avec lui-même.
+                        <br><br>
+                        On utilisera souvent le fait que A<sup>n+1</sup> = A x A<sup>n</sup> = A<sup>n</sup> x A dans
+                        les récurrences : on remplacera
+                        A<sup>n+1</sup> par A x A<sup>n</sup> ou A<sup>n</sup> x A selon l’exercice.
+                        <br><br>
+                        Bon c’est bien joli tout ça, mais comment calcule-t-on A<sup>n</sup> quand on connaît A ?
+                        <br>
+                        Et bien… on ne peut pas le calculer directement !
+                        <br>
+                        En effet, prenons l’exemple suivant :
+
+                        \begin{equation*} A = \begin{pmatrix} 4 & 2 \\ 3 & 6\end{pmatrix}\end{equation*}
+
+                        \begin{equation*} A \neq \begin{pmatrix} 4^n & 2^n \\ 3^n & 6^n \end{pmatrix}\end{equation*}
+
+                        Et oui, sinon ce serait trop simple…
+                        <br><br>
+                        En revanche, il y a un cas particulier que l’on retrouve souvent et qui est simple : les
+                        matrices diagonales.
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Si A est une matrice diagonale, A<sup>n</sup> sera également une matrice diagonale, tous ses
+                            coefficients étant mis à la puissance n.
+                            Exemple :
+
+                            \begin{equation*} A = \begin{pmatrix} 9 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & -2
+                            \end{pmatrix}\end{equation*}
+
+                            \begin{equation*} A^n = \begin{pmatrix} 9^n & 0 & 0 \\ 0 & 5^n & 0 \\ 0 & 0 & (-2)^n
+                            \end{pmatrix}\end{equation*}
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        Comme tu le vois c’est très simple, mais cela ne marche <b>que pour les matrices
+                        diagonales!!</b>
+                        <br><br>
+                        Remarque : la matrice Id est une matrice diagonale dont tous les coefficients valent 1, et comme
+                        1<sup>n</sup> = 1, on a :
+                        <p style="font-size: x-large;color: #de8fd7">
+                            \begin{aligned}
+                            &Id^n = Id
+                            \\ pour \space tou&t \space entier \space naturel \space n
+                            \end{aligned}
+                        </p>
+                        Dans les exercices où on demande de calculer la puissance d’une matrice, une des méthodes est de
+                        décomposer celle-ci en faisant apparaître une matrice diagonale, puis utiliser la formule du
+                        binôme de Newton pou les matrices.
+                        <br><br>
+                        Le binôme de Newton pour les matrices ??
+                        <br>
+                        Hé oui, ça existe !
+                        <br>
+                        Mais attention !!! Car il y a un gros piège dans lequel de nombreux élèves tombent…
+                        <br>
+                        La formule du binôme de Newton est en réalité la même que pour les réels mais avec une condition
+                        très importante : <b><u>il faut que les matrices soient commutatives !!!!</u></b>
+                        <br>
+                        Ainsi si on veut appliquer la formule du binôme de Newton pour calculer (A + B)n, il faut
+                        d’abord montrer que A et B commutent, c’est-à-dire que AB = BA.
+                        <br>
+                        Pour ce faire rien de plus simple, on calcule AB, puis on calcule séparément BA, et on voit
+                        qu’on trouve la même chose
+                        <br><br>
+                        Et <b><u>seulement après</u></b> avoir montré que les matrices commutent, on peut appliquer la
+                        formule :
+                        <p style="font-size: x-large;color: #de8fd7">
+                            \begin{aligned}
+                            &(A+B)^n = \sum_{k=0}^{n} \begin{pmatrix} n \\ k
+                            \end{pmatrix}A^{k}B^{n-k}
+                            \\ unique&ment \space si \space A \space et \space B \space sont
+                            \space commutatives \space !
+                            \end{aligned}
+                        </p>
+                        Comme tu le vois on retrouve exactement la même formule que pour les réels.
+                        <br><br>
+                        Mais pourquoi donc A et B doivent-ils être commutatives ?
+                        <br><br>
+                        Nous allons le montrer sur un exemple simple : (A + B)<sup>2</sup>
+
+                        \begin{aligned}
+                        (A + B)^2 &= (A + B)(A + B)
+                        \\ (A + B)^2 &= A^2 + AB + BA + B^2
+                        \end{aligned}
+
+                        Et là, si A et B ne commutent pas, on ne peut rien faire de plus !!
+                        <br>
+                        En revanche, si A et B commutent, on peut remplacer BA par AB, d’où :
+
+                        \begin{aligned}
+                        (A + B)^2 &= A^2 + AB + AB + B^2
+                        \\ (A + B)^2 &= A^2 + 2AB + B^2
+                        \end{aligned}
+
+                        On retrouve la formule de l’identité remarquable ! Qui correspond à la formule du binôme de
+                        Newton pour n = 2.
+                        <br><br>
+                        Tu peux t’entraîner en calculant (A + B)<sup>3</sup> de deux manières différentes : avec la
+                        formule, et en
+                        faisant (A + B)(A + B)(A + B) : tu verras que les deux formules sont égales uniquement si A et B
+                        commutent.
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Retiens bien que pour appliquer la formule du binôme de Newton pour les matrices, il faut
+                            d’abord démontrer que A et B commutent.
+                            <br>
+                            Sinon tu auras des points en moins…
+                            <br>
+                            —
+                        </div>
+                    </div>
+
+                    <hr id="nilpotentes">
+
+                    <h2 style="margin-top: 50px;text-align: left">
+                        Matrices nilpotentes
+                    </h2>
+                    <div style="margin-left: 100px;text-align: left;margin-top: 50px">
+                        Il y a certaines matrices qui sont qualifiées de nilpotentes.
+                        <br>
+                        De telles matrices sont nulles à partir d’une certaine puissance, c’est-à-dire qu’il existe un
+                        entier naturel k tel que A<sup>k</sup> = O (la matrice nulle, par zéro).
+                        <br><br>
+                        Exemple :
+
+                        \begin{equation}A = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0
+                        \end{pmatrix}\end{equation}
+
+                        On va calculer les puissance successives de A (entraîne-toi à faire le calcul tout seul :
+
+                        \begin{equation}A^2 = \begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0
+                        \end{pmatrix}\end{equation}
+
+                        \begin{equation}A^3 = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0
+                        \end{pmatrix}\end{equation}
+
+                        On remarque que A3 = O3 (la matrice nulle de dimension 3).
+                        <br><br>
+                        On pourrait ensuite calcul A4, A5, A6 etc… mais à chaque fois on retrouvera O3 !
+                        <br>
+                        En effet :
+
+                        \begin{aligned}
+                        A^4 &= A^3 \times A = O_{3} \times A = O_{3}
+                        \\A^5 &= A^3 \times A^2 = O_{3} \times A^2 = O_{3}
+                        \\A^6 &= A^3 \times A^3 = O_{3} \times A^3 = O_{3}
+                        \end{aligned}
+
+                        etc…
+                        De manière générale :
+
+                        \begin{equation}A^k = A^3 \times A^{k-3} = O3 \times A^{k-3} = O_{3}\end{equation}
+
+                        Mais attention !! La puissance de A doit être positive, donc k – 3 ≥ 0, donc k ≥ 3.
+                        Donc A<sup>k</sup> = O<sub>3</sub> pour tout k ≥ 3, ce qui normal car A<sup>3</sup> =
+                        O<sub>3</sub> mais A et A2 ne sont pas nulles.
+                        <br><br>
+                        Comme A<sup>3</sup> = O<sub>3</sub> mais A<sup>3</sup> ≠ O<sub>2</sub>, 3 est appelé <b><u>l’indice
+                        de nilpotence</u></b>, car c’est à partir de k = 3 et
+                        pas avant (dans cet exemple) que A<sup>k</sup> = O<sub>3</sub>.
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Une matrice A est dite nilpotente s’il existe un entier naturel n tel que A<sup>n</sup> = O.
+                            Dans ce cas, A<sup>k</sup> = O pour tout k ≥ n.
+                            <br>
+                            L’indice de nilpotence est le plus petit entier p à partir duquel A<sup>p</sup> = O :
+                            A,<sup>p</sup> = O et A<sup>p-1</sup> ≠
+                            O
+                            <br>
+                            —
+                        </div>
+                    </div>
+
+                    <hr id="transposee">
+
+                    <h2 style="margin-top: 50px;text-align: left">
+                        La transposée
+                    </h2>
+                    <div style="margin-left: 100px;text-align: left;margin-top: 50px">
+                        La transposé d’une matrice A, notée <sup>t</sup>A, est une matrice où les lignes de A se
+                        transforment en
+                        colonnes et les colonnes de A se transforment en ligne. Ainsi :
+                        <br>
+                        la 1ère ligne de A devient la 1ère colonne de <sup>t</sup>A
+                        <br>
+                        la 2ème ligne de A devient la 2ème colonne de <sup>t</sup>A
+                        <br>
+                        la 3ème ligne de A devient la 3ème colonne de <sup>t</sup>A
+                        <br>
+                        etc…
+                        <br><br>
+                        Remarque : on peut parfois trouver la notation A<sup>t</sup> mais elle ne sera pas utilisée dans
+                        la suite,
+                        nous noterons toujours <sup>t</sup>A.
+                        <br><br>
+                        Prenons un exemple :
+
+                        \begin{equation} A = \begin{pmatrix} 2 & 8 & 7 \\ 3 & 4 & 5 \\ 1 & 6 & 9
+                        \end{pmatrix}\end{equation}
+
+                        Alors :
+
+                        \begin{equation} ^tA = \begin{pmatrix} 2 & 3 & 1 \\ 8 & 4 & 6 \\ 7 & 5 & 9
+                        \end{pmatrix}\end{equation}
+
+                        Comme tu le vois, rien de compliqué
+                        <br><br>
+                        Pour une matrice carrée, comme dans l’exemple ci-dessus, la dimension reste la même.
+                        <br>
+                        Mais pour une matrice non carrée ?
+                        <br>
+                        Et bien la taille de la matrice change puisque les lignes deviennent des colonnes et
+                        réciproquement : ainsi le nombre de lignes devient le nombre de colonnes et réciproquement.
+                        <br>
+                        Donc si A est de dimension 4 x 9, <sup>t</sup>A sera de dimension 9 x 4.
+                        <br><br>
+                        Prenons un exemple :
+
+                        \begin{equation} A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6
+                        \end{pmatrix}\end{equation}
+
+                        A est une matrice de dimension 2 x 3, donc <sup>t</sup>A est de dimension 3 x 2 :
+
+                        \begin{equation} ^tA = \begin{pmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6
+                        \end{pmatrix}\end{equation}
+
+                        Là encore rien de compliqué, la première ligne devient la première colonne etc…
+                        <br><br>
+                        Ainsi chaque terme a<sub>j,i</sub> de la matrice devient a<sub>j,i</sub>.
+                        <br>
+                        Par exemple :
+
+                        \begin{equation} A = \begin{pmatrix} a_{1,1} & a_{1,2} & a_{1,3} \\ a_{2,1} & a_{2,2} & a_{2,3}
+                        \\ a_{3,1} & a_{3,2} & a_{3,3}
+                        \end{pmatrix}\end{equation}
+
+                        \begin{equation} ^tA = \begin{pmatrix} a_{1,1} & a_{2,1} & a_{3,1} \\ a_{1,2} & a_{2,2} &
+                        a_{3,2}
+                        \\ a_{1,3} & a_{2,3} & a_{3,3}
+                        \end{pmatrix}\end{equation}
+
+                        Le calcul de la matrice transposée est donc simple, mais ce qui est important ce sont les
+                        propriétés de la transposée.
+                        <br><br>
+                        Tout d’abord, quelques formules :
+                        <p style="font-size: x-large;color: #de8fd7">
+                            \begin{equation}^t({^t}A) = A\end{equation}
+
+                            \begin{equation}^t(AB) = ^{t}B^{t}A\end{equation}
+                        </p>
+                        La première formule paraît assez évidente, la transposée de la transposée d’une matrice est…
+                        elle-même, puisque par la 1ère devient la 1ère colonne, puis redevient la 1ère ligne.
+                        <br><br>
+                        La deuxième formule en revanche est beaucoup plus piégeuse. En effet, on aurait tendance à dire
+                        <sup>t</sup>(AB) = <sup>t</sup>A<sup>t</sup>B, mais c’est faux !!
+                        <br><br>
+                        En effet, on le voit assez facilement avec les dimensions.
+                        <br>
+                        Si on fait <sup>t</sup>(AB), cela veut dire que AB existe.
+                        <br>
+                        On suppose donc que A et B sont de dimension respectives m x n et n x p.
+                        <br>
+                        AB est donc de dimension m x p, et donc <sup>t</sup>(AB) de dimension p x m.
+                        <br><br>
+                        Or <sup>t</sup>A est de dimension n x m et <sup>t</sup>B de dimension p x n, donc
+                        <sup>t</sup>A<sup>t</sup>B n’existe pas !! (sauf si m = p)
+                        <br>
+                        En revanche <sup>t</sup>B<sup>t</sup>A existe et est de dimension p x m (car <sup>t</sup>B est
+                        de dimension p x n et <sup>t</sup>A de
+                        dimension n x m)
+                        <br>
+                        Ainsi <sup>t</sup>(AB) et <sup>t</sup>B<sup>t</sup>A sont bien tous les deux des matrices de
+                        même dimension.
+                        <br><br>
+                        Autre propriété de la transposée, ou plutôt définition :
+                        <br><br>
+
+                        <p align="center">Une matrice carrée est dite <u><b>symétrique</b></u> si</p>
+                        <p style="font-size: x-large;color: #de8fd7">
+                            \begin{equation}^tA = A\end{equation}
+                        </p>
+
+                        <p align="center">Une matrice carrée est dite <u><b>antisymétrique</b></u> si</p>
+                        <p style="font-size: x-large;color: #de8fd7">
+                            \begin{equation}^tA = -A\end{equation}
+                        </p>
+
+                        Par exemple :
+
+                        \begin{equation} A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 5 & 6 \\ 3 & 6 & 9
+                        \end{pmatrix}\end{equation}
+
+                        Alors
+
+                        \begin{equation} ^tA = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 5 & 6 \\ 3 & 6 & 9
+                        \end{pmatrix}\end{equation}
+
+                        On a <sup>t</sup>A = A donc A est une matrice symétrique.
+                        <br><br>
+                        Autre exemple :
+
+                        \begin{equation} A = \begin{pmatrix} 0 & -6 & 7 \\ 6 & 0 & -8 \\ -7 & 8 & 0
+                        \end{pmatrix}\end{equation}
+
+                        Alors
+
+                        \begin{equation} ^tA = \begin{pmatrix} 0 & 6 & -7 \\ -6 & 0 & 8 \\ 7 & -8 & 0
+                        \end{pmatrix}
+
+                        On a <sup>t</sup>A = -A donc A est une matrice antisymétrique.
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Remarque : pour une matrice <u>symétrique</u>, peu importe les coefficients de la diagonale
+                            car ils
+                            restent sur la diagonale, et ils sont égaux à eux mêmes.
+                            <br>
+                            En revanche, pour une matrice <u>antisymétrique</u>, il faut que <u><b>les coefficients
+                            diagonaux soient
+                            nuls</b></u>, car 0 et le seul nombre égal à moins lui-même.
+                            <br>
+                            Autre remarque : la symétrie ou l’antisymétrie ne concerne <b>que les matrices carrées</b> :
+                            là
+                            encore on le voit bien avec les dimensions : une matrice non carrée ne peut pas être égale à
+                            sa transposée puisqu’elle n’aurait même pas la même dimension.
+                            <br>
+                            —
+                        </div>
+                    </div>
+
+                    <hr id="inverse">
+
+                    <h2 style="margin-top: 50px;text-align: left">
+                        La matrice inverse
+                    </h2>
+                    <div style="margin-left: 100px;text-align: left;margin-top: 50px">
+                        La matrice inverse, qu’est-ce que c’est ?
+                        <br>
+                        C’est une matrice qui se calcule à partir d’une autre matrice. Mais la matrice inverse n’existe
+                        pas tout le temps !
+                        <br><br>
+                        Imaginons que l’on ait une matrice A. Si la matrice inverse de A existe, on dit que A est
+                        inversible et sa matrice inverse est notée A<sup>-1</sup>.
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Pour les réels, x<sup>-1</sup> signifie 1/x. Ainsi 2<sup>-1</sup> = 1/2
+                            <br>
+                            Mais pour les matrices, A<sup>-1</sup> ne signifie pas 1/A !! On a vu en effet qu’on ne peut
+                            pas
+                            diviser des matrices…
+                            <br>
+                            En revanche, nous verrons plus loin que cette notation A<sup>-1</sup> n’est pas anodine et
+                            est liée à
+                            ce que l’on vient de dire…
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        Tu dois sûrement te demander : comment sait-on si une matrice est inversible ou non ??
+                        <br>
+                        Et bien c’est simple :
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Une matrice est inversible si et seulement si son déterminant est non nul :
+                            A est inversible ⇔ Det(A) ≠ 0
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        Oui mais comment calculer le déterminant d’une matrice ??
+                        <br>
+                        Cela fait l’objet d’un chapitre à part car le calcul d’un déterminant ne s’explique pas en 2
+                        lignes…
+                        <br><br>
+                        Si A<sup>-1</sup> existe, on a alors une (ou plutôt deux) formules fondamentales :
+                        <p style="font-size: x-large;color: #de8fd7">
+                            \begin{equation} A \times A^{-1} = IdetA^{-1} \times A = Id\end{equation}
+                        </p>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Ainsi A x A<sup>-1</sup> = A<sup>-1</sup> x A = Id <b>: A et A<sup>-1</sup> sont toujours
+                            commutatifs.</b>
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Autre propriété importante : si A<sup>-1</sup> existe, A<sup>-1</sup> est unique !
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        Ainsi si A est inversible, sa matrice inverse est unique (c’est pourquoi on dit SA matrice
+                        inverse et non pas une de ses matrices inverses…)
+                        <br><br>
+                        Quelle est l’intérêt de cette propriété ?
+                        <br>
+                        Et bien cela signifie que si on arrive à trouver une matrice B telle que A x B = Id, et bien B =
+                        A<sup>-1</sup>, et on sait au passage que A est inversible (si on ne l’avait pas déjà démontré
+                        auparavant
+                        en calculant le déterminant par exemple).
+                        <br>
+                        Evidemment si on a B x A = I on a la même propriété.
+                        <br><br>
+                        On peut donc énoncer la propriété générale suivante :
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            A est inversible ⇔ il existe B tel que A x B = B x A = I et B = A<sup>-1</sup> <br>
+                            —
+                        </div>
+                        <br>
+                        Voyons un exemple d’utilisation de cette technique (exemple que l’on voit en Terminale en spé
+                        Maths notamment) :
+                        <br>
+                        On a 3A<sup>5</sup> – 6A<sup>3</sup> + 7A = Id.
+                        <br>
+                        Question : montrer que A est inversible et déterminer son inverse.
+                        <br><br>
+                        On factorise par A : A x (3A<sup>4</sup> – 6A<sup>2</sup> + 7Id) = Id
+                        <br>
+                        On a donc bien une matrice B telle que A x B = Id, donc A est inversible et A<sup>-1</sup> =
+                        3A<sup>4</sup> – 6A<sup>2</sup> +
+                        7Id.
+                        <br><br>
+                        La matrice inverse sert également à isoler une matrice dans une équation.
+                        <br>
+                        Imaginons que l’on ait A x B = C et que l’on sache que A est inversible.
+                        <br>
+                        On demande d’isoler B.
+                        <br>
+                        Evidemment on ne fait pas B = A/C, car on a dit qu’on ne divisait pas des matrices…
+                        <br><br>
+                        Alors que faire ?
+                        <br>
+                        Et bien c’est tout simple, on multiplie par A-1 de part et d’autre de l’égalité (on a supposé A
+                        inversible donc A<sup>-1</sup> existe, sinon il aurait d’abord fallu démontrer que A était
+                        inversible).
+
+                        \begin{aligned}
+                        A \times B &= C
+                        \\ A^{-1} \times A \times B &= A^{-1} \times C
+                        \\ Id \times B &= A^{-1} \times C
+                        \\ (car \space A^{-1} \times A &= Id)
+                        \\ B &= A^{-1} \times C
+                        \\ (car \space Id \times B &= B)
+                        \end{aligned}
+
+                        Et voilà, on a réussi à isoler B
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Une remarque importante cependant : le A<sup>-1</sup> doit nécessairement se trouver à côté
+                            du A pour
+                            pouvoir donner l’identité.
+                            <br>
+                            Comme on a A x B, il faut donc multiplier A GAUCHE par A<sup>-1</sup>, car si on avait
+                            multiplié à
+                            droite, cela aurait donné A x B x A<sup>-1</sup> et on aurait rien pu faire d’autre car, on
+                            le
+                            rappelle, les matrice ne sont pas commutatives…
+                            <br>
+                            Ainsi, pour les matrices, il faut faire la distinction entre multiplier à gauche ou à
+                            droite, alors que pour les réels ou les complexes par exemple cela n’a pas d’importance.
+                            <br>
+                            De plus, comme on a multiplié par A<sup>-1</sup> à gauche dans la partie gauche de
+                            l’équation, il faut
+                            faire de même dans la partie droite de l’égalité.
+                            <br>
+                            Ainsi, si A x B = C, on ne peut PAS dire A<sup>-1</sup> x A x B = C x A<sup>-1</sup>, mais
+                            plutôt A<sup>-1</sup> x C.
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        Les multiplications pour les matrices sont donc source de nombreuses erreurs possibles, donc
+                        fais bien attention quand tu multiplies des matrices !
+                        <br><br>
+                        <u>Autre remarque importante</u> : l’exemple précédent permet de comprendre la notation
+                        A<sup>-1</sup> pour la
+                        matrice inverse.
+                        <br>
+                        En effet, imaginons que l’on ait un x réel avec l’équation 4x = 5, et on cherche à isoler x.
+                        <br>
+                        Au collège on apprend qu’il faut multiplier par 1/4 de part et d’autre :
+
+                        \begin{equation} 1/ 4 \times 4x = 1/4 \times 5 \end{equation}
+
+                        \begin{equation} x = 5/4 \end{equation}
+
+                        Or 1/4 = 4<sup>-1</sup> : pour passer le 4 de l’autre côté, on multiplie par son inverse qui est
+                        1/4, soit
+                        4<sup>-1</sup>.
+                        <br><br>
+                        Et bien c’est exactement la même chose pour les matrices, comme on l’a fait dans l’exemple
+                        ci-dessus, pour passer A de l’autre côté on multiplie par A<sup>-1</sup>.
+                        Tout simplement parce que A<sup>-1</sup> x A = Id et que 4<sup>-1</sup> x 4 = 1 : l’identité est
+                        l’équivalent du 1
+                        pour les réels (l’élément neutre pour la multiplication)
+                        <br><br>
+                        L’équation précédente peut en effet s’écrire :
+
+                        \begin{equation} 4^{-1} \times 4x = 4^{-1} \times 5\end{equation}
+
+                        \begin{equation} x = 4^{-1} \times 5\end{equation}
+
+                        On retrouve exactement la même équation que pour les matrices avec 4 qui correspond à A, x à B
+                        et 5 à C.
+                        <br>
+                        Ainsi, de la même manière que multiplier par 4-1 revient à diviser par 4, multiplier par A<sup>-1</sup>
+                        revient à diviser par A, sauf que pour les matrices on ne divise jamais par une matrice, on
+                        multiplie par son inverse
+                        <br><br>
+                        Toute cette remarque concernant la notation A<sup>-1</sup> n’est pas à savoir à strictement
+                        parler, c’est
+                        juste pour que tu comprennes la notation et que tu penses bien à multiplier par A<sup>-1</sup>
+                        si tu veux
+                        faire passer une matrice de l’autre côté de l’égalité, mais surtout ne pas diviser par une
+                        matrice !!
+                    </div>
+
+                    <hr id="systeme_lineaire">
+
+                    <h2 style="margin-top: 50px;text-align: left">
+                        Matrice et système linéaire
+                    </h2>
+                    <div style="margin-left: 100px;text-align: left;margin-top: 50px">
+                        Une application classique de la matrice inverse est la résolution de systèmes linéaires.
+                        <br>
+                        Prenons le système linéaire suivant :
+
+                        \[\left\{
+                        \begin{aligned}
+                        &3x + 7y - 2z = 4 \\
+                        &5x - y + 9z = -8 \\
+                        &2x + 6y - 8z = 7
+                        \end{aligned}
+                        \right.\]
+
+                        Ce système peut s’écrire sous forme de matrice :
+                        <p style="font-size: xx-large">
+                            \begin{equation} AX = B\end{equation}
+                        </p>
+                        en posant :
+
+                        \begin{equation} A = \begin{pmatrix} 3 & 7 & -2 \\ 5 & -1 & 9 \\ 2 & 6 & -8 \end{pmatrix} \space
+                        X = \begin{pmatrix} x \\ y \\ z \end{pmatrix} \space B = \begin{pmatrix} 4 \\ -8 \\ 7
+                        \end{pmatrix}\end{equation}
+
+                        Résoudre le système revient à chercher x, y et z donc le vecteur colonne X.
+                        Pour l’isoler, on multiplie par A<sup>-1</sup> comme on a vu ci-dessus :
+
+                        \begin{aligned}
+                        AX &= B
+                        \\A^{-1}AX &= A^{-1}B
+                        \\X &= A^{-1}B
+                        \end{aligned}
+
+                        Et voilà il ne reste plus qu’à calculer A<sup>-1</sup>B et on a X, c’est-à-dire x, y et z !
+                        <br>
+                        Et comme A<sup>-1</sup> est unique, X est unique : il y a une unique solution !
+                        <br><br>
+                        Bien sûr il faut pour cela que A<sup>-1</sup> existe, donc que A soit inversible.
+                        <br>
+                        Si ce n’est pas le cas, il y a soit une infinité de solutions, soit aucune solution.
+                        <br><br>
+                        <div style="text-align: center;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            —
+                            <br>
+                            Quand on résout un système linéaire avec une matrice A telle que AX = B :
+                            <br>
+                            Si A est inversible il y a une unique solution.
+                            <br>
+                            Si A n’est pas inversible, il y a soit une unique solution, soit aucune solution.
+                            <br>
+                            —
+                        </div>
+                        <br>
+                        Il faut cependant faire attention à bien poser la matrice A !
+                        <br>
+                        Pour cela, il faut bien disposer le système, c’est-à-dire mettre toutes les inconnues d’un côté
+                        et toutes les constantes de l’autre.
+                        <br>
+                        De plus, il faut garder le même ordre pour les variables (x, y, z par exemple) pour chaque
+                        ligne!
+                        <br><br>
+                        Imaginons que l’on ait le système suivant :
+
+                        \[\left\{
+                        \begin{aligned}
+                        &3x + 5z - 9 = 2y
+                        \\ &3z - 6 = 4x
+                        \\ &2z + 6x -8y =7
+                        \end{aligned}
+                        \right.\]
+
+                        Ici rien ne va !
+                        <br>
+                        – dans la première ligne, la constante -9 est à gauche, et la variable 2y à droite.
+                        <br>
+                        – dans la deuxième ligne -6 est à gauche et 4x à droite
+                        <br>
+                        – dans la troisième ligne les variables x, y et z ne sont pas dans l’ordre.
+                        <br>
+                        On transforme donc le système en mettant les variables x, y et z dans cet ordre :
+
+                        \[\left\{
+                        \begin{aligned}
+                        &3x - 2y + 5z = 9
+                        \\ &-4x + 3z = 6
+                        \\ &6x - 8y + 2z = 7
+                        \end{aligned}
+                        \right.\]
+
+                        On pourrait penser que maintenant c’est bon… mais il reste encore un détail !
+                        <br>
+                        Dans la 2ème ligne, il n’y a pas de y… il est donc conseillé de mettre + 0y <b>afin que les
+                        variables x, y et z soient alignées verticalement</b> sur chaque ligne, cela permet de trouver
+                        la
+                        matrice A plus facilement :
+
+                        \[\left\{
+                        \begin{aligned}
+                        &3x - 2y + 5z = 9
+                        \\ &-4x + 0y + 3z = 6
+                        \\ &6x - 8y + 2z = 7
+                        \end{aligned}
+                        \right.\]
+
+                        Maintenant c’est bon !
+                        <br>
+                        On pose donc :
+
+                        \begin{equation}
+                        A = \begin{pmatrix} 3 & -2 & 5 \\ -4 & 0 & 3 \\ 6 & -8 & 2 \end{pmatrix}
+                        \space X = \begin{pmatrix} x \\ y \\ z \end{pmatrix}
+                        \space B = \begin{pmatrix} 9 \\ 6 \\ 7 \end{pmatrix}
+                        \end{equation}
+
+                        On résout alors comme vu précédemment.
+                    </div>
+
+                    <hr id="trace">
+
+                    <h2 style="margin-top: 50px;text-align: left">
+                        Trace d’une matrice
+                    </h2>
+                    <div style="margin-left: 100px;text-align: left;margin-top: 50px">
+                        La trace d’une matrice, c’est tout simplement <b>la somme de ses coefficients diagonaux</b>,
+                        c’est-à-dire les a<sub>i,i</sub>.
+                        <br>
+                        La trace d’une matrice A est <u><b>notée Tr(A)</b></u>.
+                        <br>
+                        Evidemment comme on parle de diagonale il faut que la matrice soit carrée (une matrice non
+                        carrée n’a pas de diagonale). On a alors la formule :
+                        <p style="font-size: x-large;color: #de8fd7">
+                            \begin{aligned}
+                            &Tr(A) = \sum_{i=1}^n a_{i,j}
+                            \\pour \space &une \space matrice \space A \space carrée \space de \space dimension \space n
+                            \end{aligned}
+                        </p>
+                        Exemple :
+
+                        \begin{equation}
+                        A = \begin{pmatrix} 3 & 7 & -2 \\ 5 & -1 & 9 \\ 2 & 6 & -8 \end{pmatrix}
+                        \end{equation}
+
+                        <p style="font-size: x-large">
+                            \begin{equation}
+                            Tr(A) = 3 + (-1) + (-8) = -6
+                            \end{equation}
+                        </p>
+
+                        Comme tu le vois c’est très simple !
+                        <br><br>
+                        <u>Remarque</u> : on a en particulier Tr(Id) = n, puisque Id est composée uniquement de 1 sur sa
+                        diagonale.
+                        <br><br>
+                        Oui mais… à quoi ça sert ??
+                        <br>
+                        Nous verrons cela dans les autres chapitres sur les matrices, notamment la diagonalisation.
+                        <br>
+                        Pour l’instant retiens juste les formules liées à la trace d’une matrice :
+
+                        <p style="font-size: x-large;color: #de8fd7">
+                            \begin{aligned}
+                            Tr(AB) &= Tr(BA)
+                            \\ Tr(A+B) &= Tr(A) + Tr(B)
+                            \\ Tr(kA) &= kTr(A)
+                            \end{aligned}
+                        </p>
+                        \begin{aligned}pour \space &k \space réel \end{aligned}
+                        <p style="font-size: x-large;color: #de8fd7">
+                            \begin{aligned}
+                            Tr(^tA) &= Tr(A)
+                            \end{aligned}
+                        </p>
+                        Certaines se démontrent très facilement (tu peux t’amuser à le faire ! ).
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="simple-cta" id="calculatrice-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 offset-lg-1">
+                <div class="left-image">
+                    <img src="{% static 'images/cta-left-image.png' %}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-5 align-self-center">
+                <h6>visiter la calculatrice en ligne</h6>
+                <h4>Effectuer vos calcule en tout moment </h4>
+                <br>
+                <div class="white-button">
+                    <a href="{% url 'index' %}">Commencer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="contact-us" id="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+
+            </div>
+            <div class="col-lg-4">
+                <form id="contact" action="" method="post">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-heading">
+                                <h6>Contact us</h6>
+                                <h4>Say <em>Hello</em></h4>
+                                <p>Si vous avez des remarques des questions notre equipe est a votre disposition a tout
+                                    moment </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <input type="name" name="name" id="name" placeholder="Full Name" autocomplete="on"
+                                       required>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*"
+                                       placeholder="Your Email" required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <button type="submit" id="form-submit" class="main-gradient-button">Send Message
+                                </button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-12">
+                <ul class="social-icons">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-12">
+                <p class="copyright">Copyright © 2022 EasyMath., Ltd. All Rights Reserved.
+
+                    <br>BY : <a rel="sponsored" href="https://templatemo.com" target="_blank">GI2</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'js/isotope.min.js' %}"></script>
+<script src="{% static 'js/owl-carousel.js' %}"></script>
+<script src="{% static 'js/lightbox.js' %}"></script>
+<script src="{% static 'js/tabs.js' %}"></script>
+<script src="{% static 'js/video.js' %}"></script>
+<script src="{% static 'js/slick-slider.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script>
+    //according to loftblog tut
+    $('.nav li:first').addClass('active');
+
+    var showSection = function showSection(section, isAnimate) {
+        var
+            direction = section.replace(/#/, ''),
+            reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+            reqSectionPos = reqSection.offset().top - 0;
+
+        if (isAnimate) {
+            $('body, html').animate({
+                    scrollTop: reqSectionPos
+                },
+                800);
+        } else {
+            $('body, html').scrollTop(reqSectionPos);
+        }
+
+    };
+
+    var checkSection = function checkSection() {
+        $('.section').each(function () {
+            var
+                $this = $(this),
+                topEdge = $this.offset().top - 80,
+                bottomEdge = topEdge + $this.height(),
+                wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+                var
+                    currentId = $this.data('section'),
+                    reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                reqLink.closest('li').addClass('active').siblings().removeClass('active');
+            }
+        });
+    };
+
+    $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+        e.preventDefault();
+        showSection($(this).attr('href'), true);
+    });
+
+    $(window).scroll(function () {
+        checkSection();
+    });
+</script>
+
+</body>
+</html>

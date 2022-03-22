@@ -9,6 +9,62 @@ commands = ("calculate", "inverse", "transpose", "determinant",
             "trace", "vector_difference", "average", "valeur propre", "nombre_parfait",
             "intervalle_parfait", "nombre_premier", "derivée", "primitive")
 
+mat = np.zeros((1, 1))
+
+
+
+# views code
+
+def run(request):
+    global mat,commands
+    res = "bonjour veuiller entrer help pour la syntax"
+    try:
+
+        if request.method == 'GET':
+
+            res = ''.join([eval("format_all(" + ele.replace(" ","_") + "(mat))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
+
+        if request.method == 'POST':
+            command = request.POST["cal"]
+            if re.search("x", command):
+
+                if request.GET.get("derivée") == "derivée":
+                   res = str(derivée(command))
+
+                if request.GET.get("primitive") == "primitive":
+                    res = str(primitive(command))
+            else:
+                res = format_all(calculate((command)))
+
+            # res = ''.join([eval("str(" + ele + "(command))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
+            # res = ''.join([eval("format_all(" + ele + "(extract(command,ele)))") for ele in commands if re.search(ele, command)])
+
+
+    except (IndexError, ZeroDivisionError):
+        res = "division par 0"
+
+    except np.linalg.LinAlgError:
+        res = "la matrice doit etre une matrice carre"
+
+    except:
+
+        res = "error"
+
+    return render(request, 'index.html', {'output': str(res),'mat': str(mat)})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def Home(request):
     return render(request, 'Home.html')
@@ -23,8 +79,14 @@ def Services(request):
     return render(request, 'Services.html')
 
 
+
+
+
+
+
+
+
 # general functions
-mat = np.zeros((1, 1))
 
 def format_all(chaine):
     global mat
@@ -175,52 +237,6 @@ def primitive(mat):
     F = sp.integrate(mat)
     return F
 
-
-# views code
-
-
-
-
-def doc(request):
-    return render(request, 'documentation.html', {'output': "bonjour"})
-
-
-def run(request):
-    global mat,commands
-    res = "bonjour veuiller entrer help pour la syntax"
-    try:
-
-        if request.method == 'GET':
-
-            res = ''.join([eval("format_all(" + ele.replace(" ","_") + "(mat))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
-
-        if request.method == 'POST':
-            command = request.POST["cal"]
-            if re.search("x", command):
-
-               # res = ''.join([eval("str(" + ele + "(command))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
-
-                if request.GET.get("derivée") == "derivée":
-                   res = str(derivée(command))
-
-                if request.GET.get("primitive") == "primitive":
-                    res = str(primitive(command))
-            else:
-                res = format_all(calculate((command)))
-            # res = ''.join([eval("format_all(" + ele + "(extract(command,ele)))") for ele in commands if re.search(ele, command)])
-
-
-    except (IndexError, ZeroDivisionError):
-        res = "division par 0"
-
-    except np.linalg.LinAlgError:
-        res = "la matrice doit etre une matrice carre"
-
-    except:
-
-        res = "error"
-
-    return render(request, 'index.html', {'output': str(res),'mat': str(mat)})
 
 
 

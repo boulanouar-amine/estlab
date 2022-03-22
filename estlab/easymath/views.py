@@ -48,21 +48,9 @@ def run(request):
 
     except:
 
-        res = "error"
+        res = ""
 
     return render(request, 'index.html', {'output': str(res),'mat': str(mat)})
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -82,10 +70,6 @@ def Services(request):
 
 
 
-
-
-
-
 # general functions
 
 def format_all(chaine):
@@ -95,6 +79,10 @@ def format_all(chaine):
         return "$$" + str(a2l.to_ltx(chaine, print_out=False, arraytype="pmatrix", frmt="{:.2f}", mathform=True)) + "$$"
     elif type(chaine) is str:
         return chaine
+
+    elif  type(chaine) is sp.latex:
+        return str("$$" + chaine + "$$")
+
     else:
         return str("$$" + "{:.2f}".format(chaine) + "$$")
 
@@ -228,14 +216,15 @@ def derivée(mat):
     y=mat
     F=sp.diff(y,x)
 
-    return F
+    return str("$$" + sp.latex(F) + "$$")
+
 
 #primitives
 
 def primitive(mat):
     x = sp.symbols('x')
     F = sp.integrate(mat)
-    return F
+    return str("$$" + sp.latex(F) + "$$")
 
 
 

@@ -60,3 +60,7 @@ body > div:nth-child(2) > div:nth-child(3) > h3:nth-child(2){
 position: absolute;
 #bottom: 680px;
 }
+
+.methode {
+  background-color: blue;
+}

@@ -32,7 +32,6 @@
         </script>
 
 
-
 </head>
 <body>
 
@@ -53,12 +52,12 @@
                         <li class="has-sub">
                             <a href="javascript:void(0)">Mathematics</a>
                             <ul class="sub-menu">
-                                <li><a href="#top">Matrices</a></li>
-                                <li><a href="{% url 'Home' %}">Statistiques</a></li>
-                                <li><a href="{% url 'Home' %}">Fractions</a></li>
-                                <li><a href="{% url 'Home' %}">Nombres Parfaits</a></li>
-                                <li><a href="{% url 'Home' %}">Nombres Amis</a></li>
-                                <li><a href="{% url 'Home' %}">Nombres Premiers</a></li>
+                                <li><a href="{% url 'Matrice' %}">Matrices</a></li>
+                                <li><a href="{% url 'Statistique' %}">Statistiques</a></li>
+                                <li><a href="{% url 'Fraction' %}">Fractions</a></li>
+                                <li><a href="{% url 'NombreParfait' %}">Nombres Parfaits</a></li>
+                                <li><a href="{% url 'NombreAmi' %}">Nombres Amicaux</a></li>
+                                <li><a href="{% url 'NombrePremier' %}">Nombres Premiers</a></li>
                             </ul>
                         </li>
                         <li class="scroll-to-section"><a href="#calculatrice-section">Calculatrice</a></li>
@@ -75,12 +74,29 @@
 <!-- ***** Header Area End ***** -->
 
 <section class="page-heading">
+
     <div class="container">
+
         <div class="row">
+
+               <div class="methode">
+                   <form method='get'>
+                <input type="submit" value="matrice" name="matrice" onclick="showmatrix()">
+                 <input type="submit" value="derivée" name="derivée">
+                 <input type="submit" value="primitive" name="primitive">
+                   <input type="submit" value="integrale" name="integrale">
+                </form>
+                </div>
+
+
              <div> <h3>ecrire une commande: </h3>
             <form method="POST">{% csrf_token %} <input type="text" name="cal" id="cal">
              <button type="text" >calculer l'expression </button></br>
             </form>
+
+
+                 {% if request.get_full_path == "/index?matrice=matrice" or request.get_full_path == "/index?average=average"  or request.get_full_path == "/index?transpose=transpose" or request.get_full_path == "/index?inverse=inverse" or request.get_full_path == "/index?determinant=determinant" or request.get_full_path == "/index?trace=trace"  or request.get_full_path == "/index?valeur+propre=valeur+propre" %}
+<div class="topnav" style="width: 100%;display: flex;justify-content: space-between;">
             <form method='get'>
                 <input type="submit" value="average" name="average">
                 <input type="submit" value="transpose" name="transpose">
@@ -89,14 +105,27 @@
                 <input type="submit" value="trace" name="trace">
                 <input type="submit" value="valeur propre" name="valeur propre">
                 <br>
-                <div>
 
-                 <input type="submit" value="derivée" name="derivée">
-                 <input type="submit" value="primitive" name="primitive">
-                    <input type="submit" value="integrale" name="integrale">
-
-                </div>
             </form>
+                     </div>
+            {% endif %}
+
+              {% if request.get_full_path == "/?derivée=derivée" or request.get_full_path == "/index?primitive=primitive" or request.get_full_path == "/index?integrale=integrale"  or request.get_full_path == "/index?clr=clr"  or request.get_full_path == "/index?%2B=%2B"  or request.get_full_path == "/index?-=-"  or request.get_full_path == "/index?x=x"  or request.get_full_path == "/index?%2F=%2F"   or request.get_full_path == "/index?^=^"  or request.get_full_path == "/index?π=π"  or request.get_full_path == "/index?(=("  or request.get_full_path == "/index?)=)" %}
+                    <form method='get'>
+                        <input type="submit" value="clr" name="clr">
+                        <input type="submit" value="+" name="+">
+                        <input type="submit" value="-" name="-">
+                        <input type="submit" value="x" name="x">
+                        <input type="submit" value="/" name="/">
+                        <input type="submit" value="^" name="^">
+                        <input type="submit" value="π" name="π">
+                        <input type="submit" value="(" name="(">
+                        <input type="submit" value=")" name=")">
+                <br>
+
+            </form>
+
+              {% endif %}
              <h3>{{ output }}</h3>
 
 

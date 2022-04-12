@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>EasyMath_Votre Plateforme de calcul</title>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'images/siteLogo.png' %}">
+
+
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/templatemo-eduwell-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+    <script type="text/javascript" id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+
+    <style>
+        .topnav1 {
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+            background-image: linear-gradient(to right,#eebfab,#d687db);
+            border: 2px black solid;
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+
+        .topnav1 a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 67px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav1 a:hover {
+            background-color: white;
+            color: black;
+            font-size: 16px;
+            border-radius: 8px;
+        }
+
+        .topnav2 {
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+            background-image: linear-gradient(to left,#eebfab,#d687db);
+            border: 2px black solid;
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+
+        .topnav2 a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 181px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav2 a:hover {
+            background-color: white;
+            color: black;
+            font-size: 16px;
+            border-radius: 8px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="{% url 'Home' %}" class="logo">
+                        <img src="{% static 'images/EasyMath.png' %}" alt="Easymath" id="logo">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="{% url 'Home' %}">Accueil</a></li>
+                        <li class="has-sub">
+                            <a href="javascript:void(0)">Mathematics</a>
+                                 <ul class="sub-menu">
+                                <li><a href="{% url 'Matrice' %}">Matrices</a></li>
+                                <li><a href="{% url 'Statistique' %}">Statistiques</a></li>
+                                <li><a href="{% url 'Fraction' %}">Fractions</a></li>
+                                <li><a href="{% url 'NombreParfait' %}">Nombres Parfaits</a></li>
+                                <li><a href="{% url 'NombreAmi' %}">Nombres Amicaux</a></li>
+                                <li><a href="{% url 'NombrePremier' %}">Nombres Premiers</a></li>
+                            </ul>
+                        </li>
+                        <li class="scroll-to-section"><a href="#calculatrice-section">Calculatrice</a></li>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+
+<section class="page-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="header-text" style="margin-top: 50px">
+                    <h1>Les Nombres amicaux </h1>
+                </div>
+                <div class="topnav1">
+                    <a href="#intro">Introduction</a>
+                    <a href="#abondant_deficient">Nombres abondants ou déficients</a>
+                    <a href="#premiers_couples_nombres_amicaux">Les premiers couples de nombres amicaux</a>
+                </div>
+
+                <div>
+                    <h2 style="margin-top: 50px;text-align: left" id="intro">
+                        <u>Introduction</u>
+                    </h2>
+
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        En arithmétique, deux <b>nombres</b> (entiers strictement positifs) sont dits <b>amicaux</b> ou
+                        <b>amiables</b> ou
+                        <b>aimables</b> s'ils sont distincts et si chacun des deux nombres est égal à la somme des
+                        diviseurs
+                        stricts de l'autre.
+                        <br><br>
+                        Si l'on note s(n) la somme des diviseurs stricts de n et σ(n) = s(n) + n la somme de tous ses
+                        diviseurs, deux nombres distincts m et n sont donc amicaux si et seulement si
+
+                        \begin{equation} s(m) = n \space\space et \space\space s(n) = m \end{equation}
+
+                        ou, ce qui est équivalent :
+
+                        \begin{equation} \sigma(m) = \sigma(n) = m + n \end{equation}
+
+                        Cela implique que si l'un des deux nombres est <u><a href="#nombre_abondant"
+                                                                             style="color: #de8fd7">abondant</a></u>,
+                        alors l'autre est
+                        <a href="#nombre_deficient" style="color: #de8fd7"><u>déficient</u></a>.
+                    </div>
+
+                    <hr id="abondant_deficient">
+
+                    <h2 style="margin-top: 50px;text-align: left" id="intro">
+                        <u>Nombres abondants ou déficients</u>
+                    </h2>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <ul style="padding-inline-start: 40px">
+                            <li style="list-style-type: disc">
+                                Un nombre est abondant lorsque la somme de ses diviseurs est supérieure à 2 fois ce
+                                nombre.
+                            </li>
+                            <br>
+                            <li style="list-style-type: disc">
+                                Un nombre est déficient lorsque la somme de ses diviseurs est inférieure à 2 fois ce
+                                nombre.
+                            </li>
+                        </ul>
+
+                        <div class="topnav2">
+                            <a href="#nombre_abondant">Nombre abondant</a>
+                            <a href="#nombre_deficient">Nombre déficient</a>
+                        </div>
+
+                        <span id="nombre_abondant"></span>
+
+                        <h3 style="margin-top:50px;text-align: left;color: #de8fd7">
+                            <u>Nombre abondant</u>
+                        </h3>
+                        <div style="text-align: left;margin-left: 100px;margin-top: 50px;margin-top: 50px">
+                            En mathématiques, un <b>nombre abondant</b> est un nombre entier naturel non nul qui est
+                            strictement
+                            inférieur à la somme de ses diviseurs stricts ; autrement dit, c'est un entier n strictement
+                            positif tel que :
+
+                            \begin{equation} 2n < \sigma(n), \end{equation}
+
+                            où <img src="{% static 'images/sigma(n).svg' %}" style="width: 33px;height: 21px"> est la
+                            somme
+                            des entiers positifs diviseurs de n, y
+                            compris n cette fois.
+                            <br><br>
+                            <span style="margin-left: -20px">Exemples :</span>
+                            <br><br>
+                            <span style="margin-left: 20px"> Prenons le nombre 10 :</span>
+                            <br>
+                            <span style="margin-left: 50px">Les diviseurs de 10 sont 1, 2, et 5.</span>
+                            <br>
+                            <span style="margin-left: 50px">La somme 1 + 2 + 5 donne 8.</span>
+                            <br>
+                            <span style="margin-left: 50px">Or 8 est inférieur à 10. Conclusion : 10 n'est donc pas un nombre abondant.</span>
+                            <br>
+                            <span style="margin-left: -20px">Prenons le nombre 12 :</span>
+                            <br>
+                            <span style="margin-left: 50px">Les diviseurs de 12 sont 1, 2, 3, 4, et 6.</span>
+                            <br>
+                            <span style="margin-left: 50px">La somme 1 + 2 + 3 + 4 + 6 donne 16.</span>
+                            <br>
+                            <span style="margin-left: 50px">Et 16 est supérieur à 12. Conclusion : 12 est donc un nombre abondant.</span>
+                            <br><br>
+                            Les premiers nombres abondants sont : 12, 18, 20, 24, 30, 36, ...
+                            <br><br>
+                            La valeur <img src="{% static 'images/sigma(n)_minus_2n.svg' %}"
+                                           style="width: 75px;height: 21px"> est appelée <b>abondance</b> de n. Les
+                            nombres
+                            dont l'abondance est nulle sont les <a href="{% url 'NombreParfait' %}"
+                                                                   style="color:#de8fd7">nombres
+                            parfaits</a>, et les nombres dont l'abondance est
+                            strictement négative les <a href="#nombre_deficient" style="color:#de8fd7">nombres
+                            déficients</a>.
+                            <br><br>
+                            Un nombre abondant dont l'abondance est égale à 1 est appelé <b>quasi parfait</b>, mais on
+                            ne
+                            sait pas
+                            à l'heure actuelle s'il en existe. Par contre, on remarquera que 20 a une abondance égale à
+                            2.
+                            <br><br>
+                            Tout multiple strict d'un <a href="{% url 'NombreParfait' %}" style="color:#de8fd7 ">nombre
+                            parfait</a> ou abondant est abondant. Il existe donc une infinité
+                            de nombres abondants, à commencer par les multiples stricts de 6.
+                        </div>
+
+                        <span id="nombre_deficient"></span>
+
+                        <h3 style="margin-top: 50px;text-align: left;color: #de8fd7">
+                            <u>Nombre déficient</u>
+                        </h3>
+                        <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                            En mathématiques, un <b>nombre déficient</b> est un nombre entier naturel n qui est
+                            strictement
+                            supérieur à la somme de ses diviseurs stricts, autrement dit, tel que <img
+                                src="{% static 'images/sigma(n)_lessthan_2n.svg' %}" style="width: 74px;height: 21px">
+                            où
+                            <img src="{% static 'images/sigma(n).svg' %}" style="width: 33px;height: 21px"> est la somme
+                            des
+                            diviseurs entiers
+                            positifs de n y compris n .
+                            <br><br>
+                            La valeur <img src="{% static 'images/2n_minus_sigma(n).svg' %}"
+                                           style="width: 72px;height: 21px"> est appelée <b>déficience</b> de n. Les
+                            nombres
+                            dont la déficience est nulle sont les <a href="{% url 'NombreParfait' %}"
+                                                                     style="color: #de8fd7">nombres parfaits</a>, et les
+                            nombres dont la déficience est
+                            strictement négative les <a href="#nombre_abondant" style="color: #de8fd7">nombres
+                            abondants</a>.
+                            <br><br>
+                            Leurs premières valeurs sont : 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 13, ...
+                            <br><br>
+                            Pour <img src="{% static 'images/n_moreegale_2.svg' %}" style="width: 41px;height: 17px">,
+                            la
+                            déficience d'un nombre déficient va de 1 (pour
+                            les nombres dits <span style="color: #de8fd7">presque parfaits</span>) jusqu'à <img
+                                src="{% static 'images/n_minus_1.svg' %}"
+                                style="width: 39px;height: 17px;color: #de8fd7">
+                            pour les <a href="{% url 'NombrePremier' %}" style="color: #de8fd7">nombres
+                            premiers</a> (qui
+                            sont donc les naturels de déficience maximale).
+                            <br><br>
+                            Il existe une infinité de nombres déficients pairs et impairs. Par exemple, tous les <a
+                                href="{% url 'NombrePremier' %}" style="color: #de8fd7">nombres
+                            premiers</a> et leurs puissances (autrement dit, les <a href="{% url 'NombrePremier' %}"
+                                                                                    style="color: #de8fd7">nombres
+                            primaires</a>) sont déficients. Tout
+                            diviseur strict d'un parfait ou déficient est déficient.
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <hr id="premiers_couples_nombres_amicaux">
+
+                <h2 style="margin-top: 50px;text-align: left">
+                    <u>Les premiers couples de nombres amicaux</u>
+                </h2>
+                <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                    Les nombres entiers 220 et 284 sont amicaux car :
+
+                    \begin{aligned}
+                    &. 220 + 284 = 504,
+                    \\ &. \sigma(220) = 1+2+4+5+10+11+20+22+44+55+110+220 = 504,
+                    \\ &. \sigma(284) = 1+2+4+71+142+284 = 504
+                    \end{aligned}
+
+                    ou encore :
+
+                    \begin{aligned}
+                    &. s(220) = 1+2+4+5+10+11+20+22+44+55+110 = 284
+                    \\ &. s(284) = 1+2+4+71+142 = 220
+                    \end{aligned}
+
+                    Les 13 paires de nombres amicaux dont le premier a moins de 6 chiffres sont :
+
+                    \begin{aligned}
+                    &. 220 \space et \space 284 \space\space\space . 5 020 \space et \space 5 564 \space\space\space
+                    . 10 744 \space et \space 10 856 \space\space\space . 17296 \space et \space 18416
+                    \space\space\space . 66928 \space et \space 66992 \space\space\space . 69615 \space et \space
+                    87633
+                    \\ &. 1184 \space et \space 1210 \space\space\space . 2620 \space et 2924 \space\space\space
+                    .6232 \space et \space 6368 \space\space\space .
+                    12285 \space et \space 14595 \space\space\space .63020 \space et \space 76084 \space\space\space
+                    .67095 \space et \space 71145 \space\space\space
+                    \\ &. 79750 \space et \space 88730
+                    \end{aligned}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<section class="simple-cta" id="calculatrice-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 offset-lg-1">
+                <div class="left-image">
+                    <img src="{% static 'images/cta-left-image.png' %}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-5 align-self-center">
+                <h6>visiter la calculatrice en ligne</h6>
+                <h4>Effectuer vos calcule en tout moment </h4>
+                <br>
+                <div class="white-button">
+                     <a href="{% url 'index' %}">Commencer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="contact-us" id="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+
+            </div>
+            <div class="col-lg-4">
+                <form id="contact" action="" method="post">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-heading">
+                                <h6>Contact us</h6>
+                                <h4>Say <em>Hello</em></h4>
+                                <p>Si vous avez des remarques des questions notre equipe est a votre disposition a tout
+                                    moment </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <input type="name" name="name" id="name" placeholder="Full Name" autocomplete="on"
+                                       required>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*"
+                                       placeholder="Your Email" required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <button type="submit" id="form-submit" class="main-gradient-button">Send Message
+                                </button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-12">
+                <ul class="social-icons">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-12">
+                <p class="copyright">Copyright © 2022 EasyMath., Ltd. All Rights Reserved.
+
+                    <br>BY : <a rel="sponsored" href="https://templatemo.com" target="_blank">GI2</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'js/isotope.min.js' %}"></script>
+<script src="{% static 'js/owl-carousel.js' %}"></script>
+<script src="{% static 'js/lightbox.js' %}"></script>
+<script src="{% static 'js/tabs.js' %}"></script>
+<script src="{% static 'js/video.js' %}"></script>
+<script src="{% static 'js/slick-slider.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script>
+    //according to loftblog tut
+    $('.nav li:first').addClass('active');
+
+    var showSection = function showSection(section, isAnimate) {
+        var
+            direction = section.replace(/#/, ''),
+            reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+            reqSectionPos = reqSection.offset().top - 0;
+
+        if (isAnimate) {
+            $('body, html').animate({
+                    scrollTop: reqSectionPos
+                },
+                800);
+        } else {
+            $('body, html').scrollTop(reqSectionPos);
+        }
+
+    };
+
+    var checkSection = function checkSection() {
+        $('.section').each(function () {
+            var
+                $this = $(this),
+                topEdge = $this.offset().top - 80,
+                bottomEdge = topEdge + $this.height(),
+                wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+                var
+                    currentId = $this.data('section'),
+                    reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                reqLink.closest('li').addClass('active').siblings().removeClass('active');
+            }
+        });
+    };
+
+    $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+        e.preventDefault();
+        showSection($(this).attr('href'), true);
+    });
+
+    $(window).scroll(function () {
+        checkSection();
+    });
+</script>
+
+</body>
+</html>

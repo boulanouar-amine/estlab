@@ -9,8 +9,10 @@ commands = ("calculate", "inverse", "transpose", "determinant",
             "trace", "vector_difference", "average", "valeur propre", "nombre_parfait",
             "intervalle_parfait", "nombre_premier", "derivée", "primitive","integrale")
 
-mat = np.zeros((1, 1))
+matrice_menu = ("/index?matrice=matrice", "/index?inverse=inverse", "/index?transpose=transpose", "/index?determinant=determinant",
+            "/index?trace=trace", "/index?average=average" ,"/index?valeur+propre=valeur+propre")
 
+mat = np.zeros((1, 1))
 
 
 # views code
@@ -71,8 +73,23 @@ def Contact(request):
 def Services(request):
     return render(request, 'Services.html')
 
+def Statistique(request):
+    return render(request, 'Statistique.html')
 
+def Fraction(request):
+    return render(request, 'Fraction.html')
 
+def NombreAmi(request):
+    return render(request, 'NombreAmi.html')
+
+def NombreAmi(request):
+    return render(request, 'NombreAmi.html')
+
+def NombreParfait(request):
+    return render(request, 'NombreParfait.html')
+
+def NombrePremier(request):
+    return render(request, 'NombrePremier.html')
 
 
 # general functions

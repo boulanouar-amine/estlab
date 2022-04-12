@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>EasyMath_Votre Plateform de calcul</title>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'images/siteLogo.png' %}">
+
+
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/templatemo-eduwell-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+    <script type="text/javascript" id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+
+    <style>
+        .topnav {
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+            background-image: linear-gradient(to right,#eebfab,#d687db);
+            border: 2px black solid;
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+
+        .topnav a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 70px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: white;
+            color: black;
+            font-size: 16px;
+            border-radius: 8px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="{% url 'Home' %}" class="logo">
+                        <img src="{% static 'images/EasyMath.png' %}" alt="Easymath" id="logo">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="{% url 'Home' %}">Accueil</a></li>
+                        <li class="has-sub">
+                            <a href="javascript:void(0)">Mathematics</a>
+                              <ul class="sub-menu">
+                                <li><a href="{% url 'Matrice' %}">Matrices</a></li>
+                                <li><a href="{% url 'Statistique' %}">Statistiques</a></li>
+                                <li><a href="{% url 'Fraction' %}">Fractions</a></li>
+                                <li><a href="{% url 'NombreParfait' %}">Nombres Parfaits</a></li>
+                                <li><a href="{% url 'NombreAmi' %}">Nombres Amicaux</a></li>
+                                <li><a href="{% url 'NombrePremier' %}">Nombres Premiers</a></li>
+                            </ul>
+                        </li>
+                        <li class="scroll-to-section"><a href="#calculatrice-section">Calculatrice</a></li>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+
+<section class="page-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="header-text" style="margin-top: 50px">
+                    <h1>Les Fractions</h1>
+                </div>
+                <div class="topnav" style="width: 100%;display: flex;justify-content: space-between;">
+                    <a href="#definition">Définition</a>
+                    <a href="#egalite">Egalités de fractions</a>
+                    <a href="#fraction_irreductible">Fractions irréductibles</a>
+                </div>
+                <div class="topnav" style="width: 100%;display: flex;justify-content: space-between;">
+                    <a href="#fraction_multiplication">Multiplication de fractions</a>
+                    <a href="#reduction_au_meme_denominateur">Réduction au même dénominateur</a>
+                </div>
+                <div class="topnav">
+                    <a href="#fraction_addition_soustraction">Additions et soustractions de fractions</a>
+                    <a href="#comparaison_fraction">Comparaison de fractions</a>
+                    <a href="#division_fraction">Divisions de fractions</a>
+                </div>
+
+                <div>
+                    <h2 style="margin-top: 50px;text-align: left" id="definition">
+                        <u>Définition</u>
+                    </h2>
+
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <div style="text-align: left;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            <b><u>Définitions</u></b> : Le résultat exact de la division de a par b 6= 0 est la fraction
+                            :
+
+                            \[
+                            \frac{a}{b}
+                            \]
+
+                            Avec a au numérateur et b au dénominateur.
+                        </div>
+                        <br>
+                        <u>Exemples</u> :
+
+                        \begin{aligned}
+                        &\frac{16}{4} = 16 \div 4 = 4
+                        \\ &\frac{15}{2} = 15 \div 2 = 7,5
+                        \\ &\frac{10}{3} = 10 \div 3 = 3,333\dots
+                        \end{aligned}
+
+                        Dans ce cas, on laisse le résultat sous forme de fraction <sup>10</sup>&frasl;<sub>3</sub>
+                        .
+                    </div>
+
+                    <hr id="egalite">
+
+                    <h2 style="margin-top:50px;text-align: left">
+                        <u>Egalités de fractions</u>
+                    </h2>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px;margin-top: 50px">
+                        Plusieurs divisions pour avoir le même résultat, on dira que ce sont des fractions égales.
+                        <br>
+                        Si on multiplie (ou on divise) le numérateur et le dénominateur par le même nombre, alors la
+                        fractions reste la même.
+                        <br><br>
+                        <u>Exemple :</u>
+                        <br>
+                        Les fractions <sup>30</sup>&frasl;<sub>5</sub>
+                        et <sup>60</sup>&frasl;<sub>10</sub> sont égales car l’une est le double de l’autre,
+                        c’est-à-dire que si on multiplie la première
+                        fraction par
+                        2 on obtient la seconde.
+                        <br><br>
+                        <i style="color: forestgreen;font-family: 'Bona Nova', serif">Et comment prouve-t-on que deux
+                            fractions sont égales ?</i>
+                        <br>
+                        Facile : si on arrive à trouver un opérateur (multiplication ou division) qui permet de passer
+                        d’une fraction à l’autre c’est
+                        gagné.
+                        <br><br>
+                        Exemple :
+                        Pour <sup>3</sup>&frasl;<sub>8</sub>
+                        et <sup>21</sup>&frasl;<sub>56</sub> , on remarque que si on multiplie le numérateur de la
+                        première fraction (3) ainsi que son
+                        dénominateur (8)
+                        par 7 on retrouve la deuxième fraction. Ces deux fractions sont donc égales
+                    </div>
+
+                    <hr id="fraction_irreductible">
+
+                    <h2 style="margin-top: 50px;text-align: left">
+                        <u>Fractions irréductibles</u>
+                    </h2>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <div style="text-align: left;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            <b><u>Définitions</u></b> : Parmi toutes les fractions égales, il y en a une qui possède le
+                            numérateur et le dénominateur les plus petits,
+                            on ne peut pas les réduire plus. On dit que cette fractions est <b>irréductible</b>.
+                            <br>
+                            Pour simplifier une fraction, on la mettre sous la forme d’une fraction irréductible.
+                            <br>
+                            On cherchera le <b>diviseur commun</b> du numérateur et du dénominateur pour les diviser par
+                            celui-ci.
+
+                        </div>
+
+                        <br>
+                        Je m’explique tout de suite, ne vous en faites pas.
+                        <br>
+                        On va chercher le diviseur commun du haut et du bas de la fraction. Autrement dit, on regarde si
+                        le numérateur et le
+                        dénominateur de la fraction sont dans la même table de multiplication. Si c’est le cas, on va
+                        pouvoir les diviser par ce
+                        nombre, que l’on appellera le diviseur commun. Voici un exemple pour éclaircir le tout.
+                        <br><br>
+                        <u>Exemple</u> : La fraction <sup>5</sup>&frasl;<sub>15</sub> possède un numérateur et un
+                        dénominateur qui sont dans la table de 5. On va donc pouvoir
+                        diviser le haut et le bas de cette fraction par 5, le diviseur commun de 5 et 15.
+                        On commence par décomposer cette fraction de cette manière là :
+
+                        \[
+                        \frac{1 \times 5}{3 \times 5}
+                        \]
+
+                        On peut alors supprimer le 5 du haut et du bas.
+                        <br>
+                        En effet, dans la pratique, quand une fraction possède un même nombre au numérateur et au
+                        dénominateur, on les supprime
+                        <u> à condition que l’opération soit une multiplication et <b>UNIQUEMENT</b> une multiplication.</u>
+                        <br>
+                        On obtient donc :
+
+                        \[
+                        \frac{1 \times 5 }{3 \times 5} = \frac{1}{3}
+                        \]
+
+                        <u>Autre exemple</u> :
+                        <br><br>
+                        Simplification de <sup>36</sup>&frasl;<sub>13</sub> :
+                        <br>
+                        Les nombres 36 et 26 font tous les deux partis de la table de 2 à première vue. On va donc
+                        diviser le numérateur et le
+                        dénominateur par 2.
+
+                        \[
+                        \frac{36}{26} = \frac{18 \times 2}{13 \times 2} = \frac{18}{13}
+                        \]
+
+                        Les nombres 18 et 13 n’ont aucun diviseur commun. On s’arrête la, la fraction est irréductible
+                        <br><br>
+                        <i style="color: forestgreen;font-family: 'Bona Nova', serif">Mais comment sait-on tout de suite
+                            si le numérateur et le dénominateur d’une fraction ont un
+                            diviseur commun ?</i>
+                        <br>
+                        Ah, je m’attendais à cette question. Vous voulez une astuce, c’est cela ? Bon, puisque vous avez
+                        pas mal travaillé jusqu’ici,
+                        je vous la donne.
+                        <br><br>
+                        <div style="text-align: left;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            <b><u>Critères de divisibilité :
+                            </u></b>
+                            <br><br>
+                            – <b><u>Divisibilité par 2 :</u></b> Un nombre est divisible par 2 si son dernier chiffre
+                            est 0, 2, 4, 6
+                            ou 8.
+                            <br>
+                            Exemple : 876 904 est divisible par 2 car il se termine par un 4.
+                            <br><br>
+                            – <b><u>Divisibilité par 3 :</u></b> Un nombre est divisible par 3 si la somme de ses
+                            chiffres est
+                            elle-même divisible par 3.
+                            <br>
+                            Exemple : 375 est divisible par 3 car 3 + 7 + 5 = 15 et 15 est dans la table de 3.
+                            <br><br>
+                            – <b><u>Divisibilité par 4 :</u></b> Un nombre est divisible par 4 si le nombre constitué de
+                            ses deux
+                            derniers chiffres est lui-même
+                            divisible par 4.
+                            <br>
+                            Exemple : 1 000 990 188 est divisible par 4 car 88 est divisible par 4.
+                            <br><br>
+                            – <b><u>Divisibilité par 5 :</u></b> Un nombre est divisible par 5 si son dernier chiffre
+                            est 0 ou 5.
+                            <br>
+                            Exemple : 23 465 est divisible par 5 car son dernier chiffre est 5.
+                            <br><br>
+                            – <b><u>Divisibilité par 6 :</u></b> Un nombre est divisible par 6 si il est à la fois
+                            divisible par 2 et
+                            par 3, c’est-à-dire si c’est un
+                            nombre pair dont la somme des chiffres est elle-même divisible par 3.
+                            <br>
+                            Exemple : 1572 est divisible par 6 car c’est un nombre pair et 1 + 5 + 7 + 2 = 15 et 15 et
+                            divisible par 3.
+                            <br><br>
+                            – <b><u>Divisibilité par 9 :</u></b> Un nombre est divisible par 9 si la somme de ses
+                            chiffres est
+                            elle-même divisible par 9.
+                            <br>
+                            Exemple : 621 est divisible par 9 car 6 + 2 + 1 = 9.
+                            <br><br>
+                            – <b><u>Divisibilité par 10 :</u></b> Un nombre est divisible par 10 si son dernier chiffre
+                            est 0
+                            <br>
+                            Exemple : 45 567 320 est divisible par 10.
+                        </div>
+                    </div>
+
+                    <hr id="fraction_multiplication">
+
+                    <h2 style="margin-top: 50px;text-align: left">
+                        <u>Multiplication de fractions</u>
+                    </h2>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <div style="text-align: left;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            <b><u>Définition</u></b> : Pour multiplier deux fractions entre elles, on multiplie les
+                            numérateurs entre
+                            eux, et les dénominateurs entre
+                            eux.
+
+                            \[
+                            \frac{a}{b} \times \frac{c}{d} = \frac{a \times c}{b \times d}
+                            \]
+                        </div>
+                        <br>
+                        <u>Exemples</u> :
+
+                        \[
+                        \frac{3}{5} \times \frac{4}{7} = \frac{3 \times 4}{5 \times 7} = \frac{12}{35}
+                        \]
+
+                        Or, 12 et 35 n’ont pas de diviseur commun. Donc, la fraction est irréductible
+
+                        \[
+                        \frac{4}{3} \times \frac{9}{11} = \frac{4 \times 9}{3 \times 11}
+                        \]
+
+                        Or, 9 = 3 × 3, on va pouvoir simplifier la fraction dés à présent en supprimant un 3 en haut et
+                        un 3 en bas comme ceci :
+
+                        \[
+                        \frac{4 \times 9}{3 \times 11} = \frac{4 \times 3 \times 3}{3 \times 11} = \frac{4 \times 3}{11}
+                        = \frac{12}{11}
+                        \]
+
+                        La fraction est simplifiée au maximum, elle est irréductible.
+                    </div>
+
+                    <hr id="reduction_au_meme_denominateur">
+
+                    <h2 style="margin-top: 50px;;text-align: left">
+                        <u>Réduction au même dénominateur</u>
+                    </h2>
+                    <div style="margin-left: 100px;text-align: left;margin-top: 50px">
+                        On sait comment multiplier deux fractions entre elles, mais comment les additionne-t-on et les
+                        soustrait-t-on ?
+                        <br>
+                        Pour ce faire, il faut d’abord réduire les deux fractions à additionner (ou à soustraire) au
+                        même dénominateur.
+                        <br><br>
+                        <div style="text-align: left;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            <b><u>Définition</u></b> : Pour réduire deux fraction au même dénominateur, c’est-à-dire
+                            pour que les deux fractions aient le même
+                            dénominateur, on utilise le principe d’égalité.
+                        </div>
+                        <br>
+                        Un exemple vaut mieux qu’un long discours.
+                        <br><br>
+                        Exemples :
+                        <br>
+                        Soit les fractions <sup>3</sup>&frasl;<sub>4</sub>
+                        et <sup>5</sup>&frasl;<sub>6</sub>
+                        . Elles n’ont pas le même dénominateur. Il faut donc trouver un multiplicateur pour que les deux
+                        dénominateurs soient égaux.
+                        <br>
+                        Trouvé ! On va multiplier la première fractions par 3 et la seconde par 2 car 4 × 3 = 12 et 6 ×
+                        2 = 12. Allons-y :
+
+                        \[
+                        \frac{3}{4} = \frac{3 \times 3}{4 \times 3} = \frac{9}{12}
+                        \]
+
+                        et
+
+                        \[
+                        \frac{5}{6} = \frac{5 \times 2}{6 \times 2} = \frac{10}{12}
+                        \]
+
+                        Et voilà, c’est aussi simple que cela.
+                        <br><br>
+                        <u><b>Remarque</b></u> : Petite astuce pour réduire rapidement deux fractions au même
+                        dénominateur :
+                        multiplier la première fraction
+                        par le dénominateur de la seconde et la seconde par le dénominateur de la première. Attention
+                        ensuite à simplifier au
+                        maximum pour avoir une fraction irréductible.
+                    </div>
+
+                    <hr id="fraction_addition_soustraction">
+
+                    <h2 style="margin-top: 50px;text-align: left">
+                        <u>Additions et soustractions de fractions</u>
+                    </h2>
+                    <div style="margin-left: 100px;text-align: left;margin-top: 50px">
+                        <div style="text-align: left;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            <b><u>Définition</u></b> : Pour additionner (ou soustraire) deux fractions entre elles, il
+                            faut les mettre sous le même dénominateur
+                            puis effectuer le calcul au niveau du numérateur, le dénominateur n’effectue pas
+                            l’opération, il reste tel quel.
+
+                            \[
+                            \frac{a}{b} + \frac{c}{b} = \frac{a + c}{b}
+                            \]
+
+                            De même avec la soustraction.
+                        </div>
+                        <br>
+                        <u>Exemples</u> : Reprenons les deux fractions de l’exemple précédent, que l’on avait mis sous
+                        le même
+                        dénominateur. Une
+                        partie du travail est déjà fait comme ça.
+
+                        \[
+                        \frac{9}{12} + \frac{10}{12} = \frac{9 + 10}{12} = \frac{19}{12}
+                        \]
+                    </div>
+
+                    <hr id="comparaison_fraction">
+
+                    <h2 style="margin-top: 50px;text-align: left">
+                        <u>Comparaison de fractions</u>
+                    </h2>
+                    <div style="margin-left: 100px;text-align: left;margin-top: 50px">
+                        <div style="text-align: left;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            <b><u>Définition</u></b> : Pour comparer deux fractions, il faut absolument les mettre sous
+                            le même dénominateur. Dans ce cas la, on
+                            compare les numérateur pour trouver quelle fraction est la plus grande.
+
+                            \[
+                            \frac{a}{b} > \frac{c}{b} \space\space Si \space\space a > c \space\space\space\space et
+                            \space\space\space\space \frac{a}{b} < \frac{c}{b} \space\space Si \space\space a < c
+                            \]
+                        </div>
+                        <br><br>
+                        Exemples : Reprenons encore une fois les deux fractions de l’exemple précédent, que l’on avait
+                        mis sous le même dénominateur. Une partie du travail est déjà fait comme ça.
+                        <br>
+                        Or, on a 9 < 10. Donc tout simplement :
+
+                        \[
+                        \frac{9}{12} < \frac{10}{12}
+                        \]
+                    </div>
+
+                    <hr id="division_fraction">
+
+                    <h2 style="margin-top: 50px;text-align: left">
+                        <u>Divisions de fractions</u>
+                    </h2>
+                    <div style="margin-left: 100px;text-align: left;margin-top: 50px">
+                        Dans cette partie, nous allons voir comment diviser par une fraction. Mais avant tout, voici une
+                        définition importante,
+                        celle de <b>l’inverse</b>.
+                        <br>
+                        <div style="text-align: left;border: 4px solid #de8fd7;border-radius: 5px;font-style: oblique">
+                            <b><u>Définition</u></b> : Si a ≠ 0, <b>l’inverse</b> de a est :
+
+                            \[
+                            \frac{1}{a}
+                            \]
+
+                            Si a≠0 et b ≠ 0, l’inverse de <sup>a</sup>&frasl;<sub>b</sub>
+                            est :
+
+                            \[
+                            \frac{b}{a}
+                            \]
+                        </div>
+                        <br><br>
+                        <u>Exemple</u> :
+
+                        \[
+                        \frac{\frac{5}{6}}{\frac{4}{9}} = \frac{5}{6} \div \frac{4}{9} = \frac{5}{6} \times \frac{9}{4}
+                        = \frac{5 \times 9}{6 \times 4} = \frac{5 \times 3 \times 3}{3 \times 2 \times 4} = \frac{5
+                        \times 3}{2 \times 4} = \frac{15}{8}
+                        \]
+
+                        Si vous avez du mal à comprendre ce calcul, relisez les paragraphes précédents sur la
+                        simplification des fractions
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="simple-cta" id="calculatrice-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 offset-lg-1">
+                <div class="left-image">
+                    <img src="{% static 'images/cta-left-image.png' %}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-5 align-self-center">
+                <h6>visiter la calculatrice en ligne</h6>
+                <h4>Effectuer vos calcule en tout moment </h4>
+                <br>
+                <div class="white-button">
+                    <a href="{% url 'index' %}">Commencer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="contact-us" id="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+
+            </div>
+            <div class="col-lg-4">
+                <form id="contact" action="" method="post">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-heading">
+                                <h6>Contact us</h6>
+                                <h4>Say <em>Hello</em></h4>
+                                <p>Si vous avez des remarques des questions notre equipe est a votre disposition a tout
+                                    moment </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <input type="name" name="name" id="name" placeholder="Full Name" autocomplete="on"
+                                       required>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*"
+                                       placeholder="Your Email" required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <button type="submit" id="form-submit" class="main-gradient-button">Send Message
+                                </button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-12">
+                <ul class="social-icons">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-12">
+                <p class="copyright">Copyright © 2022 EasyMath., Ltd. All Rights Reserved.
+
+                    <br>BY : <a rel="sponsored" href="https://templatemo.com" target="_blank">GI2</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'js/isotope.min.js' %}"></script>
+<script src="{% static 'js/owl-carousel.js' %}"></script>
+<script src="{% static 'js/lightbox.js' %}"></script>
+<script src="{% static 'js/tabs.js' %}"></script>
+<script src="{% static 'js/video.js' %}"></script>
+<script src="{% static 'js/slick-slider.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script>
+    //according to loftblog tut
+    $('.nav li:first').addClass('active');
+
+    var showSection = function showSection(section, isAnimate) {
+        var
+            direction = section.replace(/#/, ''),
+            reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+            reqSectionPos = reqSection.offset().top - 0;
+
+        if (isAnimate) {
+            $('body, html').animate({
+                    scrollTop: reqSectionPos
+                },
+                800);
+        } else {
+            $('body, html').scrollTop(reqSectionPos);
+        }
+
+    };
+
+    var checkSection = function checkSection() {
+        $('.section').each(function () {
+            var
+                $this = $(this),
+                topEdge = $this.offset().top - 80,
+                bottomEdge = topEdge + $this.height(),
+                wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+                var
+                    currentId = $this.data('section'),
+                    reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                reqLink.closest('li').addClass('active').siblings().removeClass('active');
+            }
+        });
+    };
+
+    $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+        e.preventDefault();
+        showSection($(this).attr('href'), true);
+    });
+
+    $(window).scroll(function () {
+        checkSection();
+    });
+</script>
+
+</body>
+</html>

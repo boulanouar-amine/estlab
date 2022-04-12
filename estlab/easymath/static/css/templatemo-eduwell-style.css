@@ -366,7 +366,7 @@ header
     padding-right: 15px;
 }
 
-.header-area .main-nav .nav li.has-sub:after {
+/*.header-area .main-nav .nav li.has-sub:after {
     font-family: FontAwesome;
     content: "\f107";
     font-size: 12px;
@@ -375,7 +375,7 @@ header
     right: 5px;
     top: 12px;
 }
-
+*/
 .header-area .main-nav .nav li.has-sub ul.sub-menu {
     position: absolute;
     width: 240px;

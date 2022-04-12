@@ -13,11 +13,10 @@
 
     <title>EasyMath_Votre Plateform de calcul</title>
 
-    <!-- Bootstrap core CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'images/siteLogo.png' %}">
 
 
-    <!-- Additional CSS Files -->
     <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
     <link rel="stylesheet" href="{% static 'css/templatemo-eduwell-style.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.css' %}">
@@ -26,13 +25,34 @@
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
     </script>
 
-    <!--
 
-    TemplateMo 573 EduWell
 
-    https://templatemo.com/tm-573-eduwell
+    <style>
+        .topnav {
+            overflow: hidden;
+            background-image: linear-gradient(to right,#eebfab,#d687db);
+            border: 2px black solid;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
 
-    -->
+        .topnav a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 70px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: white;
+            color: black;
+            font-size: 16px;
+            border-radius: 6px;
+        }
+
+    </style>
 
 
 </head>
@@ -48,7 +68,7 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{% url 'Home' %}" class="logo">
-                        <img src="{% static 'images/EasyMath.png' %}" alt="Easymat" id="logo">
+                        <img src="{% static 'images/EasyMath.png' %}" alt="Easymath" id="logo">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
@@ -56,13 +76,13 @@
                         <li><a href="{% url 'Home' %}">Accueil</a></li>
                         <li class="has-sub">
                             <a href="javascript:void(0)">Mathematics</a>
-                            <ul class="sub-menu">
-                                <li><a href="#top">Matrices</a></li>
-                                <li><a href="{% url 'Home' %}">Statistiques</a></li>
-                                <li><a href="{% url 'Home' %}">Fractions</a></li>
-                                <li><a href="{% url 'Home' %}">Nombres Parfaits</a></li>
-                                <li><a href="{% url 'Home' %}">Nombres Amis</a></li>
-                                <li><a href="{% url 'Home' %}">Nombres Premiers</a></li>
+                                 <ul class="sub-menu">
+                                <li><a href="{% url 'Matrice' %}">Matrices</a></li>
+                                <li><a href="{% url 'Statistique' %}">Statistiques</a></li>
+                                <li><a href="{% url 'Fraction' %}">Fractions</a></li>
+                                <li><a href="{% url 'NombreParfait' %}">Nombres Parfaits</a></li>
+                                <li><a href="{% url 'NombreAmi' %}">Nombres Amicaux</a></li>
+                                <li><a href="{% url 'NombrePremier' %}">Nombres Premiers</a></li>
                             </ul>
                         </li>
                         <li class="scroll-to-section"><a href="#calculatrice-section">Calculatrice</a></li>
@@ -86,9 +106,29 @@
                 <div class="header-text" style="margin-top: 50px">
                     <h1>Les Matrices</h1>
                 </div>
+                <div class="topnav" style="width: 100%;display: flex;justify-content: space-between;">
+                    <a href="#taille">Taille d'une matrice</a>
+                    <a href="#addition_soustraction">Opérations sur les matrices : addition et soustraction</a>
+                </div>
+                <div class="topnav" style="width: 100%;display: flex;justify-content: space-between;">
+                    <a href="#multiplication">Opérations sur les matrices : multiplication</a>
+                    <a href="#autre">Autres propriétés</a>
+                </div>
+                <div class="topnav" style="width: 100%;display: flex;justify-content: space-between;">
+                    <a href="#binome_de_newton">Puissance de matrices : binôme de Newton</a>
+                    <a href="#nilpotentes">Matrices nilpotentes</a>
+                    <a href="#transposee">La transposée</a>
+                </div>
+                <div class="topnav" style="width: 100%;display: flex;justify-content: space-between;">
+                    <a href="#inverse">La matrice inverse</a>
+                    <a href="#systeme_lineaire">Matrice et système linéaire</a>
+                    <a href="#trace">Trace d’une matrice</a>
+                </div>
+                </div>
+
                 <div>
                     <h2 style="margin-top: 50px;text-align: left" id="taille">
-                        Taille d'une matrice
+                        <u>Taille d'une matrice</u>
                     </h2>
 
                     <div style="text-align: left;margin-left: 100px;margin-top: 50px">
@@ -184,9 +224,9 @@
 
                     <hr id="addition_soustraction">
 
-                    <h2 style="margin-top:50px;text-align: left" >
-                        Opérations sur les matrices : addition et
-                        soustraction
+                    <h2 style="margin-top:50px;text-align: left">
+                        <u>Opérations sur les matrices : addition et
+                        soustraction</u>
                     </h2>
                     <div style="text-align: left;margin-left: 100px;margin-top: 50px;margin-top: 50px">
                         On peut en effet additionner, soustraire et multiplier des matrices sous certaines conditions.
@@ -290,7 +330,7 @@
                     <hr id="multiplication">
 
                     <h2 style="margin-top: 50px;text-align: left">
-                        Opérations sur les matrices : multiplication
+                        <u>Opérations sur les matrices : multiplication</u>
                     </h2>
                     <div style="text-align: left;margin-left: 100px;margin-top: 50px">
                         Pour multiplier en revanche, c’est un peu plus complexe.
@@ -630,7 +670,7 @@
                     <hr id="autre">
 
                     <h2 style="margin-top: 50px;text-align: left">
-                        Autres propriétés
+                        <u>Autres propriétés</u>
                     </h2>
                     <div style="text-align: left;margin-left: 100px;margin-top: 50px">
                         Il y a d’autres propriétés concernant les opérations sur les matrices mais qui ne nécessitent
@@ -661,7 +701,7 @@
                     <hr id="binome_de_newton">
 
                     <h2 style="margin-top: 50px;;text-align: left">
-                        Puissance de matrices : binôme de Newton
+                        <u>Puissance de matrices : binôme de Newton</u>
                     </h2>
                     <div style="margin-left: 100px;text-align: left;margin-top: 50px">
                         Dans cette partie toutes les matrices seront des matrices carrées, afin qu’on puisse les
@@ -825,7 +865,7 @@
                     <hr id="nilpotentes">
 
                     <h2 style="margin-top: 50px;text-align: left">
-                        Matrices nilpotentes
+                        <u>Matrices nilpotentes</u>
                     </h2>
                     <div style="margin-left: 100px;text-align: left;margin-top: 50px">
                         Il y a certaines matrices qui sont qualifiées de nilpotentes.
@@ -888,7 +928,7 @@
                     <hr id="transposee">
 
                     <h2 style="margin-top: 50px;text-align: left">
-                        La transposée
+                        <u>La transposée</u>
                     </h2>
                     <div style="margin-left: 100px;text-align: left;margin-top: 50px">
                         La transposé d’une matrice A, notée <sup>t</sup>A, est une matrice où les lignes de A se
@@ -1046,7 +1086,7 @@
                     <hr id="inverse">
 
                     <h2 style="margin-top: 50px;text-align: left">
-                        La matrice inverse
+                        <u>La matrice inverse</u>
                     </h2>
                     <div style="margin-left: 100px;text-align: left;margin-top: 50px">
                         La matrice inverse, qu’est-ce que c’est ?
@@ -1246,7 +1286,7 @@
                     <hr id="systeme_lineaire">
 
                     <h2 style="margin-top: 50px;text-align: left">
-                        Matrice et système linéaire
+                        <u>Matrice et système linéaire</u>
                     </h2>
                     <div style="margin-left: 100px;text-align: left;margin-top: 50px">
                         Une application classique de la matrice inverse est la résolution de systèmes linéaires.
@@ -1367,7 +1407,7 @@
                     <hr id="trace">
 
                     <h2 style="margin-top: 50px;text-align: left">
-                        Trace d’une matrice
+                        <u>Trace d’une matrice</u>
                     </h2>
                     <div style="margin-left: 100px;text-align: left;margin-top: 50px">
                         La trace d’une matrice, c’est tout simplement <b>la somme de ses coefficients diagonaux</b>,
@@ -1440,7 +1480,7 @@
                 <h4>Effectuer vos calcule en tout moment </h4>
                 <br>
                 <div class="white-button">
-                    <a href="{% url 'index' %}">Commencer</a>
+                     <a href="{% url 'index' %}">Commencer</a>
                 </div>
             </div>
         </div>

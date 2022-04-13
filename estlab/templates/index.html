@@ -116,9 +116,17 @@ function setColor(e) {
 
             </form>
                      </div>
+
+                     <div>
+                     <p>syntax:<br>
+                         [a,b];[c,d]-[e,f];[g,h]<br>
+                      <p>examples:<br>
+    [1,2];[10,10]+[3,1];[2,4]<br>
+    [10,10]/[2,2];[2,4]<br>
+                      </div>
             {% endif %}
 
-              {% if request.get_full_path == "/?derivée=derivée" or request.get_full_path == "/index?primitive=primitive" or request.get_full_path == "/index?integrale=integrale"  or request.get_full_path == "/index?clr=clr"  or request.get_full_path == "/index?%2B=%2B"  or request.get_full_path == "/index?-=-"  or request.get_full_path == "/index?x=x"  or request.get_full_path == "/index?%2F=%2F"   or request.get_full_path == "/index?^=^"  or request.get_full_path == "/index?π=π"  or request.get_full_path == "/index?(=("  or request.get_full_path == "/index?)=)" %}
+              {% if request.get_full_path == "/?derivée=derivée" or request.get_full_path == "/index?primitive=primitive"  or request.get_full_path == "/index?clr=clr"  or request.get_full_path == "/index?%2B=%2B"  or request.get_full_path == "/index?-=-"  or request.get_full_path == "/index?x=x"  or request.get_full_path == "/index?%2F=%2F"   or request.get_full_path == "/index?^=^"  or request.get_full_path == "/index?π=π"  or request.get_full_path == "/index?(=("  or request.get_full_path == "/index?)=)" %}
                     <form method='get'>
                         <input type="submit" value="clr" name="clr">
                         <input type="submit" value="+" name="+">
@@ -132,7 +140,30 @@ function setColor(e) {
                 <br>
 
             </form>
+                  <div>
+                      <p>examples:<br>
+         5/7-2<br>
+        x**5<br>
+        1+cos(x)<br>
+                  </div>
+              {% endif %}
+            {% if  request.get_full_path == "/index?integrale=integrale" %}
+                           <input type="submit" value="clr" name="clr">
+                        <input type="submit" value="+" name="+">
+                        <input type="submit" value="-" name="-">
+                        <input type="submit" value="x" name="x">
+                        <input type="submit" value="/" name="/">
+                        <input type="submit" value="^" name="^">
+                        <input type="submit" value="π" name="π">
+                        <input type="submit" value="(" name="(">
+                        <input type="submit" value=")" name=")">
+                <br>
 
+            </form>
+                  <div>
+              <p>examples:<br>
+                x**2,1,5<br>
+                </div>
               {% endif %}
              <h3>{{ output }}</h3>
 
@@ -143,15 +174,7 @@ function setColor(e) {
 
 <!--<h3>{{ mat }}</h3>-->
 
-    <p>syntax:<br>
-        [a,b];[c,d]-[e,f];[g,h]<br>
-    <p>examples:<br>
-    5/7-2<br>
-    [1,2];[10,10]+[3,1];[2,4]<br>
-    [10,10]/[2,2];[2,4]<br>
-        x**2,1,5<br>
-        x**5<br>
-        1+cos(x)<br>
+
 </p>
 
 

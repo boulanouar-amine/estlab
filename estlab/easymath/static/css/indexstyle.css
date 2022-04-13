@@ -1,0 +1,52 @@
+.methode {
+      background-image: linear-gradient(to right,#eebfab,#d687db);
+            border: 2px black solid;
+            border-radius: 8px;
+            margin-top: 50px;
+
+
+}
+div.methode > form > input[type=submit]{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: white;
+    text-align: center;
+    padding: 14px 70px;
+    text-decoration: none;
+    font-size: 17px;
+
+}
+
+div.methode > form > input[type=submit]:hover {
+    color: black;
+  background-color: white;
+}
+
+.active {
+     color: black;
+  background-color: white;
+}
+
+.inactive {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: white;
+}
+
+
+
+.navigation {
+    background-image: linear-gradient(to right,#eebfab,#d687db);
+            border: 2px black solid;
+            border-radius: 8px;
+            margin-top: 50px;"
+
+}

@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{% static 'css/templatemo-eduwell-style.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.css' %}">
     <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+     <link rel="stylesheet" href="{% static 'css/indexstyle.css' %}">
     <script type="text/javascript" id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
     </script>
@@ -31,11 +32,19 @@
 
         </script>
 
+<script>
+function setColor(e) {
+   var target = e.target,
+       status = e.target.classList.contains('active');
 
+   e.target.classList.add(status ? 'inactive' : 'active');
+   e.target.classList.remove(status ? 'active' : 'inactive');
+}
+    </script>
 </head>
 <body>
 
-<!-- ***** Header Area Start ***** -->
+
 <header class="header-area header-sticky">
     <div class="container">
         <div class="row">
@@ -71,7 +80,6 @@
         </div>
     </div>
 </header>
-<!-- ***** Header Area End ***** -->
 
 <section class="page-heading">
 
@@ -81,11 +89,11 @@
 
                <div class="methode">
                    <form method='get'>
-                <input type="submit" value="matrice" name="matrice" onclick="showmatrix()">
-                 <input type="submit" value="derivée" name="derivée">
-                 <input type="submit" value="primitive" name="primitive">
+                   <input type="submit" id="button" value="matrice" name="matrice" onclick="setColor(event)" >
+                   <input type="submit" value="derivée" name="derivée" onclick="setColor(event)" >
+                   <input type="submit" value="primitive" name="primitive">
                    <input type="submit" value="integrale" name="integrale">
-                </form>
+                   </form>
                 </div>
 
 
@@ -96,7 +104,7 @@
 
 
                  {% if request.get_full_path == "/index?matrice=matrice" or request.get_full_path == "/index?average=average"  or request.get_full_path == "/index?transpose=transpose" or request.get_full_path == "/index?inverse=inverse" or request.get_full_path == "/index?determinant=determinant" or request.get_full_path == "/index?trace=trace"  or request.get_full_path == "/index?valeur+propre=valeur+propre" %}
-<div class="topnav" style="width: 100%;display: flex;justify-content: space-between;">
+<div class="topnav" class="navigation">
             <form method='get'>
                 <input type="submit" value="average" name="average">
                 <input type="submit" value="transpose" name="transpose">

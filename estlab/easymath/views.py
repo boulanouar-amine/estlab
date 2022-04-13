@@ -7,10 +7,8 @@ import sympy as sp
 
 commands = ("calculate", "inverse", "transpose", "determinant",
             "trace", "vector_difference", "average", "valeur propre", "nombre_parfait",
-            "intervalle_parfait", "nombre_premier", "derivée", "primitive","integrale")
+            "intervalle_parfait", "nombre_premier","derivée", "primitive","integrale")
 
-matrice_menu = ("/index?matrice=matrice", "/index?inverse=inverse", "/index?transpose=transpose", "/index?determinant=determinant",
-            "/index?trace=trace", "/index?average=average" ,"/index?valeur+propre=valeur+propre")
 
 mat = np.zeros((1, 1))
 
@@ -99,6 +97,7 @@ def format_all(chaine):
     if type(chaine) is np.matrix:
         mat = chaine
         return "$$" + str(a2l.to_ltx(chaine, print_out=False, arraytype="pmatrix", frmt="{:.2f}", mathform=True)) + "$$"
+
     elif type(chaine) is str:
         return chaine
 

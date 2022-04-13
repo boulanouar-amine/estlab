@@ -1,9 +1,9 @@
-from django.shortcuts import render
-import numpy as np
-import array_to_latex as a2l
 import re
 
+import array_to_latex as a2l
+import numpy as np
 import sympy as sp
+from django.shortcuts import render
 
 commands = ("calculate", "inverse", "transpose", "determinant",
             "trace", "vector_difference", "average", "valeur propre", "nombre_parfait",
@@ -39,7 +39,7 @@ def run(request):
                     res = str(integrale(command))
 
             else:
-                res = format_all(calculate((command)))
+                        res = format_all(calculate((command)))
 
             # res = ''.join([eval("str(" + ele + "(command))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
             # res = ''.join([eval("format_all(" + ele + "(extract(command,ele)))") for ele in commands if re.search(ele, command)])
@@ -258,3 +258,4 @@ def integrale(mat):
 
 
 
+#              <!--{% if request.get_full_path == "/?derivée=derivée" or request.get_full_path == "/index?primitive=primitive"  or request.get_full_path == "/index?clr=clr"  or request.get_full_path == "/index?%2B=%2B"  or request.get_full_path == "/index?-=-"  or request.get_full_path == "/index?x=x"  or request.get_full_path == "/index?%2F=%2F"   or request.get_full_path == "/index?%5E=%5E"  or request.get_full_path == "/index?ln=ln"  or  request.get_full_path == "/index?e=e"  or request.get_full_path == "/index?%28=%28"  or request.get_full_path == "/index?%29=%29" %}-->  <form method='get'>

@@ -1,3 +1,9 @@
+.container {
+
+    background-image: url("images/backroundindex.png");
+     background-repeat: repeat;
+}
+
 .methode {
       background-image: linear-gradient(to right,#eebfab,#d687db);
             border: 2px black solid;

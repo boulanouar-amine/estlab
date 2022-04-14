@@ -12,6 +12,26 @@
 
 
 }
+h3{
+    font-size: 1.5em;
+    font-weight: normal;
+}
+
+#go{
+    float: right;
+    width: 3.25em;
+}
+
+label{
+    cursor: default;
+}
+
+label > normal-prompt{
+
+}
+
+
+
 div.methode > form > input[type=submit]{
     background-color: transparent;
     background-repeat: no-repeat;
@@ -54,5 +74,22 @@ div.methode > form > input[type=submit]:hover {
             border: 2px black solid;
             border-radius: 8px;
             margin-top: 50px;"
+
+}
+
+body > section > div > div > div:nth-child(2){
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;"
+
+
+}
+
+
+body > section > div > div > div:nth-child(2) > div:nth-child(2){
+    padding: 23px;
+    border: solid 4px black;
+    margin: 38px;
+
 
 }

@@ -3,17 +3,17 @@ import re
 import array_to_latex as a2l
 import numpy as np
 import sympy as sp
+import sympy.core.sympify
 from django.shortcuts import render
-
+from sympy.core.sympify import SympifyError
 commands = ("calculate", "inverse", "transpose", "determinant",
             "trace", "vector_difference", "average", "valeur propre", "nombre_parfait",
             "intervalle_parfait", "nombre_premier","derivée", "primitive","integrale")
 
-
 mat = np.zeros((1, 1))
 
 
-# views code
+# la premier fonction qui contient le get
 
 def run(request):
     global mat,commands
@@ -26,6 +26,7 @@ def run(request):
 
         if request.method == 'POST':
             command = request.POST["cal"]
+
             if re.search("x", command):
 
                 if request.GET.get("derivée") == "derivée":
@@ -34,15 +35,14 @@ def run(request):
                 if request.GET.get("primitive") == "primitive":
                     res = str(primitive(command))
 
-
                 if request.GET.get("integrale") == "integrale":
                     res = str(integrale(command))
 
             else:
                         res = format_all(calculate((command)))
 
-            # res = ''.join([eval("str(" + ele + "(command))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
-            # res = ''.join([eval("format_all(" + ele + "(extract(command,ele)))") for ele in commands if re.search(ele, command)])
+# res = ''.join([eval("str(" + ele + "(command))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
+# res = ''.join([eval("format_all(" + ele + "(extract(command,ele)))") for ele in commands if re.search(ele, command)])
 
 
     except (IndexError, ZeroDivisionError):
@@ -50,6 +50,7 @@ def run(request):
 
     except np.linalg.LinAlgError:
         res = "la matrice doit etre une matrice carre"
+
 
     except:
 
@@ -88,6 +89,15 @@ def NombreParfait(request):
 
 def NombrePremier(request):
     return render(request, 'NombrePremier.html')
+
+
+def calculate(chaine):
+    if re.search("]", chaine):
+        chaine = matrix_calculator(chaine)
+
+    else:
+        chaine = eval(chaine)
+    return chaine
 
 
 # general functions
@@ -172,13 +182,6 @@ def vector_difference(chaine):
 # statistique
 
 
-def calculate(chaine):
-
-    if re.search("]", chaine):
-        chaine = matrix_calculator(chaine)
-    else:
-        chaine = eval(chaine)
-    return chaine
 
 
 def average(chaine):
@@ -258,4 +261,4 @@ def integrale(mat):
 
 
 
-#              <!--{% if request.get_full_path == "/?derivée=derivée" or request.get_full_path == "/index?primitive=primitive"  or request.get_full_path == "/index?clr=clr"  or request.get_full_path == "/index?%2B=%2B"  or request.get_full_path == "/index?-=-"  or request.get_full_path == "/index?x=x"  or request.get_full_path == "/index?%2F=%2F"   or request.get_full_path == "/index?%5E=%5E"  or request.get_full_path == "/index?ln=ln"  or  request.get_full_path == "/index?e=e"  or request.get_full_path == "/index?%28=%28"  or request.get_full_path == "/index?%29=%29" %}-->  <form method='get'>
+#<!--{% if request.get_full_path == "/?derivée=derivée" or request.get_full_path == "/index?primitive=primitive"  or request.get_full_path == "/index?clr=clr"  or request.get_full_path == "/index?%2B=%2B"  or request.get_full_path == "/index?-=-"  or request.get_full_path == "/index?x=x"  or request.get_full_path == "/index?%2F=%2F"   or request.get_full_path == "/index?%5E=%5E"  or request.get_full_path == "/index?ln=ln"  or  request.get_full_path == "/index?e=e"  or request.get_full_path == "/index?%28=%28"  or request.get_full_path == "/index?%29=%29" %}-->  <form method='get'>

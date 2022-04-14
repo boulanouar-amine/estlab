@@ -186,6 +186,7 @@ def integrale_intervalle():
     display(F)
 
 '''
+
 from django.shortcuts import render
 import numpy as np
 import array_to_latex as a2l
@@ -194,7 +195,7 @@ import re
 import sympy as sp
 
 
-mat = "4"
+mat = "4x"
 def derivée(mat):
 
     x = sp.symbols('x')
@@ -203,6 +204,12 @@ def derivée(mat):
 
     return F
 
+print(derivée(mat))
+
+
+
+
+'''
 #shunting Yard algorithm
 import operator
 class Node:
@@ -304,3 +311,4 @@ t = build_tree("12 / ( 1 - 5 ) ^ 3 ^ 3")
 print(evaluate(t))
 t.postorder()
 
+'''

@@ -32,15 +32,6 @@
 
     </script>
 
-    <script>
-        function setColor(e) {
-            var target = e.target,
-                status = e.target.classList.contains('active');
-
-            e.target.classList.add(status ? 'inactive' : 'active');
-            e.target.classList.remove(status ? 'active' : 'inactive');
-        }
-    </script>
 </head>
 <body>
 
@@ -89,8 +80,8 @@
 
             <div class="methode">
                 <form method='get'>
-                    <input type="submit" id="button" value="matrice" name="matrice" onclick="setColor(event)">
-                    <input type="submit" value="derivée" name="derivée" onclick="setColor(event)">
+                    <input type="submit" value="matrice" name="matrice">
+                    <input type="submit" value="derivée" name="derivée" >
                     <input type="submit" value="primitive" name="primitive">
                     <input type="submit" value="integrale" name="integrale">
                 </form>
@@ -130,6 +121,7 @@
 
 
                 {%elif  request.get_full_path == "/index?integrale=integrale" %}
+ <!--
                     <input type="submit" value="clr" name="clr">
                     <input type="submit" value="+" name="+">
                     <input type="submit" value="-" name="-">
@@ -140,8 +132,19 @@
                     <input type="submit" value="e" name="e">
                     <input type="submit" value="(" name="(">
                     <input type="submit" value=")" name=")">
+<br>
+                   <input type="submit" value="1" name="1">
+                    <input type="submit" value="2" name="2">
+                    <input type="submit" value="3" name="3">
+                    <input type="submit" value="4" name="4">
+                    <input type="submit" value="5" name="5">
+                    <input type="submit" value="6" name="6">
+                    <input type="submit" value="7" name="7">
+                    <input type="submit" value="8" name="8">
+                    <input type="submit" value="9" name="9">
+                    <input type="submit" value="0" name="0">
                     <br>
-
+-->
                     </form>
                     <h3>{{ output }}</h3>
                     <div>
@@ -151,7 +154,7 @@
 
                 {%else %}
 
-
+<!--
                         <input type="submit" value="clr" name="clr">
                         <input type="submit" value="+" name="+">
                         <input type="submit" value="-" name="-">
@@ -163,7 +166,7 @@
                         <input type="submit" value="(" name="(">
                         <input type="submit" value=")" name=")">
                         <br>
-
+-->
                     </form>
                     <h3>{{ output }}</h3>
                     <div>

@@ -22,10 +22,15 @@ def run(request):
 
         if request.method == 'GET':
 
-            res = ''.join([eval("format_all(" + ele.replace(" ","_") + "(mat))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
+            if request.GET.get("matrice") == "matrice":
+                res = format_all(0)
+
+            else:
+                res = ''.join([eval("format_all(" + ele.replace(" ","_") + "(mat))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
 
         if request.method == 'POST':
             command = request.POST["cal"]
+
 
             if re.search("x", command):
 

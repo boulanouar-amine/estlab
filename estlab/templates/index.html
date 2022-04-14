@@ -31,10 +31,7 @@
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 
     </script>
-   <script>
 
-       removebackground()
-    </script>
 
 </head>
 <body>
@@ -90,15 +87,16 @@
                 </form>
             </div>
 
-            <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+            <div style="display: flex; flex-direction: row; justify-content: space-evenly; padding: 18px;   ">
                 <div></div>
                 <div style=" padding: 25px ; margin: 15px  ; border: solid 4px #e9a5be; border-radius: 33px; background: #faf7fa;">
                     <h3 style=" margin-top: 13px ; margin-bottom: 26px; ">Ecrire une formule: </h3>
-                    <form method="POST">{% csrf_token %} <input
-                            style=" margin-bottom: 30px; border-radius: 8px; border: 3px solid #E69FC6; height: 73px; width: -webkit-fill-available;"
+                    <form style="display: flex;
+    flex-direction: column;" method="POST">{% csrf_token %} <input
+                            style=" margin-bottom: 30px; border-radius: 8px; border: 3px solid #E69FC6; height: 73px; width: 750px;"
                             type="text" name="cal" id="cal">
                         <button type="text" style="
-                        background: linear-gradient(-145deg, rgba(219, 138, 222, 1) 0%, rgba(246, 191, 159, 1) 100%); color: white; height: 85px; width: 173px;
+                        background: linear-gradient(-145deg, rgba(219, 138, 222, 1) 0%, rgba(246, 191, 159, 1) 100%); color: white; height: 85px; width: 173px; align-self: center;
                         border-radius: 16px; border:   #faf7fa solid; font-size: 21px;">calculer l'expression</button>
                         </br>
                     </form>
@@ -117,18 +115,18 @@
                             </form>
                         </div>
 
-                        <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                        <div style="display: flex; flex-direction: row; justify-content: space-evenly; ">
                         <div></div>
                         <div><h3 style=" padding: 25px ; margin: 15px  ; border: solid 4px #e9a5be; border-radius: 33px; background: white;"  >{{ output }}</h3></div>
                         <div></div>
                         </div>
 
 
-                        <div>
+                  <!--      <div>
                             <p style="margin-top: 18px; font-size: 21px; line-height: inherit;">Examples:<br>
                                 [1,2];[10,10]+[3,1];[2,4]<br>
                                 [10,10]/[2,2];[2,4]<br>
-                        </div>
+                        </div> -->
 
 
                     {% elif  request.get_full_path == "/index?integrale=integrale" %}

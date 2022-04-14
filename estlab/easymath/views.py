@@ -24,7 +24,6 @@ def run(request):
 
             if request.GET.get("matrice") == "matrice":
                 res = format_all(0)
-
             else:
                 res = ''.join([eval("format_all(" + ele.replace(" ","_") + "(mat))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
 

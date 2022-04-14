@@ -48,22 +48,22 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="{% url 'Home' %}">Accueil</a></li>
+                        <li><a style="font-size: 22px" href="{% url 'Home' %}">Accueil</a></li>
                         <li class="has-sub">
-                            <a href="javascript:void(0)">Mathematics</a>
+                            <a  style="font-size: 22px"  href="javascript:void(0)">Mathematics</a>
                             <ul class="sub-menu">
-                                <li><a href="{% url 'Matrice' %}">Matrices</a></li>
-                                <li><a href="{% url 'Statistique' %}">Statistiques</a></li>
-                                <li><a href="{% url 'Fraction' %}">Fractions</a></li>
-                                <li><a href="{% url 'NombreParfait' %}">Nombres Parfaits</a></li>
-                                <li><a href="{% url 'NombreAmi' %}">Nombres Amicaux</a></li>
-                                <li><a href="{% url 'NombrePremier' %}">Nombres Premiers</a></li>
+                                <li><a style="font-size: 20px"  href="{% url 'Matrice' %}">Matrices</a></li>
+                                <li><a style="font-size: 20px"  href="{% url 'Statistique' %}">Statistiques</a></li>
+                                <li><a style="font-size: 20px"  href="{% url 'Fraction' %}">Fractions</a></li>
+                                <li><a style="font-size: 20px"  href="{% url 'NombreParfait' %}">Nombres Parfaits</a></li>
+                                <li><a style="font-size: 20px"  href="{% url 'NombreAmi' %}">Nombres Amicaux</a></li>
+                                <li><a style="font-size: 20px"  href="{% url 'NombrePremier' %}">Nombres Premiers</a></li>
                             </ul>
                         </li>
-                        <li class="scroll-to-section"><a href="#calculatrice-section">Calculatrice</a></li>
+                        <li class="scroll-to-section"><a  style="font-size: 22px"  href="#calculatrice-section" >Calculatrice</a></li>
                     </ul>
                     <a class='menu-trigger'>
-                        <span>Menu</span>
+                        <span style="font-size: 22px" >Menu</span>
                     </a>
                     <!-- ***** Menu End ***** -->
                 </nav>
@@ -78,12 +78,12 @@
 
         <div class="row">
 
-            <div class="methode">
+            <div class="methode" style="margin-top: -31px;">
                 <form method='get'>
-                    <input type="submit" value="matrice" name="matrice">
-                    <input type="submit" value="derivée" name="derivée">
-                    <input type="submit" value="primitive" name="primitive">
-                    <input type="submit" value="integrale" name="integrale">
+                    <input style = "font-size: 22px;" type="submit" value="matrice" name="matrice">
+                    <input style = "font-size: 22px; "  type="submit" value="derivée" name="derivée">
+                    <input style = "font-size: 22px; " type="submit" value="primitive" name="primitive">
+                    <input style = "font-size: 22px;  " type="submit" value="integrale" name="integrale">
                 </form>
             </div>
 
@@ -93,17 +93,18 @@
                     <h3 style=" margin-top: 13px ; margin-bottom: 26px; ">Ecrire une formule: </h3>
                     <form style="display: flex;
     flex-direction: column;" method="POST">{% csrf_token %} <input
-                            style=" margin-bottom: 30px; border-radius: 8px; border: 3px solid #E69FC6; height: 73px; width: 750px;"
+                            style=" padding-left: 260px;
+font-size: 23px; margin-bottom: 30px; border-radius: 8px; border: 3px solid #E69FC6; height: 73px; width: 750px;"
                             type="text" name="cal" id="cal">
                         <button type="text" style="
                         background: linear-gradient(-145deg, rgba(219, 138, 222, 1) 0%, rgba(246, 191, 159, 1) 100%); color: white; height: 85px; width: 173px; align-self: center;
-                        border-radius: 16px; border:   #faf7fa solid; font-size: 21px;">calculer l'expression</button>
+                        border-radius: 16px; border:   #faf7fa solid; font-size: 21px; margin-bottom: 14px;">calculer l'expression</button>
                         </br>
                     </form>
 
                     {% if request.get_full_path == "/index?matrice=matrice" or request.get_full_path == "/index?average=average"  or request.get_full_path == "/index?transpose=transpose" or request.get_full_path == "/index?inverse=inverse" or request.get_full_path == "/index?determinant=determinant" or request.get_full_path == "/index?trace=trace"  or request.get_full_path == "/index?valeur+propre=valeur+propre" %}
 
-                        <div class="methode" style="border: 2px #e9a5be">
+                        <div class="methode" style="border: 2px #e9a5be ;margin-top: -16px;">
                             <form  method='get'>
                                 <input style = "font-size: 22px; padding: 10px; padding-left: 5px; " type="submit" value="average" name="average">
                                 <input style = "font-size: 22px; padding: 10px;" type="submit" value="transpose" name="transpose">
@@ -117,7 +118,7 @@
 
                         <div style="display: flex; flex-direction: row; justify-content: space-evenly; ">
                         <div></div>
-                        <div><h3 style=" padding: 25px ; margin: 15px  ; border: solid 4px #e9a5be; border-radius: 33px; background: white;"  >{{ output }}</h3></div>
+                        <div><h3 style=" padding: 25px ; margin: 15px  ; border: solid 4px #e9a5be; border-radius: 33px; background: white; margin-top: 22px;"  >{{ output }}</h3></div>
                         <div></div>
                         </div>
 

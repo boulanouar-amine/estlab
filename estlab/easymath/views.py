@@ -3,15 +3,13 @@ import re
 import array_to_latex as a2l
 import numpy as np
 import sympy as sp
-import sympy.core.sympify
-from django.shortcuts import render
-from sympy.core.sympify import SympifyError
+from django.shortcuts import render, redirect
+
 commands = ("calculate", "inverse", "transpose", "determinant",
             "trace", "vector_difference", "average", "valeur propre", "nombre_parfait",
             "intervalle_parfait", "nombre_premier","derivée", "primitive","integrale")
 
 mat = np.zeros((1, 1))
-
 
 # la premier fonction qui contient le get
 
@@ -21,6 +19,11 @@ def run(request):
     try:
 
         if request.method == 'GET':
+
+
+            if request.GET.get("upload") == "upload+file":
+                res = format_all(0)
+
 
             if request.GET.get("matrice") == "matrice":
                 res = format_all(0)

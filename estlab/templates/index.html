@@ -87,101 +87,93 @@
                     <input style="font-size: 22px; " type="submit" value="derivée" name="derivée">
                     <input style="font-size: 22px; " type="submit" value="primitive" name="primitive">
                     <input style="font-size: 22px;  " type="submit" value="integrale" name="integrale">
+                    <input style="font-size: 22px;  " type="submit" value="Statistic" name="Statistic">
                 </form>
             </div>
 
             <div style="display: flex; flex-direction: row; justify-content: space-evenly; padding: 18px;   ">
                 <div></div>
                 <div style=" padding: 25px ; margin: 15px  ; border: solid 4px #e9a5be; border-radius: 33px; background: #faf7fa;">
-                    <h3 style=" margin-top: 13px ; margin-bottom: 26px; ">Ecrire une formule: </h3>
-                    <form style="display: flex; flex-direction: column;" method="POST">{% csrf_token %} <input
-                            style=" padding-left: 260px; font-size: 23px; margin-bottom: 30px; border-radius: 8px; border: 3px solid #E69FC6; height: 73px; width: 750px;"
-                            type="text" name="cal" id="cal">
-                        <button type="text" style="
-                        background: linear-gradient(-145deg, rgba(219, 138, 222, 1) 0%, rgba(246, 191, 159, 1) 100%); color: white; height: 85px; width: 173px; align-self: center;
-                        border-radius: 16px; border:   #faf7fa solid; font-size: 21px; margin-bottom: 14px;">calculer
-                            l'expression
-                        </button>
-                        </br>
-                    </form>
 
-                    {% if request.get_full_path == "/index?matrice=matrice" or request.get_full_path == "/index?average=average"  or request.get_full_path == "/index?transpose=transpose" or request.get_full_path == "/index?inverse=inverse" or request.get_full_path == "/index?determinant=determinant" or request.get_full_path == "/index?trace=trace"  or request.get_full_path == "/index?valeur+propre=valeur+propre" %}
-
-                        <div class="methode" style="border: 2px #e9a5be ;margin-top: -16px;">
-                            <form method='get'>
-                                <input style="font-size: 22px; padding: 10px; padding-left: 5px; " type="submit"
-                                       value="average" name="average">
-                                <input style="font-size: 22px; padding: 10px;" type="submit" value="transpose"
-                                       name="transpose">
-                                <input style="font-size: 22px; padding: 10px;" type="submit" value="inverse"
-                                       name="inverse">
-                                <input style="font-size: 22px; padding: 10px;" type="submit" value="determinant"
-                                       name="determinant">
-                                <input style="font-size: 22px; padding: 10px;" type="submit" value="trace" name="trace">
-                                <input style="font-size: 22px; padding: 10px; padding-right: 5px;" type="submit"
-                                       value="valeur propre" name="valeur propre">
-                                <br>
-                            </form>
-                        </div>
-
-                        <div style="display: flex; flex-direction: row; justify-content: space-evenly; ">
-                            <div></div>
-                            <div><h3
-                                    style=" padding: 25px ; margin: 15px  ; border: solid 4px #e9a5be; border-radius: 33px; background: white; margin-top: 22px;">{{ output }}</h3>
+                    {% if  request.get_full_path == "/index?Statistic=Statistic" %}
+                        {% block statistique %}
+                            <div class="container">
+                                <h1>Please select csv file for upload</h1>
+                                <form method='get'>
+                                    <input value="upload file" name="upload" style="
+                            background: linear-gradient(-145deg, rgba(219, 138, 222, 1) 0%, rgba(246, 191, 159, 1) 100%); color: white; height: 85px; width: 173px; align-self: center;
+                            border-radius: 16px; border: #faf7fa solid; font-size: 21px; margin-bottom: 14px; margin-top:10px  "
+                                            type="submit" class="btn btn-primary">
+                                    </input>
+                                </form>
                             </div>
-                            <div></div>
-                        </div>
+
+                        {% endblock %}
+                    {% elif  request.get_full_path == "/index?upload=upload+file"  %}
+                        <h1>cvs file uploaded correctly</h1>
 
 
-                        <!--      <div>
-                                  <p style="margin-top: 18px; font-size: 21px; line-height: inherit;">Examples:<br>
-                                      [1,2];[10,10]+[3,1];[2,4]<br>
-                                      [10,10]/[2,2];[2,4]<br>
-                              </div> -->
+                    {% else %}
 
+                        <h3 style=" margin-top: 13px ; margin-bottom: 26px; ">Ecrire une formule: </h3>
+                        <form style="display: flex; flex-direction: column;" method="POST"> {% csrf_token %}
+                            <input style=" padding-left: 270px; font-size: 23px; margin-bottom: 30px; border-radius: 8px; border: 3px solid #E69FC6; height: 73px; width: 750px;"
+                                   type="text" name="cal" id="cal">
+                            <button class="btn btn-primary" type="text" style="
+                            background: linear-gradient(-145deg, rgba(219, 138, 222, 1) 0%, rgba(246, 191, 159, 1) 100%); color: white; height: 85px; width: 173px; align-self: center;
+                            border-radius: 16px; border:   #faf7fa solid; font-size: 21px; margin-bottom: 14px;">
+                                calculer
+                                l'expression
+                            </button>
+                            </br>
+                        </form>
+                        {% if request.get_full_path == "/index?matrice=matrice" or request.get_full_path == "/index?average=average"  or request.get_full_path == "/index?transpose=transpose" or request.get_full_path == "/index?inverse=inverse" or request.get_full_path == "/index?determinant=determinant" or request.get_full_path == "/index?trace=trace"  or request.get_full_path == "/index?valeur+propre=valeur+propre" %}
 
-                    {% elif  request.get_full_path == "/index?integrale=integrale" %}
-
-                        <h3>{{ output }}</h3>
-                        <div>
-                            <p style="
-    margin-top: 18px;
-    font-size: 21px;
-    line-height: inherit;
-">examples:<br>
-                                x^2,1,5<br>
-                        </div>
-
-                    {% elif  not request.get_full_path == "/index" %}
-                        <div style="display: flex; flex-direction: row; justify-content: space-evenly; ">
-                            <div></div>
-                            <div><h3
-                                    style=" padding: 25px ; margin: 15px  ; border: solid 4px #e9a5be; border-radius: 33px; background: white; margin-top: 22px;">{{ output }}</h3>
+                            <div class="methode" style="border: 2px #e9a5be ;margin-top: -16px;">
+                                <form method='get'>
+                                    <input style="font-size: 22px; padding: 10px; padding-left: 5px; " type="submit"
+                                           value="average" name="average">
+                                    <input style="font-size: 22px; padding: 10px;" type="submit" value="transpose"
+                                           name="transpose">
+                                    <input style="font-size: 22px; padding: 10px;" type="submit" value="inverse"
+                                           name="inverse">
+                                    <input style="font-size: 22px; padding: 10px;" type="submit" value="determinant"
+                                           name="determinant">
+                                    <input style="font-size: 22px; padding: 10px;" type="submit" value="trace"
+                                           name="trace">
+                                    <input style="font-size: 22px; padding: 10px; padding-right: 5px;" type="submit"
+                                           value="valeur propre" name="valeur propre">
+                                    <br>
+                                </form>
                             </div>
-                            <div></div>
-                        </div>
-                        <!--  <div>
-                              <p style="
-      margin-top: 18px;
-      font-size: 21px;
-      line-height: inherit;
-  " >examples:<br>
-                                  5/7-2<br>
-                                  x^5<br>
-                                  1+cos(x)<br>
-                          </div> -->
+
+                            <div style="display: flex; flex-direction: row; justify-content: space-evenly; ">
+                                <div></div>
+                                <div>
+                                    <h3 style=" padding: 25px ; margin: 15px  ; border: solid 4px #e9a5be; border-radius: 33px; background: white; margin-top: 22px;">{{ output }} </h3>
+                                </div>
+                                <div></div>
+                            </div>
+
+                        {% elif request.get_full_path == "/index?integrale=integrale" %}
+
+                            <h3>{{ output }}</h3>
+
+                        {% elif  not request.get_full_path == "/index" %}
+                            <div style="display: flex; flex-direction: row; justify-content: space-evenly; ">
+                                <div></div>
+                                <div>
+                                    <h3 style=" padding: 25px ; margin: 15px  ; border: solid 4px #e9a5be; border-radius: 33px; background: white; margin-top: 22px;">{{ output }}</h3>
+                                </div>
+                                <div></div>
+                            </div>
+
+                        {% endif %}
+
                     {% endif %}
                 </div>
                 <div></div>
             </div>
-
-
-
-
-
-            </p>
-
-
         </div>
     </div>
 

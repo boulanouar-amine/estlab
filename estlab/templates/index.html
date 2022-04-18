@@ -117,12 +117,17 @@
                         {% block statistique %}
                             <div class="container">
                                 <h1>Please select csv file for upload</h1>
-                                <form method='get'>
-                                    <input value="upload file" name="upload" style="
+                                <form action="" method='post'>{% csrf_token %}
+                                    <div style="display: flex; flex-direction: row; justify-content: space-evenly; ">
+                                        <div></div>
+                                        <input type="file" style="display :none;" id="inp" name="inp"/>
+                                        <label for="inp" style=" margin-right:18%;  display: flex; justify-content: center;
                             background: linear-gradient(-145deg, rgba(219, 138, 222, 1) 0%, rgba(246, 191, 159, 1) 100%); color: white; height: 85px; width: 173px; align-self: center;
-                            border-radius: 16px; border: #faf7fa solid; font-size: 21px; margin-bottom: 14px; margin-top:10px  "
-                                           type="submit" class="btn btn-primary">
-                                    </input>
+                            border-radius: 16px; border: #faf7fa solid; font-size: 21px; margin-bottom: 14px; margin-top:10px ;align-items: center; margin-top:10px ">
+                                            upload file</label>
+                                    </div>
+                                    <div></div>
+                                    <input type="submit"/>
                                 </form>
                             </div>
 
@@ -133,7 +138,7 @@
                     {% else %}
 
                         {% if request.get_full_path == "/index" %}
-                               <h3 style=" margin-top: 13px ; margin-bottom: 26px; ">Entrer une expression: </h3>
+                            <h3 style=" margin-top: 13px ; margin-bottom: 26px; ">Entrer une expression: </h3>
                             <form style="display: flex; flex-direction: column;" method="POST"> {% csrf_token %}
                                 <input style=" padding-left: 270px; font-size: 23px; margin-bottom: 30px; border-radius: 8px; border: 3px solid #E69FC6; height: 73px; width: 750px;"
                                        type="text" name="cal" id="cal">
@@ -145,10 +150,10 @@
                                 </button>
                                 </br>
                             </form>
-                                 <div style="display: flex; flex-direction: row; justify-content: space-evenly; ">
+                            <div style="display: flex; flex-direction: row; justify-content: space-evenly; ">
                                 <div></div>
                                 <div>
-                                    <h3 >{{ output }} </h3>
+                                    <h3>{{ output }} </h3>
                                 </div>
                                 <div></div>
                             </div>
@@ -208,7 +213,7 @@
                             <h3>{{ output }}</h3>
 
 
-                        {% elif  request.get_full_path == "/index?Nombre+premier=Nombre+premier"  %}
+                        {% elif  request.get_full_path == "/index?Nombre+premier=Nombre+premier" %}
                             <h3 style=" margin-top: 13px ; margin-bottom: 26px; ">Entrer un nombre: </h3>
                             <form style="display: flex; flex-direction: column;" method="POST"> {% csrf_token %}
                                 <input style=" padding-left: 270px; font-size: 23px; margin-bottom: 30px; border-radius: 8px; border: 3px solid #E69FC6; height: 73px; width: 750px;"

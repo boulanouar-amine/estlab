@@ -3,6 +3,8 @@ import re
 import array_to_latex as a2l
 import numpy as np
 import sympy as sp
+import os
+from django.core.files.storage import default_storage
 from django.shortcuts import render
 
 commands = ("calculate", "inverse", "transpose", "determinant",
@@ -37,28 +39,37 @@ def run(request):
 
             try :
 
-                premier = str(nombre_premier(request.POST["nbrP"]))
-
+                file = request.FILES["inp"]
+                file_name = default_storage.save(file.name, file)
+                a_path="media/"
+                img_src= os.path(a_path,file_name)
+                print( file_name)
 
             except:
-                try:
-                    parfait = str(nombre_parfait(request.POST["nbrParfait"]))
+
+                try :
+                    premier = str(nombre_premier(request.POST["nbrP"]))
+
+
                 except:
-                    command = request.POST["cal"]
+                    try:
+                        parfait = str(nombre_parfait(request.POST["nbrParfait"]))
+                    except:
+                        command = request.POST["cal"]
 
-                    if re.search("x", command):
+                        if re.search("x", command):
 
-                        if request.GET.get("derivée") == "derivée":
-                            res = str(derivée(command))
+                            if request.GET.get("derivée") == "derivée":
+                                res = str(derivée(command))
 
-                        if request.GET.get("primitive") == "primitive":
-                            res = str(primitive(command))
+                            if request.GET.get("primitive") == "primitive":
+                                res = str(primitive(command))
 
-                        if request.GET.get("integrale") == "integrale":
-                            res = str(integrale(command))
+                            if request.GET.get("integrale") == "integrale":
+                                res = str(integrale(command))
 
-                    else:
-                        res = format_all(calculate((command)))
+                        else:
+                            res = format_all(calculate((command)))
 
     # res = ''.join([eval("str(" + ele + "(command))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
     # res = ''.join([eval("format_all(" + ele + "(extract(command,ele)))") for ele in commands if re.search(ele, command)])

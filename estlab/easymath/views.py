@@ -3,9 +3,11 @@ import re
 import array_to_latex as a2l
 import numpy as np
 import sympy as sp
-import os
-from django.core.files.storage import default_storage
+import pandas as pd
+import csv,os
+from django.core.files.storage import default_storage, FileSystemStorage
 from django.shortcuts import render
+
 
 commands = ("calculate", "inverse", "transpose", "determinant",
             "trace", "vector_difference", "average", "valeur propre", "nombre_parfait",
@@ -14,10 +16,21 @@ commands = ("calculate", "inverse", "transpose", "determinant",
 mat = np.zeros((1, 1))
 premier=""
 parfait=""
+uploaded_file_url=""
 # la premier fonction qui contient le get
 
+def moy(list):
+    s=0
+    n=len(list)
+    for k in range(0,n):
+        s=s+int(list[k])
+    #print('s=',s,'n=',n,'moyenne=',s/n)
+    return s/n
+
+
+
 def run(request):
-    global mat, commands,premier,parfait
+    global mat, commands,premier,parfait,uploaded_file_url
     res = "bonjour veuiller entrer help pour la syntax"
     try:
 
@@ -33,27 +46,39 @@ def run(request):
                                str(request.GET.get(ele)) == str(ele)])
 
 
-
-
         elif request.method == 'POST':
 
             try :
 
-                file = request.FILES["inp"]
-                file_name = default_storage.save(file.name, file)
-                a_path="media/"
-                img_src= os.path(a_path,file_name)
-                print( file_name)
+                myfile = request.FILES['inp']
+                fs = FileSystemStorage()
+                filename = fs.save(myfile.name, myfile)
+                uploaded_file_url = fs.url(filename)
+                file_path = os.path.join('media/', filename)
+                f = open(file_path)
+
+                myReader = csv.reader(f)
+                tableau = []
+                lire = csv.reader(f)
+                print('', end='\n')
+                print('Affichage des lignes du tableau', end='\n')
+                for ligne in lire:  # Pour chaque ligne...
+                    print(ligne, end='\n')
+                    tableau.append(ligne)
+                res =tableau
+                f.close()
+
+                df = pd.read_csv(file_path)
+                print(df.to_string())
 
             except:
 
                 try :
-                    premier = str(nombre_premier(request.POST["nbrP"]))
-
+                    premier = str(nombre_premier(eval(request.POST["nbrP"])))
 
                 except:
                     try:
-                        parfait = str(nombre_parfait(request.POST["nbrParfait"]))
+                        parfait = str(nombre_parfait(eval(request.POST["nbrParfait"])))
                     except:
                         command = request.POST["cal"]
 
@@ -85,7 +110,7 @@ def run(request):
 
         res = ""
 
-    return render(request, 'index.html', {'output': str(res), 'mat': str(mat),'premier':str(premier),'parfait':str(parfait)})
+    return render(request, 'index.html', {'output': str(res), 'mat': str(mat),'premier':str(premier),'parfait':str(parfait), 'uploaded_file_url': uploaded_file_url})
 
 
 def Home(request):

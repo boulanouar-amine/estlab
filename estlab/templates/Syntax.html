@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>EasyMath_Votre Plateform de calcul</title>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'images/siteLogo.png' %}">
+
+
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/templatemo-eduwell-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+    <script type="text/javascript" id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+
+    <link rel="stylesheet" href="{% static 'css/pfeStyle.css' %}">
+
+    <style>
+        section.page-heading {
+            font-family: Bahnschrift SemiBold;
+        }
+
+        .num {
+            background-color: #e1e4e3;
+            color: palevioletred;
+            border-radius: 6px;
+            padding: 3px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #a1a1a1;
+        }
+
+        td {
+            padding: 8px;
+            border: 1px solid #a1a1a1;
+        }
+
+        .comm {
+            color: #5277aa;
+        }
+
+        .number {
+            color: #990055;
+        }
+
+        .math {
+            color: #a67f59;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="{% url 'Home' %}" class="logo">
+                        <img src="{% static 'images/EasyMath.png' %}" alt="Easymath" id="logo">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                     <ul class="nav">
+                        <li><a href="{% url 'Home' %}">Accueil</a></li>
+                        <li class="has-sub">
+                            <a href="javascript:void(0)">Mathematics</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'Matrice' %}">Matrices</a></li>
+                                <li><a href="{% url 'Statistique' %}">Statistiques</a></li>
+                                <li><a href="{% url 'Fraction' %}">Fractions</a></li>
+                                <li><a href="{% url 'Probabilite' %}">Probabilités</a></li>
+                                <li><a href="{% url 'NombreParfait' %}">Nombres Parfaits</a></li>
+                                <li><a href="{% url 'NombreAmi' %}">Nombres Amicaux</a></li>
+                                <li><a href="{% url 'NombrePremier' %}">Nombres Premiers</a></li>
+                            </ul>
+                        </li>
+                        <li class="scroll-to-section"><a href="#calculatrice-section">Calculatrice</a></li>
+                         <li class="has-sub">
+                            <a href="javascript:void(0)">Syntaxe</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'Syntax' %}#matrix">Matrices et Tableaux</a></li>
+                                <li><a href="{% url 'Syntax' %}#root">Racines Carrés</a></li>
+                                <li><a href="{% url 'Syntax' %}#log">Algorithme Naturel</a></li>
+                                <li><a href="{% url 'Syntax' %}#exp">Exponential</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+
+<section class="page-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="header-text" style="margin-top: 50px">
+                    <h1>Syntaxe</h1>
+                </div>
+
+                <div>
+                    <h2 style="margin-top: 50px;text-align: left" id="matrix">
+                        <u>Syntaxe des matrices et tableaux(MATLAB)</u>
+                    </h2>
+
+                    <h3 style="color: #d687db;text-align: left;margin-left: 50px;margin-top: 50px">
+                        <b>Creation de tableau</b>
+                    </h3>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <p>
+                            Pour créer un tableau avec quatre éléments sur une seule ligne, séparez les éléments par une
+                            virgule (,) ou un espace.
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">a = [1 2 3 4]</pre>
+                        <p>
+                            a = 1×4
+                        </p>
+                        <p style="font-size: x-large;margin:40px 0 20px 80px">
+                            1 &nbsp&nbsp&nbsp 2 &nbsp&nbsp&nbsp 3 &nbsp&nbsp&nbsp 4
+                        </p>
+                        <p>
+                            Ce type de tableau est un vecteur ligne.
+                        </p>
+                        <br>
+                        <p>
+                            Pour créer une matrice comportant plusieurs lignes, séparez les lignes par des
+                            points-virgules.
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">a = [1 3 5; 2 4 6; 7 8 10]</pre>
+                        <p>
+                            a = 3×3
+                        </p>
+                        <p style="font-size: x-large;margin:40px 0 20px 80px">
+                            1 &nbsp&nbsp&nbsp 3 &nbsp&nbsp&nbsp 5<br>2
+                            &nbsp&nbsp&nbsp 4
+                            &nbsp&nbsp&nbsp 6<br>7 &nbsp&nbsp&nbsp 8 &nbsp&nbsp&nbsp 10
+                        </p>
+                        Une autre façon de créer une matrice consiste à utiliser une fonction, telle que des uns, des
+                        zéros ou des rands. Par exemple, créez un vecteur de colonne 5 par 1 de zéros.
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">z = zeros(5,1)</pre>
+                        <p>
+                            z = 5×1
+                        </p>
+                        <p style="font-size: x-large;margin:40px 0 20px 80px">
+                            0
+                            <br>
+                            0
+                            <br>
+                            0
+                            <br>
+                            0
+                            <br>
+                            0
+                        </p>
+                    </div>
+
+                    <h3 style="color: #d687db;text-align: left;margin-left: 50px;margin-top: 50px">
+                        <b>Opérations : matrices et tableaux</b>
+                    </h3>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <p>
+                            EasyMath vous permet de traiter toutes les valeurs d'une matrice à l'aide d'un seul
+                            opérateur ou
+                            d'une seule fonction arithmétique.
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">a + 10</pre>
+                        <p>
+                            ans = 3×3
+                        </p>
+                        <p style="font-size: x-large;margin:40px 0 20px 80px">
+                            11 &nbsp&nbsp&nbsp 13 &nbsp&nbsp&nbsp 15
+                            <br>
+                            12 &nbsp&nbsp&nbsp 14 &nbsp&nbsp&nbsp 16
+                            <br>
+                            17 &nbsp&nbsp&nbsp 18 &nbsp&nbsp&nbsp 20
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">sin(a)</pre>
+                        <p>
+                            ans = 3×3
+                        </p>
+                        <p style="font-size: x-large;margin:40px 0 20px 80px">
+                            0.8615 &nbsp&nbsp&nbsp 0.1411 &nbsp&nbsp&nbsp -0.9589
+                            <br>
+                            0.9093 &nbsp&nbsp&nbsp -0.7568 &nbsp&nbsp&nbsp -0.2794
+                            <br>
+                            0.6570 &nbsp&nbsp&nbsp 0.9894 &nbsp&nbsp&nbsp -0.5440
+                        </p>
+                        <p>
+                            Pour transposer une matrice, utilisez un guillemet simple (') :
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">a'</pre>
+                        <p>
+                            ans = 3×3
+                        </p>
+                        <p style="font-size: x-large;margin:40px 0 20px 80px">
+                            1 &nbsp&nbsp&nbsp 2 &nbsp&nbsp&nbsp 7
+                            <br>
+                            3 &nbsp&nbsp&nbsp 4 &nbsp&nbsp&nbsp 8
+                            <br>
+                            5 &nbsp&nbsp&nbsp 6 &nbsp&nbsp&nbsp 10
+                        </p>
+                        <p>
+                            Vous pouvez effectuer une multiplication matricielle standard, qui calcule les produits
+                            internes
+                            entre les lignes et les colonnes, à l'aide de l'opérateur *. Par exemple, confirmez qu'une
+                            matrice multipliée par son inverse renvoie la matrice identité:
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">p = a*inv(a)</pre>
+                        <p>
+                            p = 3×3
+                        </p>
+                        <p style="font-size: x-large;margin:40px 0 20px 80px">
+                            1.0000 &nbsp&nbsp&nbsp 0.0000 &nbsp&nbsp&nbsp -0.0000
+                            <br>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp0 &nbsp&nbsp&nbsp 1.0000 &nbsp&nbsp&nbsp
+                            -0.0000
+                            <br>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp0 &nbsp&nbsp&nbsp 0.0000 &nbsp&nbsp&nbsp
+                            1.0000
+                        </p>
+                        <p>
+                            Notez que p n'est pas une matrice de valeurs entières. EasyMath stocke les nombres sous
+                            forme de
+                            valeurs à virgule flottante et les opérations arithmétiques sont sensibles aux petites
+                            différences entre la valeur réelle et sa représentation à virgule flottante. Vous pouvez
+                            afficher plus de chiffres décimaux à l'aide de la commande format:
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">format <span
+                                style="color: #d34ddb">long</span><br>p = a*inv(a)</pre>
+                        <p>
+                            p = 3×3
+                        </p>
+                        <p style="font-size: x-large;margin:40px 0 20px 80px">
+                            0.999999999999996 &nbsp&nbsp&nbsp 0.000000000000007 &nbsp&nbsp&nbsp -0.000000000000002
+                            <br>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp0
+                            &nbsp&nbsp&nbsp 1.000000000000000 &nbsp&nbsp&nbsp -0.000000000000003
+                            <br>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp0
+                            &nbsp&nbsp&nbsp 0.000000000000014 &nbsp&nbsp&nbsp 0.999999999999995
+                        </p>
+                        <p>
+                            Réinitialisez l'affichage au format plus court à l'aide de
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">format <span
+                                style="color: #d34ddb">short</span></pre>
+                        <p>
+                            Le format affecte uniquement l'affichage des nombres, pas la façon dont EasyMath les calcule
+                            ou
+                            les enregistre.
+                        </p>
+                        <br>
+                        <p>
+                            Pour effectuer une multiplication élément par élément plutôt qu'une multiplication
+                            matricielle,
+                            utilisez l'opérateur *.:
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">p = a.*a</pre>
+                        <p>
+                            p = 3×3
+                        </p>
+                        <p style="font-size: x-large;margin:40px 0 20px 80px">
+                            &nbsp&nbsp1 &nbsp&nbsp&nbsp &nbsp&nbsp9 &nbsp&nbsp&nbsp &nbsp&nbsp25
+                            <br>
+                            &nbsp&nbsp4 &nbsp&nbsp&nbsp 16 &nbsp&nbsp&nbsp &nbsp&nbsp36
+                            <br>
+                            49 &nbsp&nbsp&nbsp 64 &nbsp&nbsp&nbsp 100
+                        </p>
+                        <p>
+                            Les opérateurs de matrice pour la multiplication, la division et la puissance ont chacun un
+                            opérateur de tableau correspondant qui fonctionne par élément. Par exemple, élevez chaque
+                            élément de a à la troisième puissance:
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">a.^3</pre>
+                        <p>
+                            ans = 3×3
+                        </p>
+                        <p style="font-size: x-large;margin:40px 0 20px 80px">
+                            &nbsp&nbsp&nbsp&nbsp1 &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp27 &nbsp&nbsp&nbsp &nbsp&nbsp125
+                            <br>
+                            &nbsp&nbsp&nbsp&nbsp8 &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp64 &nbsp&nbsp&nbsp &nbsp&nbsp216
+                            <br>
+                            343 &nbsp&nbsp&nbsp 512 &nbsp&nbsp&nbsp 1000
+                        </p>
+                    </div>
+
+                    <h3 style="color: #d687db;text-align: left;margin-left: 50px;margin-top: 50px">
+                        <b>Enchaînement</b>
+                    </h3>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <p>
+                            La concaténation est le processus qui consiste à joindre des tableaux pour en créer de plus
+                            grands. En fait, vous avez créé votre premier tableau en concaténant ses éléments
+                            individuels.
+                            La paire de crochets [] est l'opérateur de concaténation.
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">A = [a,a]</pre>
+                        <p>
+                            A = 3×6
+                        </p>
+                        <p style="font-size: x-large;margin:40px 0 20px 80px">
+                            1 &nbsp&nbsp&nbsp 3 &nbsp&nbsp&nbsp &nbsp&nbsp5 &nbsp&nbsp&nbsp 1 &nbsp&nbsp&nbsp 3
+                            &nbsp&nbsp&nbsp &nbsp&nbsp5
+                            <br>
+                            2 &nbsp&nbsp&nbsp 4 &nbsp&nbsp&nbsp &nbsp&nbsp6 &nbsp&nbsp&nbsp 2 &nbsp&nbsp&nbsp 4
+                            &nbsp&nbsp&nbsp &nbsp&nbsp6
+                            <br>
+                            7 &nbsp&nbsp&nbsp 8 &nbsp&nbsp&nbsp 10 &nbsp&nbsp&nbsp 7 &nbsp&nbsp&nbsp 8 &nbsp&nbsp&nbsp
+                            10
+                        </p>
+                        <p>
+                            La concaténation de tableaux les uns à côté des autres à l'aide de virgules est appelée
+                            concaténation horizontale. Chaque tableau doit avoir le même nombre de lignes. De même,
+                            lorsque
+                            les tableaux ont le même nombre de colonnes, vous pouvez concaténer verticalement à l'aide
+                            de
+                            points-virgules.
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">A = [a; a]</pre>
+                        <p>
+                            A = 6×3
+                        </p>
+                        <p style="font-size: x-large;margin:40px 0 20px 80px">
+                            1 &nbsp&nbsp&nbsp 3 &nbsp&nbsp&nbsp &nbsp&nbsp5
+                            <br>
+                            2 &nbsp&nbsp&nbsp 4 &nbsp&nbsp&nbsp &nbsp&nbsp6
+                            <br>
+                            7 &nbsp&nbsp&nbsp 8 &nbsp&nbsp&nbsp 10
+                            <br>
+                            1 &nbsp&nbsp&nbsp 3 &nbsp&nbsp&nbsp &nbsp&nbsp5
+                            <br>
+                            2 &nbsp&nbsp&nbsp 4 &nbsp&nbsp&nbsp &nbsp&nbsp6
+                            <br>
+                            7 &nbsp&nbsp&nbsp 8 &nbsp&nbsp&nbsp 10
+                        </p>
+                    </div>
+
+                    <h3 style="color: #d687db;text-align: left;margin-left: 50px;margin-top: 50px">
+                        <b>Nombres complexes</b>
+                    </h3>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <p>
+                            Les nombres complexes ont à la fois des parties réelles et imaginaires, où l'unité
+                            imaginaire
+                            est la racine carrée de -1.
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">sqrt(-1)</pre>
+                        <p>
+                            ans = 0.0000 + 1.0000i
+
+                        </p>
+                        <br>
+                        <p>
+                            Pour représenter la partie imaginaire des nombres complexes, utilisez i ou j.
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">c = [3+4i, 4+3j; -i, 10j]</pre>
+                        <p>
+                            c = 2×2 <i>complex</i>
+                        </p>
+                        <p style="font-size: x-large;margin:40px 0 20px 80px">
+                            3.0000 &nbsp&nbsp&nbsp + 4.0000i &nbsp&nbsp&nbsp&nbsp 4.0000 &nbsp&nbsp&nbsp +
+                            &nbsp&nbsp3.0000i
+                            <br>
+                            0.0000 &nbsp&nbsp&nbsp - &nbsp1.0000i &nbsp&nbsp&nbsp&nbsp 0.0000 &nbsp&nbsp&nbsp + 10.0000i
+                        </p>
+                    </div>
+
+                    <h2 style="margin-top: 50px;text-align: left" id="root">
+                        <u>Syntaxe des racines carrés(Numpy)</u>
+                    </h2>
+
+                    <h3 style="color: #d687db;text-align: left;margin-left: 50px;margin-top: 50px">Syntaxe de <span
+                            class="num">numpy.sqrt()</span>
+                    </h3>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">numpy.sqrt(arr,
+          out=None)</pre>
+                        <h4 style="color: #eebfab;text-align: left;margin-left: 50px;margin-top: 50px">
+                            Paramètres
+                        </h4>
+                        <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                            <table>
+                                <tr>
+                                    <td><span class="num">arr</span></td>
+                                    <td>tableau d’entrée</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="num">out</span></td>
+                                    <td>Si <span class="num">out</span> est donné, le résultat sera stocké dans <span
+                                            class="num">out</span>. <span class="num">out</span> devrait avoir la même
+                                        forme que <span class="num">arr</span>.
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <h4 style="color: #eebfab;text-align: left;margin-left: 50px;margin-top: 50px">
+                            Revenir
+                        </h4>
+                        <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                            <p>
+                                Il retourne un tableau de la racine carrée de chaque élément du tableau d’entrée, même
+                                si <span class="num">out</span> est donné.
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #d687db;text-align: left;margin-left: 50px;margin-top: 50px">
+                        Exemples de codes: <span class="num">numpy.sqrt()</span>
+                    </h3>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">
+<span class="comm">import</span> numpy <span class="comm">as</span> np
+
+arr <span class="math">=</span> [<span class="number">1</span>, <span class="number">9</span>, <span
+                                class="number">25</span>, <span
+                                class="number">49</span>]
+
+arr_sqrt <span class="math">=</span> np.sqrt(arr)
+
+<span class="comm">print</span>(arr_sqrt)</pre>
+                        <p>
+                            Production:
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">
+[1. 3. 5. 7.]</pre>
+                    </div>
+
+
+                    <h3 style="color: #d687db;text-align: left;margin-left: 50px;margin-top: 50px">
+                        Exemples de codes: <span class="num">numpy.sqrt()</span> avec le paramètre <span
+                            class="num">out</span>
+                    </h3>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">
+<span class="comm">import</span> numpy <span class="comm">as</span> np
+
+arr <span class="math">=</span> [<span class="number">1</span>, <span class="number">9</span>, <span
+                                class="number">25</span>, <span
+                                class="number">49</span>]
+out_arr <span class="math">=</span> np.zeros(<span class="number">4</span>)
+
+arr_sqrt <span class="math">=</span> np.sqrt(arr)
+
+<span class="comm">print</span>(arr_sqrt)
+<span class="comm">print</span>(out_sqrt)</pre>
+                        <p>
+                            Production:
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">
+[1. 3. 5. 7.]
+[1. 3. 5. 7.]</pre>
+                        <p>
+                            <span class="num">out_arr</span> a la même forme que <span class="num">arr</span>, et la
+                            racine carrée de <span class="num">arr</span> y est enregistrée. Et la méthode
+                            <span class="num">numpy.sqrt()</span> retourne également le tableau racine carrée, comme
+                            indiqué ci-dessus.
+                        </p>
+                    </div>
+
+
+                    <h3 style="color: #d687db;text-align: left;margin-left: 50px;margin-top: 50px">
+                        Exemples de codes: <span class="num">numpy.sqrt()</span> avec des nombres négatifs
+                    </h3>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">
+<span class="comm">import</span> numpy <span class="comm">as</span> np
+
+arr <span class="math">=</span> [-<span class="number">1</span>, -<span class="number">9</span>, -<span
+                                class="number">25</span>, -<span
+                                class="number">49</span>]
+
+arr_sqrt <span class="math">=</span> np.sqrt(arr)
+
+<span class="comm">print</span>(arr_sqrt)</pre>
+                        <p>
+                            Production:
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">
+Warning (from warnings module):
+  File "..\test.py", line 5
+    arr_sqrt = np.sqrt(arr)
+RuntimeWarning: invalid value encountered in sqrt
+[nan nan nan nan]</pre>
+                        <p>
+                            Il lance un <span class="num">RuntimeWarning</span> lorsque l’entrée est un nombre négatif
+                            et retourne <span class="num">nan</span> en conséquence.
+                        </p>
+                    </div>
+
+
+                    <h3 style="color: #d687db;text-align: left;margin-left: 50px;margin-top: 50px">
+                        Exemples de codes: <span class="num">numpy.sqrt()</span> avec des nombres complexes
+                    </h3>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">
+<span class="comm">import</span> numpy <span class="comm">as</span> np
+
+arr <span class="math">=</span> [<span class="number">3</span>+<span class="number">4j</span>, -<span
+                                class="number">5</span>+<span class="number">12j</span>, <span
+                                class="number">8</span>-<span class="number">6j</span>, -<span
+                                class="number">15</span>-<span class="number">8j</span>]
+
+arr_sqrt <span class="math">=</span> np.sqrt(arr)
+
+<span class="comm">print</span>(arr_sqrt)</pre>
+                        <p>
+                            Production:
+                        </p>
+                        <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">[2.+1.j 2.+3.j 3.-1.j 1.-4.j]</pre>
+                        <p>
+                            Un nombre complexe a deux racines carrées. Par exemple,
+
+                            \[
+                            \sqrt{3 + 4i} = 2 + i / - 2 - i
+                            \]
+
+                            La méthode <span class="num">numpy.sqrt()</span> ne retourne qu’une seule racine carrée, qui
+                            a un nombre réel positif.
+                        </p>
+
+                    </div>
+
+                    <h2 style="margin-top: 50px;text-align: left" id="log">
+                        <u>Syntaxe d'algorithme naturel(MATLAB)</u>
+                    </h2>
+                    <h3 style="color: #d687db;text-align: left;margin-left: 50px;margin-top: 50px">
+                        Syntaxe
+                    </h3>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 20px">
+                        <p>
+                            Y = log(X)
+                        </p>
+                    </div>
+
+                    <h3 style="color: #d687db;text-align: left;margin-left: 50px;margin-top: 50px">
+                        Description
+                    </h3>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <p>
+                            Y = log(X) renvoie le logarithme naturel ln(x) de chaque élément du tableau X.
+                            <br>
+                            Le domaine de la fonction de Log comprend des nombres négatifs et complexes, qui
+                            peuvent entraîner des résultats inattendus s'ils sont utilisés par inadvertance. Pour les
+                            nombres négatifs et complexes z = u + i*w, le logarithme complexe log(z) renvoie
+
+                            \[
+                            log(abs(z)) + 1i*angle(z)
+                            \]
+
+                            Si vous voulez que les nombres négatifs et complexes renvoient des messages d'erreur plutôt
+                            que des résultats complexes, utilisez <u>reallog</u> à la place.
+                        </p>
+                    </div>
+
+                    <h3 style="color: #d687db;text-align: left;margin-left: 50px;margin-top: 50px">
+                        Exemples
+                    </h3>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <h4 style="color: #eebfab;text-align: left;margin-left: 50px;margin-top: 50px">
+                            Logarithme naturel du nombre négatif
+                        </h4>
+                        <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                            <p>
+                                Montrer que le logarithme naturel de -1 est iπ.
+                            </p>
+                            <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">log(-1)</pre>
+                            <p>
+                                ans = 0.0000 + 3.1416i
+                            </p>
+                        </div>
+                    </div>
+
+                    <h2 style="margin-top: 50px;text-align: left" id="exp">
+                        Syntaxe d'Exponential
+                    </h2>
+                    <h3 style="color: #d687db;text-align: left;margin-left: 50px;margin-top: 50px">
+                        Syntaxe
+                    </h3>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 20px">
+                        Y = exp(X)
+                    </div>
+
+                    <h3 style="color: #d687db;text-align: left;margin-left: 50px;margin-top: 50px">
+                        Description
+                    </h3>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <p>
+                            Y = exp(X) renvoie l'exponentielle e<sup>x</sup> pour chaque élément du tableau X. Pour les
+                            éléments
+                            complexes z = x + iy, elle renvoie l'exponentielle complexe
+
+                            \[
+                            e^{z} = e^{x}(cos(y)+isin(y))
+                            \]
+
+                            Use expm to compute a matrix exponential.
+                        </p>
+                    </div>
+
+                    <h3 style="color: #d687db;text-align: left;margin-left: 50px;margin-top: 50px">
+                        Exemples
+                    </h3>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <h4 style="color: #eebfab;text-align: left;margin-left: 50px;margin-top: 50px">
+                            Représentation numérique de e
+                        </h4>
+                        <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                            <p>
+                                Calculez l'exponentielle de 1, qui est le nombre d'Euler, e.
+                            </p>
+                            <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">exp(1)</pre>
+                            <p>
+                                ans = 2.7183
+                            </p>
+                        </div>
+
+
+                        <h4 style="color: #eebfab;text-align: left;margin-left: 50px;margin-top: 50px">
+                            L'identité d'Euler
+                        </h4>
+                        <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                            <p>
+                                L'identité d'Euler est l'égalité e<sup>iπ</sup>+1=0.
+                                <br>
+                                Calculer la valeur de e<sup>iπ</sup> .
+                            </p>
+                            <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">Y = exp(1i*pi)</pre>
+                            <p>
+                                Y = -1.0000 + 0.0000i
+                            </p>
+                        </div>
+
+                        <h4 style="color: #eebfab;text-align: left;margin-left: 50px;margin-top: 50px">
+                            Tracer la fonction exponentielle
+                        </h4>
+                        <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                            <p>
+                                Plot y=e<sup><span style="font-size: 70%; vertical-align: 0.7ex;">x</span><i>/</i><span
+                                    style="font-size: 70%; vertical-align: -0.3ex;">2</span></sup> for x values in the
+                                range
+                                [−2,10].
+                            </p>
+                            <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">X = -2:0.5:10;
+Y = exp(X/2);
+plot(X,Y)</pre>
+                            <img src="{% static 'images/trace.png' %}" style="width: 583px;height: 437px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="simple-cta" id="calculatrice-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 offset-lg-1">
+                <div class="left-image">
+                    <img src="{% static 'images/cta-left-image.png' %}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-5 align-self-center">
+                <h6>visiter la calculatrice en ligne</h6>
+                <h4>Effectuer vos calcule en tout moment </h4>
+                <br>
+                <div class="white-button">
+                    <a href="{% url 'index' %}">Commencer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="contact-us" id="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+
+            </div>
+            <div class="col-lg-4">
+                <form id="contact" action="" method="post">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-heading">
+                                <h6>Contact us</h6>
+                                <h4>Say <em>Hello</em></h4>
+                                <p>Si vous avez des remarques des questions notre equipe est a votre disposition a tout
+                                    moment </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <input type="name" name="name" id="name" placeholder="Full Name" autocomplete="on"
+                                       required>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*"
+                                       placeholder="Your Email" required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <button type="submit" id="form-submit" class="main-gradient-button">Send Message
+                                </button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-12">
+                <ul class="social-icons">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-12">
+                <p class="copyright">Copyright © 2022 EasyMath., Ltd. All Rights Reserved.
+
+                    <br>BY : <a rel="sponsored" href="" target="_blank">GI2</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'js/isotope.min.js' %}"></script>
+<script src="{% static 'js/owl-carousel.js' %}"></script>
+<script src="{% static 'js/lightbox.js' %}"></script>
+<script src="{% static 'js/tabs.js' %}"></script>
+<script src="{% static 'js/video.js' %}"></script>
+<script src="{% static 'js/slick-slider.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script>
+    //according to loftblog tut
+    $('.nav li:first').addClass('active');
+
+    var showSection = function showSection(section, isAnimate) {
+        var
+            direction = section.replace(/#/, ''),
+            reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+            reqSectionPos = reqSection.offset().top - 0;
+
+        if (isAnimate) {
+            $('body, html').animate({
+                    scrollTop: reqSectionPos
+                },
+                800);
+        } else {
+            $('body, html').scrollTop(reqSectionPos);
+        }
+
+    };
+
+    var checkSection = function checkSection() {
+        $('.section').each(function () {
+            var
+                $this = $(this),
+                topEdge = $this.offset().top - 80,
+                bottomEdge = topEdge + $this.height(),
+                wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+                var
+                    currentId = $this.data('section'),
+                    reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                reqLink.closest('li').addClass('active').siblings().removeClass('active');
+            }
+        });
+    };
+
+    $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+        e.preventDefault();
+        showSection($(this).attr('href'), true);
+    });
+
+    $(window).scroll(function () {
+        checkSection();
+    });
+</script>
+
+</body>
+</html>

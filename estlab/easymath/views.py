@@ -97,6 +97,13 @@ def NombreParfait(request):
 def NombrePremier(request):
     return render(request, 'NombrePremier.html')
 
+def Syntax(request):
+    return render(request, 'Syntax.html')
+
+def Probabilite(request):
+    return render(request, 'Probabilite.html')
+
+
 
 def calculate(chaine):
     if re.search("]", chaine):

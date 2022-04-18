@@ -9,8 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-
     <title>EasyMath_Votre Plateform de calcul</title>
 
     <!-- Bootstrap core CSS -->
@@ -31,7 +33,12 @@
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 
     </script>
+<style>
+       section.page-heading {
+            font-family:  sans-serif;
+        }
 
+</style>
 
 </head>
 <body>
@@ -43,30 +50,37 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{% url 'Home' %}" class="logo">
-                        <img src="{% static 'images/EasyMath.png' %}" alt="Easymat" id="logo">
+                        <img src="{% static 'images/EasyMath.png' %}" alt="Easymath" id="logo">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a style="font-size: 22px" href="{% url 'Home' %}">Accueil</a></li>
+                        <li><a href="{% url 'Home' %}">Accueil</a></li>
                         <li class="has-sub">
-                            <a style="font-size: 22px" href="javascript:void(0)">Mathematics</a>
+                            <a href="javascript:void(0)">Mathematics</a>
                             <ul class="sub-menu">
-                                <li><a style="font-size: 20px" href="{% url 'Matrice' %}">Matrices</a></li>
-                                <li><a style="font-size: 20px" href="{% url 'Statistique' %}">Statistiques</a></li>
-                                <li><a style="font-size: 20px" href="{% url 'Fraction' %}">Fractions</a></li>
-                                <li><a style="font-size: 20px" href="{% url 'NombreParfait' %}">Nombres Parfaits</a>
-                                </li>
-                                <li><a style="font-size: 20px" href="{% url 'NombreAmi' %}">Nombres Amicaux</a></li>
-                                <li><a style="font-size: 20px" href="{% url 'NombrePremier' %}">Nombres Premiers</a>
-                                </li>
+                                <li><a href="{% url 'Matrice' %}">Matrices</a></li>
+                                <li><a href="{% url 'Statistique' %}">Statistiques</a></li>
+                                <li><a href="{% url 'Fraction' %}">Fractions</a></li>
+                                <li><a href="{% url 'Probabilite' %}">Probabilités</a></li>
+                                <li><a href="{% url 'NombreParfait' %}">Nombres Parfaits</a></li>
+                                <li><a href="{% url 'NombreAmi' %}">Nombres Amicaux</a></li>
+                                <li><a href="{% url 'NombrePremier' %}">Nombres Premiers</a></li>
                             </ul>
                         </li>
-                        <li class="scroll-to-section"><a style="font-size: 22px" href="#calculatrice-section">Calculatrice</a>
+                        <li><a href="#top">Calculatrice</a></li>
+                        <li class="has-sub">
+                            <a href="javascript:void(0)">Syntaxe</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'Syntax' %}#matrix">Matrices et Tableaux</a></li>
+                                <li><a href="{% url 'Syntax' %}#root">Racines Carrés</a></li>
+                                <li><a href="{% url 'Syntax' %}#log">Algorithme Naturel</a></li>
+                                <li><a href="{% url 'Syntax' %}#exp">Exponential</a></li>
+                            </ul>
                         </li>
                     </ul>
                     <a class='menu-trigger'>
-                        <span style="font-size: 22px">Menu</span>
+                        <span>Menu</span>
                     </a>
                     <!-- ***** Menu End ***** -->
                 </nav>
@@ -103,13 +117,13 @@
                                     <input value="upload file" name="upload" style="
                             background: linear-gradient(-145deg, rgba(219, 138, 222, 1) 0%, rgba(246, 191, 159, 1) 100%); color: white; height: 85px; width: 173px; align-self: center;
                             border-radius: 16px; border: #faf7fa solid; font-size: 21px; margin-bottom: 14px; margin-top:10px  "
-                                            type="submit" class="btn btn-primary">
+                                           type="submit" class="btn btn-primary">
                                     </input>
                                 </form>
                             </div>
 
                         {% endblock %}
-                    {% elif  request.get_full_path == "/index?upload=upload+file"  %}
+                    {% elif  request.get_full_path == "/index?upload=upload+file" %}
                         <h1>cvs file uploaded correctly</h1>
 
 
@@ -155,7 +169,7 @@
                                 <div></div>
                             </div>
 
-                        {% elif request.get_full_path == "/index?integrale=integrale" %}
+                        {% elif request.get_full_path == "/index?integrale=integrale" or request.get_full_path == "/index?deriv%C3%A9e=deriv%C3%A9e" or request.get_full_path == "/index?primitive=primitive"  %}
 
                             <h3>{{ output }}</h3>
 

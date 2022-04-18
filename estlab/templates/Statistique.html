@@ -81,52 +81,7 @@
             font-size: 20px;
         }
 
-        .topnav {
-            overflow: hidden;
-            background-image: linear-gradient(to right, #eebfab, #d687db);
-            border: 2px black solid;
-            border-radius: 8px;
-            margin-top: 50px;
-        }
 
-        .topnav a {
-            float: left;
-            color: white;
-            text-align: center;
-            padding: 14px 70px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-
-        .topnav a:hover {
-            background-color: white;
-            color: black;
-            font-size: 16px;
-            border-radius: 6px;
-        }
-
-        .topnav2 {
-            overflow: hidden;
-            background-image: linear-gradient(to left, #eebfab, #d687db);
-            border: 2px black solid;
-            border-radius: 8px;
-            margin-top: 50px;
-        }
-
-        .topnav2 a {
-            float: left;
-            color: white;
-            text-align: center;
-            padding: 14px 174px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-
-        .topnav2 a:hover {
-            background-color: white;
-            color: black;
-            font-size: 16px;
-        }
 
         table {
             border-collapse: collapse;
@@ -160,6 +115,10 @@
         code {
             font-size: .85em;
         }
+           section.page-heading {
+            font-family:  sans-serif;
+        }
+
     </style>
 
 
@@ -180,20 +139,30 @@
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
+                      <ul class="nav">
                         <li><a href="{% url 'Home' %}">Accueil</a></li>
                         <li class="has-sub">
                             <a href="javascript:void(0)">Mathematics</a>
-                                <ul class="sub-menu">
+                            <ul class="sub-menu">
                                 <li><a href="{% url 'Matrice' %}">Matrices</a></li>
-                                <li><a href="{% url 'Statistique' %}">Statistiques</a></li>
+                                <li><a href="#top">Statistiques</a></li>
                                 <li><a href="{% url 'Fraction' %}">Fractions</a></li>
+                                <li><a href="{% url 'Probabilite' %}">Probabilités</a></li>
                                 <li><a href="{% url 'NombreParfait' %}">Nombres Parfaits</a></li>
                                 <li><a href="{% url 'NombreAmi' %}">Nombres Amicaux</a></li>
                                 <li><a href="{% url 'NombrePremier' %}">Nombres Premiers</a></li>
                             </ul>
                         </li>
                         <li class="scroll-to-section"><a href="#calculatrice-section">Calculatrice</a></li>
+                         <li class="has-sub">
+                            <a href="javascript:void(0)">Syntaxe</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'Syntax' %}#matrix">Matrices et Tableaux</a></li>
+                                <li><a href="{% url 'Syntax' %}#root">Racines Carrés</a></li>
+                                <li><a href="{% url 'Syntax' %}#log">Algorithme Naturel</a></li>
+                                <li><a href="{% url 'Syntax' %}#exp">Exponential</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -214,20 +183,6 @@
                 <div class="header-text" style="margin-top: 50px">
                     <h1>Statistique Descriptive </h1>
                 </div>
-                <div class="topnav" style="width: 100%;display: flex;justify-content: space-between;">
-                    <a href="#intro">Introduction</a>
-                    <a href="#terminologie">Terminologie</a>
-                    <a href="#statistique_et_proba">Statistique et Probabilités</a>
-
-                 </div>
-                    <a href="#description">Description d’une série de valeurs</a>
-                    <a href="#graphique">Représentations graphiques</a>
-                 <div class="topnav" style="width: 100%;display: flex;justify-content: space-between;">
-                    <a href="#indicateur">Indicateurs statistiques</a>
-                    <a href="#bidimensionnelle" style="padding: 14px 70px;">Statistique descriptive bidimensionnelle</a>
-
-            </div>
-        </div>
 
         <div>
             <h2 class="parts" id="intro">
@@ -422,10 +377,6 @@
                 plupart du temps, on utilise des graphiques standard dont la nature diffère selon le type de la
                 variable étudiée.
 
-                <div class="topnav2">
-                    <a href="#qualitative">Variable qualitative</a>
-                    <a href="#quantitative">Variable quantitative</a>
-                </div>
 
                 <hr id="qualitative">
 
@@ -695,10 +646,6 @@
                     </li>
                 </ul>
 
-                <div class="topnav2">
-                    <a href="#tendance">Tendance centrale</a>
-                    <a href="#despersion">Dispersion</a>
-                </div>
 
                 <hr id="tendance">
 

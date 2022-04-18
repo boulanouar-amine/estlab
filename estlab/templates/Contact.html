@@ -46,20 +46,30 @@ https://templatemo.com/tm-573-eduwell
                   <!-- ***** Logo End ***** -->
                   <!-- ***** Menu Start ***** -->
                   <ul class="nav">
-                    <li><a href="{% url 'Home' %}" class="active">Home</a></li>
-                    <li><a href="{% url 'Home' %}">Services</a></li>
-                    <li><a href="{% url 'Home' %}">Courses</a></li>
-                    <li class="has-sub">
-                        <a href="javascript:void(0)">Pages</a>
-                        <ul class="sub-menu">
-
-                            <li><a href="{% url 'Services' %}">Our Services</a></li>
-                            <li><a href="{% url 'Contact' %}">Contact Us</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{% url 'Home' %}">Testimonials</a></li>
-                    <li><a href="{% url 'Home' %}">Contact Us</a></li>
-                  </ul>
+                        <li><a href="{% url 'Home' %}">Accueil</a></li>
+                        <li class="has-sub">
+                            <a href="javascript:void(0)">Mathematics</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'Matrice' %}">Matrices</a></li>
+                                <li><a href="{% url 'Statistique' %}">Statistiques</a></li>
+                                <li><a href="{% url 'Fraction' %}">Fractions</a></li>
+                                <li><a href="{% url 'Probabilite' %}">Probabilités</a></li>
+                                <li><a href="{% url 'NombreParfait' %}">Nombres Parfaits</a></li>
+                                <li><a href="{% url 'NombreAmi' %}">Nombres Amicaux</a></li>
+                                <li><a href="{% url 'NombrePremier' %}">Nombres Premiers</a></li>
+                            </ul>
+                        </li>
+                        <li class="scroll-to-section"><a href="#calculatrice-section">Calculatrice</a></li>
+                         <li class="has-sub">
+                            <a href="javascript:void(0)">Syntaxe</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'Syntax' %}#matrix">Matrices et Tableaux</a></li>
+                                <li><a href="{% url 'Syntax' %}#root">Racines Carrés</a></li>
+                                <li><a href="{% url 'Syntax' %}#log">Algorithme Naturel</a></li>
+                                <li><a href="{% url 'Syntax' %}#exp">Exponential</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                   <a class='menu-trigger'>
                       <span>Menu</span>
                   </a>

@@ -13,6 +13,10 @@ urlpatterns = [
     path('NombreAmi/', views.NombreAmi, name='NombreAmi'),
     path('NombreParfait/', views.NombreParfait, name='NombreParfait'),
     path('NombrePremier/', views.NombrePremier, name='NombrePremier'),
+    path('Probabilite/', views.Probabilite, name='Probabilite'),
+    path('Syntax/', views.Syntax, name='Syntax'),
+
+
     #path('About/', views.Services, name='About'),
 
 ]

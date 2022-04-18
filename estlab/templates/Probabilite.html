@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <title>EasyMath_Votre Plateform de calcul</title>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'images/siteLogo.png' %}">
+
+
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/templatemo-eduwell-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+    <script type="text/javascript" id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+
+    <style>
+        section.page-heading {
+            font-family: sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="{% url 'Home' %}" class="logo">
+                        <img src="{% static 'images/EasyMath.png' %}" alt="Easymath" id="logo">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="{% url 'Home' %}">Accueil</a></li>
+                        <li class="has-sub">
+                            <a href="javascript:void(0)">Mathematics</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'Matrice' %}">Matrices</a></li>
+                                <li><a href="{% url 'Statistique' %}">Statistiques</a></li>
+                                <li><a href="{% url 'Fraction' %}">Fractions</a></li>
+                                <li><a href="#top">Probabilités</a></li>
+                                <li><a href="{% url 'NombreParfait' %}">Nombres Parfaits</a></li>
+                                <li><a href="{% url 'NombreAmi' %}">Nombres Amicaux</a></li>
+                                <li><a href="{% url 'NombrePremier' %}">Nombres Premiers</a></li>
+                            </ul>
+                        </li>
+                        <li class="scroll-to-section"><a href="#calculatrice-section">Calculatrice</a></li>
+                        <li class="has-sub">
+                            <a href="javascript:void(0)">Syntaxe</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'Syntax' %}#matrix">Matrices et Tableaux</a></li>
+                                <li><a href="{% url 'Syntax' %}#root">Racines Carrés</a></li>
+                                <li><a href="{% url 'Syntax' %}#log">Algorithme Naturel</a></li>
+                                <li><a href="{% url 'Syntax' %}#exp">Exponential</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+
+<section class="page-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="header-text" style="margin-top: 50px">
+                    <h1>Probabilités</h1>
+                </div>
+                <div>
+                    <h2 style="margin-top: 50px;text-align: left">
+                        <u><b>Espaces probabilités finis</b></u>
+                    </h2>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <h3 style="text-align: left;margin-top: 50px;color: #d687db">
+                            1) Univers, événements
+                        </h3>
+                        <div style="text-align: left;margin-left: 50px;margin-top: 20px">
+                            <p>
+                                L’ensemble des résultats
+                                possibles d’une expérience aléatoire est un ensemble Ω appelé univers. Ω est l’ensemble
+                                des
+                                cas
+                                possibles ou des éventualités ou des issues. En sup, Ω est fini.
+                            </p>
+                            <br>
+                            <p>
+                                Si Ω est un univers fini. Une partie de Ω est un <b>événement</b>. L’ensemble des
+                                événements
+                                est
+                                donc P(Ω).
+                                Ω est l’événement certain, ∅ est l’événement impossible, un singleton {ω} (où ω ∈ Ω) est
+                                un
+                                événement élémentaire.
+                            </p>
+                        </div>
+
+                        <h3 style="text-align: left;margin-top: 50px;color: #d687db">
+                            2) Opérations sur les
+                            événements
+                        </h3>
+                        <div style="text-align: left;margin-left: 50px;margin-top: 20px">
+                            <p>
+                                Si A et B sont deux événements,
+                                C<sub>Ω</sub>A est l’événement contraire de A, A∪B est la réunion de A
+                                et B, A∩B est l’intersection
+                                de A et B.
+                            </p>
+                            <br>
+                            <p>
+                                A et B sont incompatibles ssi A ∩ B = ∅. Si A ⊂ B, on dit que A implique B.
+                                Un système complet d’événements est une famille (A<sub>i</sub>)<sub>1≤i≤n</sub>
+                                telle que ∀i ≠ j, A<sub>i</sub> ∩ A<sub>j</sub> = ∅ et &cup;
+                                <sub>1&le;i&le;n</sub>
+                                A<sub>i</sub> = Ω.
+                            </p>
+                        </div>
+
+
+                        <h3 style="text-align: left;margin-top: 50px;color: #d687db">
+                            3) Probabilité
+                        </h3>
+                        <div style="text-align: left;margin-left: 50px;margin-top: 20px">
+                            <p>
+                                Soit Ω un univers fini. Une
+                                <b>probabilité</b> sur Ω est une application P de P(Ω) dans [0, 1]
+                                telle que</p>
+                            <p style="margin-left: 20px">
+                                1) P(Ω) = 1
+                                <br>
+                                2) pour tous événements A et B tels que A ∩ B
+                                = ∅, P(A ∪ B) = P(A) + P(B).
+                            </p>
+                            <p>
+                                Dans ce cas, (Ω, P) est un espace probabilisé.
+                            </p>
+                        </div>
+
+
+                        <h3 style="text-align: left;margin-top: 50px;color: #d687db">
+                            4) Calculs de probabilités
+                        </h3>
+                        <div style="text-align: left;margin-left: 50px;margin-top: 20px">
+
+                            <p style="font-weight: bold;font-size: large">
+                                Théorème
+                            </p>
+                            <div style="margin-left: 20px">
+                                <p>
+                                    • P(∅) = 0.
+                                    <br>
+                                    • P(Ā) = 1 − P(A).
+                                    <br>
+                                    • Si A ⊂ B, P(A) &le; P(B) (croissance d’une probabilité). Dans ce cas, P(B \ A) =
+                                    P(B) − P(A).
+                                    <br>
+                                    • P(A ∪ B) = P(A) + P(B) − P(A ∩ B).
+                                    <br>
+                                    • Si A<sub>1</sub>, . . . A<sub>n</sub> sont deux à deux incompatibles, P
+                                    (A<sub>1</sub> ∪ . . . ∪ A<sub>n</sub>) = P (A<sub>1</sub>) + . .
+                                    . + P (A<sub>n</sub>).
+                                </p>
+
+                                <p>
+                                    Si de plus (A<sub>i</sub>)<sub>1&le;i&le;n</sub>
+                                    est un système complet d’événements, alors P (A<sub>1</sub>) + . . . + P
+                                    (A<sub>n</sub>)
+                                    = 1 et pour tout
+                                    événement B,
+                                </p>
+                            </div>
+
+                            <p>
+                                P(B) = &sum;<sup>n</sup><sub>i=1</sub> P (B ∩ A<sub>i</sub>).
+                            </p>
+
+                            <p style="margin-top: 20px">
+                                <span
+                                        style="font-weight: bold;font-size: large">Théorème . </span> Pour tout ω de Ω,
+                                on
+                                pose p<sub>ω</sub> = P ({ω})
+                            </p>
+                            <div style="margin-left: 20px">
+                                <p>
+                                    • &Sigma;<sub>ω∈Ω</sub> p<sub>ω</sub> = 1
+                                    <br>
+                                    • ∀A ∈ P(Ω), P(A) = &Sigma; <sub>ω∈A</sub> p<sub>ω</sub>
+                                </p>
+                            </div>
+
+                            <p style="font-weight: bold;font-size: large;margin-top: 20px">
+                                Théorème (cas de
+                                l’équiprobabilité des cas
+                                possibles)
+                            </p>
+                            <p style="margin-left: 20px">
+                                Si ∀<sub>ω</sub> ∈ Ω, p<sub>ω</sub> = <span
+                                    style="font-size: 70%; vertical-align: 0.7ex;">1</span><i>/</i><span
+                                    style="font-size: 70%; vertical-align: -0.3ex;">card(Ω)</span>, alors ∀A ∈ P(Ω),
+                                P(A)
+                                = <span
+                                    style="font-size: 70%; vertical-align: 0.7ex;">card(A)</span><i>/</i><span
+                                    style="font-size: 70%; vertical-align: -0.3ex;">card(Ω)</span> = <span
+                                    style="font-size: 70%; vertical-align: 0.7ex;">nombre de cas favorables</span><i>/</i><span
+                                    style="font-size: 70%; vertical-align: -0.3ex;">nombre de cas possibles</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h2 style="margin-top: 50px;text-align: left">
+                        <u>Probabilités conditionnelles</u>
+                    </h2>
+                    <div style="margin-top: 50px;text-align: left;margin-left: 100px">
+                        <p>
+                            Soit A un événement tel que P(A) &ne; 0. La probabilité de B sachant A est P<sub>A</sub>(B)
+                            =<span
+                                style="font-size: 70%; vertical-align: 0.7ex;"> P(B ∩ A)</span><i>/</i><span
+                                style="font-size: 70%; vertical-align: -0.3ex;">P(A)</span>
+                        </p>
+
+                        <p style="margin-top: 20px">
+                            <span style="font-weight: bold;font-size: large;">Théorème.</span> P<sub>A</sub> : &nbsp;&nbsp;
+                            P(Ω) &nbsp;&nbsp; → &nbsp;&nbsp; R &nbsp;&nbsp; est une probabilité sur Ω
+                        </p>
+                        <p style="margin-left: 140px">B &nbsp;&nbsp;&nbsp;&nbsp; &RightTeeArrow; &nbsp;&nbsp;
+                            P<sub>A</sub>(B)</p>
+
+                        <p style="margin-top: 20px"><span
+                                style="font-weight: bold;font-size: large;">Théorème.</span> Pour tous A et B, P(A ∩ B)
+                            = P<sub>A</sub>(B) × P(A) si P(A) &ne; 0
+                        </p>
+                        <p style="margin-left: 254px">
+                            = P<sub>B</sub>(A) × P(B) si P(B) &ne; 0
+                        </p>
+
+                        <p style="margin-top: 20px">
+                            <span style="font-weight: bold;font-size: large;">Théorème (formule des
+                            probabilités totales)</span> Soit (A<sub>i</sub>)<sub>1&le;i&le;n</sub>
+                            un système complet d’événements tels que ∀i ∈ &lobrk;1, n&robrk;,
+                            P (A<sub>i</sub>) &ne; 0, alors
+
+                            \[
+                            \forall B \in \textbf P(\Omega), P(B) = \sum^{n}_{i=1} P(A_{i}) \times P(B_{i})
+                            \]
+
+                        </p>
+                        <p>
+                            En particulier, si P(A) &ne; 0 et P(Ā) &ne; 0, P(B) = P(A) × P<sub>A</sub>(B) + P(Ā) ×
+                            P<sub>(Ā)</sub>(B)
+                        </p>
+
+                        <p style="margin-top: 20px">
+                            <span style="font-weight: bold;font-size: large;">Théorème (formule de Bayes
+                            (inversion d’une probabilité conditionnelle)).</span> Soit
+                            (A<sub>i</sub>)<sub>1&le;i&le;n</sub>un système complet d’événements tels que ∀i ∈ &lobrk;1,
+                            n&robrk;, P(A<sub>i</sub>) &ne; 0, alors pour tout B tel que P(B) &ne; 0,
+
+                            \[
+                            \forall i \in [\![ 1,n ]\!], P_{B}(A_{i}) = \frac{P(A_{i}) \times
+                            P_{A_{i}}(B)}{\sum^{n}_{i=1}
+                            P(A_{i}) \times P_{A_{i}}(B)}
+                            \]
+
+                            En particulier,
+
+                            \[
+                            P_{B}(A) = \frac{P(A) \times P_{A}(B)}{P(A) \times P_{A}(B) + P(\bar{A}) \times
+                            P_{\bar{A}}(B)}
+                            \]
+
+                        </p>
+                    </div>
+
+                    <hr>
+
+                    <h2 style="margin-top: 50px;text-align: left">
+                        <u>Indépendance</u>
+                    </h2>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <p style="margin-top: 20px;">
+                            A et B sont indépendants si et seulement si P(A∩B) = P(A)×P(B). Si P(A) &ne; 0, il revient
+                            au
+                            même
+                            de dire P<sub>A</sub>(B) = P(B)
+                        </p>
+
+                        <p style="margin-top: 20px;"><span
+                                style="font-weight: bold;font-size: large;">Théorème.</span>
+                            Si A et B sont indépendants, alors A et B̄, Ā et B, Ā et B̄ sont indépendants</p>
+                        <p>Soient A<sub>1</sub>, . . . , A<sub>n</sub>, n événements</p>
+                        <p style="margin-left: 20px">A<sub>1</sub>, . . . , A<sub>n</sub> sont <span
+                                style="font-size: medium">deux
+                            à
+                            deux indépendants</span>
+                            ⇔ ∀i &ne; j, P(A<sub>i</sub> ∩ A<sub>j</sub>) = P(A<sub>i</sub>) × P(A<sub>j</sub>)</p>
+                        <p style="margin-left: 20px">A<sub>1</sub>, . . . , A<sub>n</sub> sont
+                            <span style="font-size: medium">indépendants</span>
+                            ⇔ ∀I ⊂ &lobrk;1, n&robrk;, P<span style="font-size: xx-large">(&cap;</span><sub>i∈I</sub>
+                            A<sub>i</sub><span style="font-size: xx-large">) </span> = <span
+                                    style="font-size: xx-large"> &prod;</span>
+                            <sub>i∈I</sub> P(A<sub>i</sub>)</p>
+
+                        <p style="margin-top: 20px"><span
+                                style="font-weight: bold;font-size: large;">Théorème.</span> indépendant &rArr; deux à
+                            deux indépendants</p>
+                    </div>
+
+                    <hr>
+
+                    <h2 style="margin-top: 50px;text-align: left">
+                        <u>Variables aléatoires sur un univers fini</u>
+                    </h2>
+                    <div style="text-align: left;margin-left: 100px;margin-top: 50px">
+                        <h3 style="text-align: left;margin-top: 50px;color: #d687db">1) Variables aléatoires. Loi
+                            d’une
+                            variable aléatoire</h3>
+                        <div style="text-align: left;margin-left: 50px;margin-top: 20px">
+                            <p>
+                                Soit Ω un univers fini. Une variable aléatoire associée à cet univers est une
+                                application X
+                                de Ω dans un certain ensemble
+                                E. Si E = &#x211D;, X est une variable aléatoire réelle
+                            </p>
+
+                            <p style="margin-top: 20px"><span
+                                    style="font-weight: bolder;font-size: larger">Variable indicatrice</span> Soit A
+                                un
+                                événement. La variable X : &nbsp&nbsp&nbsp Ω &nbsp&nbsp&nbsp → &nbsp&nbsp&nbsp
+                                &#x211D; &nbsp&nbsp&nbsp est la variable indicatrice de</p>
+                            <p style="margin-left: 70px">\[ \Omega \space\space \mapsto
+                                \begin{cases} 1 &
+                                \mbox{si } \omega \in A \\ 0 & \mbox{si } \omega \notin A \end{cases}\]</p>
+                            <p>
+                                l’événement A. On peut la noter 1<sub>A</sub>. Elle est utilisée dans une démonstration
+                                de
+                                l’inégalité
+                                de <span
+                                    style="font-family: 'Times New Roman'; font-size: large">Bienaymé-Tchebychev</span>
+                            </p>
+
+                            <p style="font-size: inherit;margin-top: 20px">Quelques notations.</p>
+
+                            <div style="margin-left: 20px">
+                                <p> . Si X est une variable aléatoire sur Ω et f une
+                                    application définie sur X(Ω), on
+                                    peut définir f ◦ X (souvent notée f(X)).
+                                </p>
+                            </div>
+                            <p>Par exemple, X<sup>2</sup> , √X̄, e<sup>X</sup> . . .</p>
+                            <div style="margin-left: 20px">
+                                <p> . Si A est une partie de E (E = &Ropf; en général),
+                                    l’événement {X ∈ A} est l’événement X<sup>-1</sup>(A) = {ω ∈ Ω/ X(ω) ∈ A}
+                                </p>
+                            </div>
+                            <p>
+                                Si x est un élément de E, l’événement {X = x} est l’événement X<sup>-1</sup>({x}) = {ω ∈
+                                Ω/ X(ω)
+                                = x}.
+                                <br>
+                                Si X est une variable réelle, {X &le; x} = X<sup>-1</sup> (] − ∞, x]) = {ω ∈ Ω/ X(ω)
+                                &le; x}
+                            </p>
+
+                            <p style="margin-left: 20px"><span
+                                    style="font-weight: bolder;font-size: larger">Loi de probabilité d’une variable aléatoire</span>
+                                Soit X une variable aléatoire sur un espace probabilisé fini (Ω, P).
+                                <br>
+                                L’application &nbsp&nbsp&nbsp X(Ω) &nbsp&nbsp&nbsp &rarr; &nbsp&nbsp&nbsp [0,1]
+                                &nbsp&nbsp&nbsp est une probabilité sur X(Ω) appelée loi de X. La loi de X peut aussi
+                                être l’application
+                                <br>
+                                <span style="margin-left: 110px">x &nbsp&nbsp&nbsp&nbsp &RightTeeArrow; &nbsp&nbsp&nbsp P(X = x)</span>
+                                <br>
+                                plus générale &nbsp&nbsp&nbsp P(X(Ω)) &nbsp&nbsp&nbsp &rarr; &nbsp&nbsp&nbsp [0,1]
+                                &nbsp&nbsp&nbsp . On note P<sub>X</sub> la loi de X.
+                                <br>
+                                <span style="margin-left: 130px">A &nbsp&nbsp&nbsp&nbsp&nbsp &RightTeeArrow; &nbsp&nbsp  P(X ∈ A)</span>
+                                <br>
+                                <span style="font-weight: bolder;font-size: larger">Théorème</span>
+                                &Sigma; <sub>x∈X(Ω)</sub> P(X = x) = 1. Pour toute partie A de X(Ω), P(X ∈ A) = &Sigma;
+                                <sub>x∈A</sub> P(X = x)
+                                <br><br>
+                                <span style="font-weight: bolder;font-size: larger">Théorème (loi de f(X)).</span> La
+                                loi de f(X) est :
+
+                                \[
+                                \forall y \in f(X(\Omega)), P(f(X) = y) = \sum_{x \in f^{-1}(\{y\})} P(X=x)
+                                \]
+
+
+                                Par exemple, si Y = X<sup>2</sup> , P(Y = 1) = P(X<sup>2</sup> = 1) = P(X = 1) + P(X =
+                                −1)
+                            </p>
+                        </div>
+
+                        <h3 style="text-align: left;margin-top: 50px;color: #d687db">2) Espérance, variance,
+                            écart-type</h3>
+                        <div style="text-align: left;margin-left: 50px;margin-top: 20px">
+                            <p style="margin-top: 20px"><span
+                                    style="color: #eebfab;font-size: x-large;">a) Espérance</span> Si X prend les
+                                valeurs x<sub>1</sub>, . . . , x<sub>n</sub>, l’espérance de X est
+                            </p>
+                            <div style="margin-left: 20px">
+                                <p>
+                                    \[
+                                    E(X) = \sum^{n}_{k=1} x_{k} P(X=x_{k}) = \sum_{x \in X(\Omega)} xP(X=x)
+                                    \]
+
+                                    L’espérance de la variable indicatrice 1<sub>A</sub> d’un événement A est P(A).
+                                </p>
+
+                                <p style="margin-top: 30px">
+                                    <span style="font-weight: bolder;font-size: larger">Théorème (linéarité).</span>
+                                    L’espérance
+                                    est une forme linéaire c’est-à-dire E(X + Y) = E(X) + E(Y) et E(λX) = λE(X).
+                                    <br>
+                                    En particulier, E(aX + b) = aE(X) + b.
+                                    <br>
+                                    Si X est d’espérance nulle, X est centrée. Si X est une variable réelle quelconque,
+                                    X −
+                                    E(X) est la variable centrée associé
+                                    à X.
+                                </p>
+                                <p style="margin-top: 30px">
+                                    <span style="font-weight: bolder;font-size: larger">Théorème (positivité, croissance).</span>
+                                    Si
+                                    X est une variable aléatoire réelle positive, alors E(X) &ge; 0.
+                                    <br>
+                                    Si X est Y sont des variables aléatoires telles que X &le; Y, alors E(X) &le; E(Y).
+                                </p>
+                                <p style="margin-top: 30px">
+                                    <span style="font-weight: bolder;font-size: larger">Théorème (inégalité de Markov).</span>
+                                    Si
+                                    X est une variable réelle positive,
+
+                                    \[
+                                    \forall a>0, P(X \geq a) \leq \frac{E(X)}{a}
+                                    \]
+
+                                    <span style="font-weight: bolder;font-size: larger">Démonstration.</span> Soit a >
+                                    0.
+                                    Soit A = {X &ge; a}. Soit ω ∈ Ω.
+                                </p>
+                                <div style="margin-left: 40px">
+                                    <p> . Si ω ∈ A, 1<sub>A</sub>(ω) = 1 et <span
+                                            style="font-size: 70%; vertical-align: 0.7ex;">X</span><i>/</i><span
+                                            style="font-size: 70%; vertical-align: -0.3ex;">a</span>(ω) = <span
+                                            style="font-size: 70%; vertical-align: 0.7ex;">X(ω)</span><i>/</i><span
+                                            style="font-size: 70%; vertical-align: -0.3ex;">a</span> &ge; <span
+                                            style="font-size: 70%; vertical-align: 0.7ex;">a</span><i>/</i><span
+                                            style="font-size: 70%; vertical-align: -0.3ex;">a</span>=1=1<sub>A</sub>(ω).
+                                    </p>
+                                    <p> . Si ω &notin; A, 1<sub>A</sub>(ω) = 0 &le;
+                                        <span
+                                                style="font-size: 70%; vertical-align: 0.7ex;">X(ω)</span><i>/</i><span
+                                                style="font-size: 70%; vertical-align: -0.3ex;">a</span>.
+                                    </p>
+                                </div>
+                                <p>
+                                    Donc, ∀ω ∈ Ω, 1<sub>A</sub>(ω) &le; <span
+                                        style="font-size: 70%; vertical-align: 0.7ex;">X</span><i>/</i><span
+                                        style="font-size: 70%; vertical-align: -0.3ex;">a</span>(ω) ou encore
+                                    1<sub>A</sub>
+                                    &le;
+                                    <span
+                                            style="font-size: 70%; vertical-align: 0.7ex;">X</span><i>/</i><span
+                                        style="font-size: 70%; vertical-align: -0.3ex;">a</span>. Par croissance de
+                                    l’espérance,
+                                    E(1<sub>A</sub>) &le; E(<span
+                                        style="font-size: 70%; vertical-align: 0.7ex;">X</span><i>/</i><span
+                                        style="font-size: 70%; vertical-align: -0.3ex;">a</span>) = <span
+                                        style="font-size: 70%; vertical-align: 0.7ex;">E(X)</span><i>/</i><span
+                                        style="font-size: 70%; vertical-align: -0.3ex;">a</span> avec E(1<sub>A</sub>) =
+                                    P(A) =
+                                    E(X &ge; a).
+                                </p>
+                                <p style="margin-top: 30px">
+                                    <span style="font-weight: bolder;font-size: larger">Théorème de transfert.</span>
+                                    L’espérance
+                                    de f(X) est E(f(X)) = &Sigma;<sub>x∈X(Ω)</sub>f(x)P(X = x).
+                                </p>
+                            </div>
+
+                            <p style="margin-top: 20px"><span
+                                    style="color: #eebfab;font-size: x-large;">b) Variance, écart-type.</span>
+                            </p>
+                            <div style="margin-left: 20px">
+                                <p style="margin-top: 30px">
+                                    <span style="font-weight: bolder;font-size: larger">Définition.</span> Le moment
+                                    d’ordre k de X est E(X<sup>k</sup>) = &Sigma;<sub>x∈X(Ω)</sub>x<sup>k</sup>P(X = x).
+                                </p>
+                                <p style="margin-top: 30px">
+                                    <span style="font-weight: bolder;font-size: larger">Définition.</span> La variance
+                                    de X est V(X) = E((X − E(X))<sup>2</sup>) = &Sigma;<sub>x∈X(Ω)</sub>P(X = x) × (x −
+                                    E(X))<sup>2</sup>
+                                </p>
+                                <p style="margin-top: 30px">
+                                    <span style="font-weight: bolder;font-size: larger">Théorème</span> (formule de
+                                    <span
+                                            style="font-family: 'Times New Roman'; font-size: large">Koenig-Huygens</span>).
+                                    V(X) = E((X − E(X))<sup>2</sup>) = E(X<sup>2</sup>) − (E(X))<sup>2</sup>
+                                </p>
+                                <p style="margin-top: 30px">
+                                    <span style="font-weight: bolder;font-size: larger">Théorème.</span> V(aX + b) =
+                                    a<sup>2</sup>V(X).
+                                </p>
+                                <p style="margin-top: 30px">
+                                    <span style="font-weight: bolder;font-size: larger">Définition.</span> L’écart-type
+                                    de X est σ(X)= &Sqrt;V(X). X). Une variable X telle que E(X) = 0 et σ(X) = 1 est
+                                    dite centrée réduite.
+                                    <br>
+                                    Si X est une variable d’écart-type non null,<span
+                                        style="font-size: 70%; vertical-align: 0.7ex;">X − E(X)</span><i>/</i><span
+                                        style="font-size: 70%; vertical-align: -0.3ex;">σ(X)</span>est centrée réduite
+                                    et est la variable centré réduite associée à X.
+                                </p>
+                                <p style="margin-top: 30px">
+                                    <span style="font-weight: bolder;font-size: larger">Théorème (inégalité de <span
+                                            style="font-family: 'Times New Roman'; font-size: large">Bienaymé-Tchebychev</span>).</span>
+
+                                    \[
+                                    \forall &epsilon; > 0, P(|X-E(X)| \geq &epsilon;) \leq \frac{V(X)}{&epsilon;^{2}}
+                                    \]
+
+                                </p>
+                                <p style="margin-top: 30px">
+                                    <span style="font-weight: bolder;font-size: larger">Démonstration.</span> On
+                                    applique l’inégalité de <span
+                                        style="font-family: 'Times New Roman'; font-size: large">Markov</span> à la
+                                    variable (<span
+                                        style="font-size: 70%; vertical-align: 0.7ex;">X − E(X)</span><i>/</i><span
+                                        style="font-size: 70%; vertical-align: -0.3ex;">&epsilon;</span>)<sup>2</sup>.
+                                    L’événement {|X − E(X)| &geq; ε} est
+                                    l’événement {(<span
+                                        style="font-size: 70%; vertical-align: 0.7ex;">X − E(X)</span><i>/</i><span
+                                        style="font-size: 70%; vertical-align: -0.3ex;">&epsilon;</span>)<sup>2</sup>
+                                    &geq; 1}. Puisque la variable(<span
+                                        style="font-size: 70%; vertical-align: 0.7ex;">X − E(X)</span><i>/</i><span
+                                        style="font-size: 70%; vertical-align: -0.3ex;">&epsilon;</span>)<sup>2</sup>
+                                    est positive et que 1 > 0,
+
+                                    \[
+                                    P\{|X-E(X)| \ge &epsilon;\} \le \frac{1}{1}E((\frac{X-E(X)}{&epsilon;})^{2}) =
+                                    \frac{1}{&epsilon;^{2}}E((X-E(X))^{2}) = \frac{V(X)}{&epsilon;^{2}}
+                                    \]
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="simple-cta" id="calculatrice-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 offset-lg-1">
+                <div class="left-image">
+                    <img src="{% static 'images/cta-left-image.png' %}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-5 align-self-center">
+                <h6>visiter la calculatrice en ligne</h6>
+                <h4>Effectuer vos calcule en tout moment </h4>
+                <br>
+                <div class="white-button">
+                    <a href="{% url 'index' %}">Commencer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="contact-us" id="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+
+            </div>
+            <div class="col-lg-4">
+                <form id="contact" action="" method="post">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-heading">
+                                <h6>Contact us</h6>
+                                <h4>Say <em>Hello</em></h4>
+                                <p>Si vous avez des remarques des questions notre equipe est a votre disposition a tout
+                                    moment </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <input type="name" name="name" id="name" placeholder="Full Name" autocomplete="on"
+                                       required>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*"
+                                       placeholder="Your Email" required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <button type="submit" id="form-submit" class="main-gradient-button">Send Message
+                                </button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-12">
+                <ul class="social-icons">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-12">
+                <p class="copyright">Copyright © 2022 EasyMath., Ltd. All Rights Reserved.
+
+                    <br>BY : <a rel="sponsored" href="" target="_blank">GI2</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'js/isotope.min.js' %}"></script>
+<script src="{% static 'js/owl-carousel.js' %}"></script>
+<script src="{% static 'js/lightbox.js' %}"></script>
+<script src="{% static 'js/tabs.js' %}"></script>
+<script src="{% static 'js/video.js' %}"></script>
+<script src="{% static 'js/slick-slider.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script>
+    //according to loftblog tut
+    $('.nav li:first').addClass('active');
+
+    var showSection = function showSection(section, isAnimate) {
+        var
+            direction = section.replace(/#/, ''),
+            reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+            reqSectionPos = reqSection.offset().top - 0;
+
+        if (isAnimate) {
+            $('body, html').animate({
+                    scrollTop: reqSectionPos
+                },
+                800);
+        } else {
+            $('body, html').scrollTop(reqSectionPos);
+        }
+
+    };
+
+    var checkSection = function checkSection() {
+        $('.section').each(function () {
+            var
+                $this = $(this),
+                topEdge = $this.offset().top - 80,
+                bottomEdge = topEdge + $this.height(),
+                wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+                var
+                    currentId = $this.data('section'),
+                    reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                reqLink.closest('li').addClass('active').siblings().removeClass('active');
+            }
+        });
+    };
+
+    $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+        e.preventDefault();
+        showSection($(this).attr('href'), true);
+    });
+
+    $(window).scroll(function () {
+        checkSection();
+    });
+</script>
+
+</body>
+</html>

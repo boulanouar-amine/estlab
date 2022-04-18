@@ -11,11 +11,11 @@ commands = ("calculate", "inverse", "transpose", "determinant",
 
 mat = np.zeros((1, 1))
 premier=""
-
+parfait=""
 # la premier fonction qui contient le get
 
 def run(request):
-    global mat, commands,premier
+    global mat, commands,premier,parfait
     res = "bonjour veuiller entrer help pour la syntax"
     try:
 
@@ -36,25 +36,29 @@ def run(request):
         elif request.method == 'POST':
 
             try :
-                premier =  request.POST["nbrP"]
+
                 premier = str(nombre_premier(request.POST["nbrP"]))
 
+
             except:
-                command = request.POST["cal"]
+                try:
+                    parfait = str(nombre_parfait(request.POST["nbrParfait"]))
+                except:
+                    command = request.POST["cal"]
 
-                if re.search("x", command):
+                    if re.search("x", command):
 
-                    if request.GET.get("derivée") == "derivée":
-                        res = str(derivée(command))
+                        if request.GET.get("derivée") == "derivée":
+                            res = str(derivée(command))
 
-                    if request.GET.get("primitive") == "primitive":
-                        res = str(primitive(command))
+                        if request.GET.get("primitive") == "primitive":
+                            res = str(primitive(command))
 
-                    if request.GET.get("integrale") == "integrale":
-                        res = str(integrale(command))
+                        if request.GET.get("integrale") == "integrale":
+                            res = str(integrale(command))
 
-                else:
-                    res = format_all(calculate((command)))
+                    else:
+                        res = format_all(calculate((command)))
 
     # res = ''.join([eval("str(" + ele + "(command))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
     # res = ''.join([eval("format_all(" + ele + "(extract(command,ele)))") for ele in commands if re.search(ele, command)])
@@ -70,7 +74,7 @@ def run(request):
 
         res = ""
 
-    return render(request, 'index.html', {'output': str(res), 'mat': str(mat),'premier':str(premier)})
+    return render(request, 'index.html', {'output': str(res), 'mat': str(mat),'premier':str(premier),'parfait':str(parfait)})
 
 
 def Home(request):

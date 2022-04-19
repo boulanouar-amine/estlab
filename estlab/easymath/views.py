@@ -32,7 +32,7 @@ def moy(list):
 
 def run(request):
     global mat, commands,premier,parfait,uploaded_file_url,moy,med
-    res = "bonjour veuiller entrer help pour la syntax"
+    res = ""
     try:
 
         if request.method == 'GET':

@@ -103,14 +103,12 @@ def run(request):
 
     except np.linalg.LinAlgError:
 
-        try:
-            np.linalg.det(mat)
-            res = "la matrice n'a pas de determinant"
-        except:
-            res = "la matrice n'est pas inversible"
+        res = "la matrice n'est pas une matrice carrée"
 
-   # except ValueError:
-   #    res = "c'est pas une matrice"
+
+
+    except ValueError:
+        res = "veuillez entrer une expression"
 
     except:
 

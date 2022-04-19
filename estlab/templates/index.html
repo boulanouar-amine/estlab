@@ -48,12 +48,9 @@
         <div class="row">
             <div class="col-12">
                 <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
                     <a href="{% url 'Home' %}" class="logo">
                         <img src="{% static 'images/EasyMath.png' %}" alt="Easymath" id="logo">
                     </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="{% url 'Home' %}">Accueil</a></li>
                         <li class="has-sub">
@@ -68,7 +65,7 @@
                                 <li><a href="{% url 'NombrePremier' %}">Nombres Premiers</a></li>
                             </ul>
                         </li>
-                        <li><a href="#top">Calculatrice</a></li>
+                        <li><a href="{% url 'index' %}">Calculatrice</a></li>
                         <li class="has-sub">
                             <a href="javascript:void(0)">Syntaxe</a>
                             <ul class="sub-menu">
@@ -82,7 +79,7 @@
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>
-                    <!-- ***** Menu End ***** -->
+
                 </nav>
             </div>
         </div>
@@ -94,7 +91,7 @@
     <div class="container">
 
         <div class="row">
-
+            <!-- le choix des different calcule-->
             <div class="methode" style="margin-top: -31px;">
                 <form method='get'>
                     <input style="font-size: 22px;" type="submit" value="matrice" name="matrice">
@@ -112,7 +109,7 @@
             <div style="display: flex; flex-direction: row; justify-content: space-evenly; padding: 18px;   ">
                 <div></div>
                 <div style=" padding: 25px ; margin: 15px  ; border: solid 4px #e9a5be; border-radius: 33px; background: #faf7fa;">
-
+                    <!-- pour la statistique -->
                     {% if  request.get_full_path == "/index?statistique=statistique" %}
                         {% block statistique %}
                             <div class="container">
@@ -135,17 +132,18 @@
                             </div>
                             {% if uploaded_file_url %}
                                 <p>csv File uploaded at: {{ uploaded_file_url }}</p>
-                                 <div class="methode" style="border: 2px #e9a5be ;margin-top: 10px;">
-                                     <p style="height: 11%;color: white;margin: 4%;padding: 4%;font-size: 24px;">En cours d'mplémentation</p>
-                               <!--  <form method='get'>
-                                    <input style="font-size: 22px; padding: 10px; padding-left: 5px; " type="submit"
-                                           value="ecartype" name="ecartype">
-                                     <input style="font-size: 22px; padding: 10px; padding-left: 5px; " type="submit"
-                                           value="moyen" name="moyen">
-                                     <input style="font-size: 22px; padding: 10px; padding-left: 5px; " type="submit"
-                                           value="variance" name="variance">
-                                </form> -->
-                                 </div>
+                                <div class="methode" style="border: 2px #e9a5be ;margin-top: 10px;">
+                                    <p style="height: 11%;color: white;margin: 4%;padding: 4%;font-size: 24px;">En cours
+                                        d'mplémentation</p>
+                                    <!--  <form method='get'>
+                                         <input style="font-size: 22px; padding: 10px; padding-left: 5px; " type="submit"
+                                                value="ecartype" name="ecartype">
+                                          <input style="font-size: 22px; padding: 10px; padding-left: 5px; " type="submit"
+                                                value="moyen" name="moyen">
+                                          <input style="font-size: 22px; padding: 10px; padding-left: 5px; " type="submit"
+                                                value="variance" name="variance">
+                                     </form> -->
+                                </div>
                                 <h3>{{ output }}</h3>
                             {% endif %}
                         {% endblock %}
@@ -153,7 +151,7 @@
                         <h1>cvs file uploaded correctly</h1>
 
                     {% else %}
-
+                        <!-- pour les calcule simple-->
                         {% if request.get_full_path == "/index" %}
                             <h3 style=" margin-top: 13px ; margin-bottom: 26px; ">Entrer une expression: </h3>
                             <form style="display: flex; flex-direction: column;" method="POST"> {% csrf_token %}
@@ -174,6 +172,7 @@
                                 </div>
                                 <div></div>
                             </div>
+                            <!-- pour les matrice -->
                         {% elif request.get_full_path == "/index?matrice=matrice" or request.get_full_path == "/index?moyenne=moyenne"  or request.get_full_path == "/index?transpos%C3%A9e=transpos%C3%A9e" or request.get_full_path == "/index?inverse=inverse" or request.get_full_path == "/index?determinant=determinant" or request.get_full_path == "/index?trace=trace"  or request.get_full_path == "/index?valeur+propre=valeur+propre" %}
                             <h3 style=" margin-top: 13px ; margin-bottom: 26px; ">Entrer une matrice: </h3>
                             <form style="display: flex; flex-direction: column;" method="POST"> {% csrf_token %}
@@ -213,7 +212,7 @@
                                 </div>
                                 <div></div>
                             </div>
-
+                            <!-- pour les polynome -->
                         {% elif request.get_full_path == "/index?integrale=integrale" or request.get_full_path == "/index?deriv%C3%A9e=deriv%C3%A9e" or request.get_full_path == "/index?primitive=primitive" %}
                             <h3 style=" margin-top: 13px ; margin-bottom: 26px; ">Entrer une expression: </h3>
                             <form style="display: flex; flex-direction: column;" method="POST"> {% csrf_token %}
@@ -228,7 +227,7 @@
                                 </br>
                             </form>
                             <h3>{{ output }}</h3>
-
+                            <!-- pour les nombres premiers -->
                         {% elif  request.get_full_path == "/index?Nombre+premier=Nombre+premier" %}
                             <h3 style=" margin-top: 13px ; margin-bottom: 26px; ">Entrer un nombre: </h3>
                             <form style="display: flex; flex-direction: column;" method="POST"> {% csrf_token %}
@@ -249,7 +248,7 @@
                                 </div>
                                 <div></div>
                             </div>
-
+                            <!-- pour les nombres parfait -->
                         {% elif  request.get_full_path ==  "/index?Nombre+parfait=Nombre+parfait" %}
                             <h3 style=" margin-top: 13px ; margin-bottom: 26px; ">Entrer un nombre: </h3>
                             <form style="display: flex; flex-direction: column;" method="POST"> {% csrf_token %}
@@ -342,7 +341,6 @@
         </div>
     </div>
 </section>
-
 
 
 </body>

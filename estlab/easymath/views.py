@@ -1,38 +1,31 @@
 import re
-
 import array_to_latex as a2l
 import numpy as np
 import sympy as sp
 import pandas as pd
 import csv,os
-from django.core.files.storage import default_storage, FileSystemStorage
+from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render
 
+#les different fonction de calcule
 
 commands = ("calculate", "inverse", "transposée", "determinant",
             "trace", "vector_difference", "moyenne", "valeur propre", "nombre_parfait",
             "intervalle_parfait", "nombre_premier", "derivée", "primitive", "integrale")
+
+#initialization des variable
 
 mat = np.zeros((1, 1))
 premier=""
 parfait=""
 uploaded_file_url=""
 
-# la premier fonction qui contient le get
 
-def moy(list):
-    s=0
-    n=len(list)
-    for k in range(0,n):
-        s=s+int(list[k])
-    #print('s=',s,'n=',n,'moyenne=',s/n)
-    return s/n
-
-
+#la premier fonction qui controle le choix de calcule
 
 def run(request):
     global mat, commands,premier,parfait,uploaded_file_url,moy,med
-    res = ""
+    res = "" #res est le resultat du calcule
     try:
 
         if request.method == 'GET':
@@ -42,15 +35,15 @@ def run(request):
 
             if request.GET.get("matrice") == "matrice":
                 res = format_all(0)
-            else:
+            else: #parcourir la liste des command pour executer la fonction convenable
                 res = ''.join([eval("format_all(" + ele.replace(" ", "_") + "(mat))") for ele in commands if
                                str(request.GET.get(ele)) == str(ele)])
 
-
+        #la methode post controle les entrée
         elif request.method == 'POST':
 
             try :
-
+                #pour les fichier csv
                 myfile = request.FILES['inp']
                 fs = FileSystemStorage()
                 filename = fs.save(myfile.name, myfile)
@@ -63,23 +56,24 @@ def run(request):
 
 
             except:
-
+                # pour les nombre premier
                 try :
                     premier = str(nombre_premier(eval(request.POST["nbrP"])))
 
                 except:
+                    # pour les nombre parfait
                     try:
                         parfait = str(nombre_parfait(eval(request.POST["nbrParfait"])))
                     except:
                         command = request.POST["cal"]
-
+                        # pour les factorielle
                         if re.search("!", command):
                             command = command.replace("!", "")
                             res = np.math.factorial(eval(command))
                             return render(request, 'index.html',
                                           {'output': str(res), 'mat': str(mat), 'premier': str(premier),
                                            'parfait': str(parfait), 'uploaded_file_url': uploaded_file_url})
-
+                        # pour les calcule des polynome
                         if re.search("x", command):
 
                             if request.GET.get("derivée") == "derivée":
@@ -95,8 +89,10 @@ def run(request):
                         else:
                             res = format_all(calculate((command)))
 
-    # res = ''.join([eval("str(" + ele + "(command))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
-    # res = ''.join([eval("format_all(" + ele + "(extract(command,ele)))") for ele in commands if re.search(ele, command)])
+        ''' res = ''.join([eval("str(" + ele + "(command))") for ele in commands if str(request.GET.get(ele)) == str(ele)])
+     res = ''.join([eval("format_all(" + ele + "(extract(command,ele)))") for ele in commands if re.search(ele, command)])
+        '''
+    #gestion des exception
 
     except (IndexError, ZeroDivisionError):
         res = "division par 0"
@@ -106,8 +102,9 @@ def run(request):
         res = "la matrice n'est pas une matrice carrée"
 
 
-
+    #valeur non définie
     except ValueError:
+
         res = "veuillez entrer une expression"
 
     except:
@@ -116,6 +113,7 @@ def run(request):
 
     return render(request, 'index.html', {'output': str(res), 'mat': str(mat),'premier':str(premier),'parfait':str(parfait), 'uploaded_file_url': uploaded_file_url})
 
+#les different page html
 
 def Home(request):
     return render(request, 'Home.html')
@@ -176,7 +174,7 @@ def calculate(chaine):
     return chaine
 
 
-# general functions
+#  functions general
 
 def format_all(chaine):
     global mat
@@ -205,7 +203,7 @@ def extract(command, ele):
 """
 
 
-# matrix functions
+#  functions pour les matrice
 
 def trace(chaine):
     return  np.trace(chaine)
@@ -307,7 +305,7 @@ def intervalle_parfait(chaine):
     return res
 
 
-# derivee
+# derivée
 
 def derivée(mat):
     x = sp.symbols('x')
@@ -334,4 +332,4 @@ def integrale(mat):
     F = sp.integrate(y, (x, mat[1], mat[2]))  # integrale de y dan l intervale {1 , 3 }
     return str("$$" + sp.latex(F) + "$$")
 
-# <!--{% if request.get_full_path == "/?derivée=derivée" or request.get_full_path == "/index?primitive=primitive"  or request.get_full_path == "/index?clr=clr"  or request.get_full_path == "/index?%2B=%2B"  or request.get_full_path == "/index?-=-"  or request.get_full_path == "/index?x=x"  or request.get_full_path == "/index?%2F=%2F"   or request.get_full_path == "/index?%5E=%5E"  or request.get_full_path == "/index?ln=ln"  or  request.get_full_path == "/index?e=e"  or request.get_full_path == "/index?%28=%28"  or request.get_full_path == "/index?%29=%29" %}-->  <form method='get'>
+

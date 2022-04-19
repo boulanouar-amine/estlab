@@ -57,10 +57,10 @@
                     <ul class="nav">
                         <li><a href="{% url 'Home' %}">Accueil</a></li>
                         <li class="has-sub">
-                            <a href="javascript:void(0)">Mathematics</a>
+                            <a href="javascript:void(0)">Documentation</a>
                             <ul class="sub-menu">
                                 <li><a href="{% url 'Matrice' %}">Matrices</a></li>
-                                <li><a href="{% url 'Statistique' %}">Statistiques</a></li>
+                                <li><a href="{% url 'statistique' %}">statistiques</a></li>
                                 <li><a href="{% url 'Fraction' %}">Fractions</a></li>
                                 <li><a href="{% url 'Probabilite' %}">Probabilités</a></li>
                                 <li><a href="{% url 'NombreParfait' %}">Nombres Parfaits</a></li>
@@ -101,7 +101,7 @@
                     <input style="font-size: 22px; " type="submit" value="derivée" name="derivée">
                     <input style="font-size: 22px; " type="submit" value="primitive" name="primitive">
                     <input style="font-size: 22px;  " type="submit" value="integrale" name="integrale">
-                    <input style="font-size: 22px;  " type="submit" value="Statistic" name="Statistic">
+                    <input style="font-size: 22px;" type="submit" value="statistique" name="statistique">
                     <input style="font-size: 22px;  " type="submit" value="Nombre premier"
                            name="Nombre premier">
                     <input style="font-size: 22px;  " type="submit" value="Nombre parfait"
@@ -113,15 +113,15 @@
                 <div></div>
                 <div style=" padding: 25px ; margin: 15px  ; border: solid 4px #e9a5be; border-radius: 33px; background: #faf7fa;">
 
-                    {% if  request.get_full_path == "/index?Statistic=Statistic" %}
+                    {% if  request.get_full_path == "/index?statistique=statistique" %}
                         {% block statistique %}
                             <div class="container">
-                                <h1>Please select csv file for upload</h1>
+                                <h1>Entrer le fichier csv:</h1>
                                 <form action="" method='post' enctype="multipart/form-data">{% csrf_token %}
                                     <div style="display: flex; flex-direction: row; justify-content: space-evenly; ">
                                         <div></div>
                                         <input type="file" style="display :none;" id="inp" name="inp"/>
-                                        <label for="inp" style=" margin-right:18%;  display: flex; justify-content: center;
+                                        <label for="inp" style=" margin-right:12%;  display: flex; justify-content: center;
                             background: linear-gradient(-145deg, rgba(219, 138, 222, 1) 0%, rgba(246, 191, 159, 1) 100%); color: white; height: 85px; width: 173px; align-self: center;
                             border-radius: 16px; border: #faf7fa solid; font-size: 21px; margin-bottom: 14px; margin-top:10px ;align-items: center; margin-top:10px ">
                                             upload file</label>
@@ -134,8 +134,7 @@
                                 </form>
                             </div>
                             {% if uploaded_file_url %}
-                                <p>csv File uploaded at: {{ uploaded_file_url }}
-                                </p>
+                                <p>csv File uploaded at: {{ uploaded_file_url }}</p>
                                  <div class="methode" style="border: 2px #e9a5be ;margin-top: 10px;">
                                  <form method='get'>
                                     <input style="font-size: 22px; padding: 10px; padding-left: 5px; " type="submit"
@@ -174,8 +173,7 @@
                                 </div>
                                 <div></div>
                             </div>
-
-                        {% elif request.get_full_path == "/index?matrice=matrice" or request.get_full_path == "/index?average=average"  or request.get_full_path == "/index?transpose=transpose" or request.get_full_path == "/index?inverse=inverse" or request.get_full_path == "/index?determinant=determinant" or request.get_full_path == "/index?trace=trace"  or request.get_full_path == "/index?valeur+propre=valeur+propre" %}
+                        {% elif request.get_full_path == "/index?matrice=matrice" or request.get_full_path == "/index?moyenne=moyenne"  or request.get_full_path == "/index?transpos%C3%A9e=transpos%C3%A9e" or request.get_full_path == "/index?inverse=inverse" or request.get_full_path == "/index?determinant=determinant" or request.get_full_path == "/index?trace=trace"  or request.get_full_path == "/index?valeur+propre=valeur+propre" %}
                             <h3 style=" margin-top: 13px ; margin-bottom: 26px; ">Entrer une matrice: </h3>
                             <form style="display: flex; flex-direction: column;" method="POST"> {% csrf_token %}
                                 <input style=" padding-left: 270px; font-size: 23px; margin-bottom: 30px; border-radius: 8px; border: 3px solid #E69FC6; height: 73px; width: 750px;"
@@ -191,9 +189,9 @@
                             <div class="methode" style="border: 2px #e9a5be ;margin-top: -16px;">
                                 <form method='get'>
                                     <input style="font-size: 22px; padding: 10px; padding-left: 5px; " type="submit"
-                                           value="average" name="average">
-                                    <input style="font-size: 22px; padding: 10px;" type="submit" value="transpose"
-                                           name="transpose">
+                                           value="moyenne" name="moyenne">
+                                    <input style="font-size: 22px; padding: 10px;" type="submit" value="transposée"
+                                           name="transposée">
                                     <input style="font-size: 22px; padding: 10px;" type="submit" value="inverse"
                                            name="inverse">
                                     <input style="font-size: 22px; padding: 10px;" type="submit" value="determinant"
@@ -210,6 +208,7 @@
                                 <div></div>
                                 <div>
                                     <h3 style=" padding: 25px ; margin: 15px  ; border: solid 4px #e9a5be; border-radius: 33px; background: white; margin-top: 22px;">{{ output }} </h3>
+
                                 </div>
                                 <div></div>
                             </div>
@@ -228,7 +227,6 @@
                                 </br>
                             </form>
                             <h3>{{ output }}</h3>
-
 
                         {% elif  request.get_full_path == "/index?Nombre+premier=Nombre+premier" %}
                             <h3 style=" margin-top: 13px ; margin-bottom: 26px; ">Entrer un nombre: </h3>
@@ -283,6 +281,67 @@
     </div>
 
 </section>
+<section class="contact-us" id="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+
+            </div>
+            <div class="col-lg-4">
+                <form id="contact" action="" method="post">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-heading">
+                                <h6>Contact us</h6>
+                                <h4>Say <em>Hello</em></h4>
+                                <p>Si vous avez des remarques des questions notre equipe est a votre disposition a tout
+                                    moment </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <input type="name" name="name" id="name" placeholder="Full Name" autocomplete="on"
+                                       required>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <input type="text" name="email" id="email" pattern="[^ @]@[^ @]"
+                                       placeholder="Your Email" required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <button type="submit" id="form-submit" class="main-gradient-button">Send Message
+                                </button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-12">
+                <ul class="social-icons">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-12">
+                <p class="copyright">Copyright © 2022 EasyMath., Ltd. All Rights Reserved.
+
+                    <br>BY : <a rel="sponsored" target="_blank">GI2</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 
 </body>

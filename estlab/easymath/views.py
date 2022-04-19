@@ -9,14 +9,15 @@ from django.core.files.storage import default_storage, FileSystemStorage
 from django.shortcuts import render
 
 
-commands = ("calculate", "inverse", "transpose", "determinant",
-            "trace", "vector_difference", "average", "valeur propre", "nombre_parfait",
+commands = ("calculate", "inverse", "transposée", "determinant",
+            "trace", "vector_difference", "moyenne", "valeur propre", "nombre_parfait",
             "intervalle_parfait", "nombre_premier", "derivée", "primitive", "integrale")
 
 mat = np.zeros((1, 1))
 premier=""
 parfait=""
 uploaded_file_url=""
+
 # la premier fonction qui contient le get
 
 def moy(list):
@@ -30,7 +31,7 @@ def moy(list):
 
 
 def run(request):
-    global mat, commands,premier,parfait,uploaded_file_url
+    global mat, commands,premier,parfait,uploaded_file_url,moy,med
     res = "bonjour veuiller entrer help pour la syntax"
     try:
 
@@ -55,21 +56,11 @@ def run(request):
                 filename = fs.save(myfile.name, myfile)
                 uploaded_file_url = fs.url(filename)
                 file_path = os.path.join('media/', filename)
-                f = open(file_path)
-
-                myReader = csv.reader(f)
-                tableau = []
-                lire = csv.reader(f)
-                print('', end='\n')
-                print('Affichage des lignes du tableau', end='\n')
-                for ligne in lire:  # Pour chaque ligne...
-                    print(ligne, end='\n')
-                    tableau.append(ligne)
-                res =tableau
-                f.close()
 
                 df = pd.read_csv(file_path)
-                print(df.to_string())
+                moy = print(df.mean())
+                med =  print(df.median())
+
 
             except:
 
@@ -82,6 +73,13 @@ def run(request):
                     except:
                         command = request.POST["cal"]
 
+                        if re.search("!", command):
+                            command = command.replace("!", "")
+                            res = np.math.factorial(eval(command))
+                            return render(request, 'index.html',
+                                          {'output': str(res), 'mat': str(mat), 'premier': str(premier),
+                                           'parfait': str(parfait), 'uploaded_file_url': uploaded_file_url})
+
                         if re.search("x", command):
 
                             if request.GET.get("derivée") == "derivée":
@@ -93,6 +91,7 @@ def run(request):
                             if request.GET.get("integrale") == "integrale":
                                 res = str(integrale(command))
 
+
                         else:
                             res = format_all(calculate((command)))
 
@@ -103,8 +102,15 @@ def run(request):
         res = "division par 0"
 
     except np.linalg.LinAlgError:
-        res = "la matrice doit etre une matrice carre"
 
+        try:
+            np.linalg.det(mat)
+            res = "la matrice n'a pas de determinant"
+        except:
+            res = "la matrice n'est pas inversible"
+
+   # except ValueError:
+   #    res = "c'est pas une matrice"
 
     except:
 
@@ -129,8 +135,8 @@ def Services(request):
     return render(request, 'Services.html')
 
 
-def Statistique(request):
-    return render(request, 'Statistique.html')
+def statistique(request):
+    return render(request, 'statistique.html')
 
 
 def Fraction(request):
@@ -204,13 +210,11 @@ def extract(command, ele):
 # matrix functions
 
 def trace(chaine):
-    chaine = np.trace(chaine)
-    return chaine
+    return  np.trace(chaine)
 
 
 def determinant(chaine):
-    chaine = np.linalg.det(chaine)
-    return chaine
+    return  np.linalg.det(chaine)
 
 
 def inverse(chaine):
@@ -218,7 +222,7 @@ def inverse(chaine):
     return chaine
 
 
-def transpose(chaine):
+def transposée(chaine):
     chaine = chaine.transpose()
     return chaine
 
@@ -256,7 +260,7 @@ def vector_difference(chaine):
 # statistique
 
 
-def average(chaine):
+def moyenne(chaine):
     chaine = np.average(chaine)
     return chaine
 

@@ -195,19 +195,6 @@ import re
 import sympy as sp
 
 
-mat = "4x"
-def derivée(mat):
-
-    x = sp.symbols('x')
-    y=mat
-    F=sp.diff(y,x)
-
-    return F
-
-print(derivée(mat))
-
-
-
 
 '''
 #shunting Yard algorithm
@@ -312,3 +299,11 @@ print(evaluate(t))
 t.postorder()
 
 '''
+
+
+import numpy as np
+
+mat = np.matrix("[1,2];[1,2,3]")
+#inv = np.linalg.inv(mat)
+#trace = np.trace(mat)
+print(mat)

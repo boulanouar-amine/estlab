@@ -86,10 +86,10 @@
                      <ul class="nav">
                         <li><a href="{% url 'Home' %}">Accueil</a></li>
                         <li class="has-sub">
-                            <a href="javascript:void(0)">Mathematics</a>
+                            <a href="javascript:void(0)">Documentation</a>
                             <ul class="sub-menu">
                                 <li><a href="{% url 'Matrice' %}">Matrices</a></li>
-                                <li><a href="{% url 'Statistique' %}">Statistiques</a></li>
+                                <li><a href="{% url 'statistique' %}">statistiques</a></li>
                                 <li><a href="{% url 'Fraction' %}">Fractions</a></li>
                                 <li><a href="{% url 'Probabilite' %}">Probabilités</a></li>
                                 <li><a href="{% url 'NombreParfait' %}">Nombres Parfaits</a></li>
@@ -216,7 +216,7 @@
                             0.6570 &nbsp&nbsp&nbsp 0.9894 &nbsp&nbsp&nbsp -0.5440
                         </p>
                         <p>
-                            Pour transposer une matrice, utilisez un guillemet simple (') :
+                            Pour transposér une matrice, utilisez un guillemet simple (') :
                         </p>
                         <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">a'</pre>
                         <p>
@@ -674,7 +674,7 @@ arr_sqrt <span class="math">=</span> np.sqrt(arr)
                             <pre style="padding:5px 5px 5px 5px;margin: 20px 20px 20px 20px;background-color: #c9c9c9;border: 1px solid #a1a1a1">X = -2:0.5:10;
 Y = exp(X/2);
 plot(X,Y)</pre>
-                            <img src="{% static 'images/trace.png' %}" style="width: 583px;height: 437px">
+
                         </div>
                     </div>
                 </div>
